@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Gary Goomba\>
+# Gary Goomba
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: \<[Justin Lee](https://github.com/Sworddafence)\> \<[Keita Ichii](https://github.com/kichi004)\> \<[Chris Ullman](https://github.com/cullm001)\> \<[Isaiah Bernardino](https://github.com/isaiahpb)\>
@@ -31,25 +31,25 @@
  > * What will be the input/output of your project? What are the features that the project provides?
  >   * Text will be the input, and Text will also be the Output (including ascii art)
  >   * Classes (5)
- >      Barbarian - Rage (+ damage)
- >      Cleric - Healing (+health)
- >      Archer - Focus (+ crit rate)
- >      Wizard -  Fireball (+ burn)
- >      Rogue - Dodge (+don’t get hit by next attack)
+ >      * Barbarian - Rage (+ damage)
+ >      * Cleric - Healing (+health)
+ >      * Archer - Focus (+ crit rate)
+ >      * Wizard -  Fireball (+ burn)
+ >      * Rogue - Dodge (+don’t get hit by next attack)
  >   * Combat System
- >      Weapon Attributes (aka spear > armor, sword fast)
- >      Class Abilities (Cleric, you can heal) 
- >      Potion Item (Healing Potion, Strength Potion, etc.)
- >      Add crits
- >      ASCII ART
+ >      * Weapon Attributes (aka spear > armor, sword fast)
+ >      * Class Abilities (Cleric, you can heal) 
+ >      * Potion Item (Healing Potion, Strength Potion, etc.)
+ >      * Add crits
+ >      * ASCII ART
  >   * Text-based RPG
- >      Linear storyline,
- >      Choose between possible options using A, B, C, etc.
- >      Easy Game
+ >      * Linear storyline,
+ >      * Choose between possible options using A, B, C, etc.
+ >      * Easy Game
  >   * Loot system
- >      Randomized loot (no set rewards)
- >      Ranges from bad to legendary quality
- >      Caters to the class you choose 
+ >      * Randomized loot (no set rewards)
+ >      * Ranges from bad to legendary quality
+ >      * Caters to the class you choose 
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  >   
  > You also need to set up an empty project board by choosing the  “Automated kanban with review” option on Github. You should also have a Backlog and In testing columns added.
