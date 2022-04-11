@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# Gary Goomba
+# Gary-Goomba
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: \<[Justin Lee](https://github.com/Sworddafence)\> \<[Keita Ichii](https://github.com/kichi004)\> \<[Chris Ullman](https://github.com/cullm001)\> \<[Isaiah Bernardino](https://github.com/isaiahpb)\>
