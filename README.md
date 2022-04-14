@@ -34,7 +34,7 @@
  >     * Ex: Barbarians can go into rage to deal more damage.
  >   * 5 Weapons, each with unique attributes and modifiers
  >     * Ex: Rogue's knives deal damage twice instead of once.
- >   * Multiple potions types to use in combat
+ >   * Multiple potion types to use in combat
  >     * Ex: Choose to bring a strength potion instead of a healing potion.
  >   * Unique enemies, each with their own combat style
  >     * Ex: Stone golems take less physical damage and more magic damage.
