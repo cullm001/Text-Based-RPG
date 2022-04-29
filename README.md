@@ -1,29 +1,18 @@
 # Project Gary-Goomba
  
  > Authors: [Justin Lee](https://github.com/Sworddafence), [Keita Ichii](https://github.com/kichi004), [Chris Ullman](https://github.com/cullm001), [Isaiah Bernardino](https://github.com/isaiahpb)
- 
- ## Project Expectations
- > * Incorporate **at least one** design pattern
- >   * It is recommended that you include a design pattern that we will teach this session (Composite, Strategy, or Visitor)
- > * Your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * Each member of the group must actively participate in the Github Project board and reviewing commited code.
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two scrum/check-in meetings with your lab TA/reader in two different weeks in addition to the final demo.
-
-
-## Project Description
+ > 
  > "A text-based linear RPG with multiple classes and a randomized loot system.  Incorporates a fleshed out combat system with interesting mechanics such as crits, consumables and Class abilities."
- >
- > * Why is it important or interesting to you?
- >   * This project is interesting to us because it seems like it would be fun to come up with and implement interesting class abilities, weapon attributes, and creative enemy types. 
- > * What languages/tools/technologies do you plan to use? (This list may change over the course of the project)
+ > * Project Reason
+ >   * We decided to work on this project because it seems like it would be fun to come up with and implement class abilities, weapon attributes, and creative enemy types. It would be interesting to examine a game through the lens of a developer instead of a user.
+ > * Languages/Tools/Technology
  >   * [Github](https://github.com/) - an online version control repository to allow easy collaboration
  >   * [C++](https://www.cplusplus.com/) - a well-known object-based programming language
  >   * [Secure Shell](https://www.ssh.com/) - used to remotely access the UCR hammer server
  >   * [Github Kanban Board](https://github.com/kanboard/kanboard) - Github’s version of an online framework to implement the Kanban work methodology
- > * What will be the input/output of your project? What are the features that the project provides?
+ > * Project Features
  >   * Text-based input/output, including entertaining ASCII art.
+ >     * Using singular character inputs like "A, B, C" to navigate story and combat menus. Receiving output in the form of text descriptions of what is happening.
  >   * 5 Classes, each with a unique class ability in combat
  >     * Ex: Barbarians can go into rage to deal more damage.
  >   * 5 Weapons, each with unique attributes and modifiers
