@@ -8,3 +8,8 @@ ADD_EXECUTABLE(test
         src/item.cpp
     )
 
+ADD_EXECUTABLE(enemy
+	Enemies/test.cpp
+	Enemies/Boss.cpp
+	Enemies/Minion.cpp
+)
