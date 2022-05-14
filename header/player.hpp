@@ -1,9 +1,9 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "item.hpp"
+#include "entity.hpp"
 
-class Player : public Item {
+class Player : public Entity {
     public:
         void levelUp(int levels);
 };

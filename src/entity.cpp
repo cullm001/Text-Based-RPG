@@ -1,0 +1,19 @@
+#include "../header/entity.hpp"
+
+using namespace std;
+
+// *Note that this does not remove currHealth unless it exceeds maxHealth
+void Entity::removeTempHealth() {
+    maxHealth -= tempHealth;
+    if (currHealth > maxHealth) {
+        currHealth = maxHealth;
+    }
+    tempHealth = 0;
+}
+
+void Entity::resetTempStats() {
+    removeTempHealth();
+    removeTempDefense();
+    removeTempAttack();
+    removeTempCritRate();
+}
