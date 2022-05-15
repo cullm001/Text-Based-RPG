@@ -7,6 +7,9 @@ Weapon::Weapon(string n, int b) {
 }
 
 int Weapon::getBoost() {
-    cout << "Weapon received a boost" << endl;
-    return 1;
+    return buff;
+}
+void Weapon::print() {
+    cout << "The legendary " << n << "glows in your hand";
+    return;
 }
