@@ -1,7 +1,7 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include "Character.hpp"
+#include "Entity.hpp"
 #include <string>
 using namespace std;
 
