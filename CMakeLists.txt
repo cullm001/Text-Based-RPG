@@ -13,3 +13,8 @@ ADD_EXECUTABLE(enemy
 	Enemies/Boss.cpp
 	Enemies/Minion.cpp
 )
+
+ADD_EXECUTABLE(weapon
+	Weapon/test_weapon.cpp
+        Weapon/weapon.cpp
+)
