@@ -20,6 +20,16 @@ class Entity {
         double tempCritRate;
 
     public:
+        Enitity(int attac, int defens, int health){
+            maxHealth = health;
+            currHealth = health;
+            defense = defens;
+            critRate = 0.5;
+            resetTempStats();
+            
+        }
+
+
         virtual int Attack() const = 0;
         int Health();
 
@@ -42,7 +52,7 @@ class Entity {
         void addTempAttack(int val) { attack += val; tempAttack += val; }
         void addTempDefense(int val) { defense += val; tempDefense += val; }
         void addTempCritRate(double val) { critRate += val; tempCritRate += val; }
-
+    
         // removes buffs & debuffs to the character, removal of health is different
         void removeTempHealth();
         void removeTempAttack() { attack -= tempAttack; tempAttack = 0; }
@@ -50,6 +60,9 @@ class Entity {
         void removeTempCritRate() { critRate -= tempCritRate; critRate = 0; }
         // removes all temporary stats, not just one
         void resetTempStats();
+        // the charcter take damage;
+        void takedmg(int dmg);
+        void fullheal();
 };
 
 #endif

@@ -17,3 +17,14 @@ void Entity::resetTempStats() {
     removeTempAttack();
     removeTempCritRate();
 }
+
+void Entity::takedmg(int dmg){
+    int temp = dmg - getDefense();
+    if(temp > 0){
+        currHealth = currHealth - temp;
+    }
+}
+void Entity::fullheal(){
+    resetTempStats();
+    currHealth = maxHealth;
+}
