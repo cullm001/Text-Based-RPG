@@ -20,7 +20,7 @@ class Entity {
         double tempCritRate;
 
     public:
-        Enitity(int attac, int defens, int health){
+        Entity(int attac, int defens, int health){
             maxHealth = health;
             currHealth = health;
             defense = defens;
