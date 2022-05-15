@@ -1,14 +1,22 @@
-
-#include "player.hpp"
+#include "src/player.hpp"
 #include "entity.hpp"
 
 using namespace std;
 
+Player::Player(): Entitiy(1,1,1){
+    
+} 
+
 void Player::levelUp(int levels) {
-    int hthFactor = 1;
-    int defFactor = 1;
-    int atkFactor = 1;
-    addMaxHealthAndCurrHealth(levels * hthFactor);
-    addAttack(levels * atkFactor);
-    addDefense(levels * defFactor);
+    this->addMaxHealth(1);
+    this->addDefense(1);
+    this->addAttack(1);
 }
+void Player::Class_ability(){
+    return;
+}
+void Player::Attack(){
+    int temp = this->getAttack();
+    return temp;
+}
+

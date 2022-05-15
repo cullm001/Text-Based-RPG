@@ -13,6 +13,7 @@ class Player: public character{
       Bag userBag;
       Weapon userWeapon;
     public:
+      void levelup();
       virtual int Attack();
-      virtual void Class_ability() = 0;
+      virtual void Class_ability();
 };

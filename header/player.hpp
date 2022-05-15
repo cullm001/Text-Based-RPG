@@ -2,10 +2,18 @@
 #define PLAYER_HPP
 
 #include "entity.hpp"
+#include "Weapon/weaponWeapon/weapon.hpp"
 
+
+using namespace std;
 class Player : public Entity {
+    private:
+        //Weapon weapon;
     public:
-        void levelUp(int levels);
+        Player(); //we'll put weapons here later
+        void levelUp();
+        int Attack();
+        virtual void ability() const = 0;
 };
 
-#endif
+endif
