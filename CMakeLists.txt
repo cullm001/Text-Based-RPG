@@ -4,6 +4,8 @@ SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(player
 	header/player_test.cpp
-	src/player.cpp
+	header/bag.hpp
+  
+  src/player.cpp
 )
 

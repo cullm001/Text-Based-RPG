@@ -12,9 +12,9 @@ Item::Item(string n, string d, int v, int e){
 }
 
 int Item::use(){
-        cout  << name << endl;
-        return 0;
-        //this is temparay until someone makes the charcter class
+    cout  << name << endl;
+    return 0;
+    //this is temparay until someone makes the charcter class
 }
 
 void Item::print(){

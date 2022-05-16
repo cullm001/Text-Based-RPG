@@ -2,19 +2,53 @@
 #define ITEM_HPP
 
 #include <string>
+#include "entity.hpp"
+#include "player.hpp"
+
 
 using namespace std;
 
 class Item {
-    private:
+    protected:
         string name;
         string description;
-        int value;
-        int effect;
     public:
-        Item(string n, string d, int v, int e);
-        int use();//In the future this use will have the player obejct in it so it can modify it
+        virtual void use(Player *&p) = 0;//In the future this use will have the player obejct in it so it can modify it
         void print(); //print the description
+        virtual ~Item() = default;
+        string getname(){
+            return name;
+        }
+};
+class healthpot: public Item
+{
+    private:
+        int value;
+    public:
+        ~healthpot(){}
+        healthpot(string n, string d, int v){
+            name = n;
+            description = d;
+            value = v;
+        }
+        void use(Player *&p){
+           p->addTempHealth(5);
+        }
+};
+class dmgpot: public Item
+{
+     private:
+        int value;
+    public:
+        ~dmgpot(){}
+        dmgpot(string n, string d, int v){
+            name = n;
+            description = d;
+            value = v;
+        }
+        void use(Player *&p){
+           p->addTempAttack(5);
+        }
 };
 
 #endif //blah
