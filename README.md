@@ -32,13 +32,17 @@
  > * You should also update this README file by adding the following:
  >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
  >     * Why did you pick this pattern? And what feature did you implement with it?
+ >     *  Strategy, we picked this pattern to more easily make it so that we can use items more easily.
  >     * How did the design pattern help you write better code?
+ >     *  It allowed up to create a more flexable interaction between the player and the item.
  >   * An updated class diagram that reflects the design pattern(s) you used. You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description).
  >   * Make sure your README file (and Project board) are up-to-date reflecting the current status of your project. Previous versions of the README file should still be visible through your commit history.
 > 
 > During the meeting with your reader you will discuss: 
  > * How effective your last sprint was (each member should talk about what they did)
+ >   Not very effective, alot of the team members were busy with midterms and everything so the things that we wanted to get done were not done.
  > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
+ > *  We need to devople a more organized way to push to master, maybe encourage groupmmates to 
  > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
  > * What tasks you are planning for this next sprint.
 
