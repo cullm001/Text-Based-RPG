@@ -12,7 +12,7 @@ class Player : public Entity {
         Player(); //we'll put weapons here later
         void levelUp();
         int Attack();
-        virtual void ability() const = 0;
+        virtual void ability();
 };
 
 #endif
