@@ -7,10 +7,10 @@ using namespace std;
 
 int main(){
 	Boss test = Boss(30,30,30);
-	cout << "Boss attack: " << test.Attack() << endl;
+	cout << "Boss attack: " << test.Attack() << " damage" << endl;
 	
 	Minion test2 = Minion(20,20,20);
-	cout << "Minion attack: " << test2.Attack() << endl;
+	cout << "Minion attack: " << test2.Attack() << " damage" << endl;
 	
 	return 0;
 }
