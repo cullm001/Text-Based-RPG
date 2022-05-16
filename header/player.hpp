@@ -11,8 +11,8 @@ class Player : public Entity {
     public:
         Player(); //we'll put weapons here later
         void levelUp();
-        int Attack();
-        virtual void Class_ability();
+        int attack();
+        virtual void class_ability();
 };
 
 #endif
