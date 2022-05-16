@@ -5,7 +5,7 @@ using namespace std;
 
 class Weapon {
     public:
-	Weapon(string n, int b);
+	Weapon(string n, int b, string atk);
 	int getBoost();
 	void print();
 	string getAttackDescription();

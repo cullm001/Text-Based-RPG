@@ -1,5 +1,6 @@
 #include "../header/player.hpp"
 #include "../header/entity.hpp"
+#include "../header/Weapon/weapon.hpp"
 
 using namespace std;
 
