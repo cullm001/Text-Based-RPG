@@ -13,3 +13,6 @@ void Weapon::print() {
     cout << "The legendary " << name << "glows in your hand";
     return;
 }
+string Weapon::getAttackDescription() {
+    return attackDescription;
+}

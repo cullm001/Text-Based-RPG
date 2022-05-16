@@ -8,8 +8,10 @@ class Weapon {
 	Weapon(string n, int b);
 	int getBoost();
 	void print();
+	string getAttackDescription();
     private:
 	string name;
+	string attackDescription;
 	int buff;
 
 };

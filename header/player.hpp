@@ -7,12 +7,13 @@
 using namespace std;
 class Player : public Entity {
     private:
-        //Weapon weapon;
+        Weapon weapon;
     public:
         Player(); //we'll put weapons here later
         void levelUp();
-        int attack();
+        int use_attack();
         virtual void class_ability();
+        string attackDescription();
 };
 
 #endif
