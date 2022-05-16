@@ -7,3 +7,4 @@ class Minion: public Enemy{
 	public:
 		int Attack();
 };
+#endif

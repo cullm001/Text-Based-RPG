@@ -1,5 +1,5 @@
-#include "src/player.hpp"
-#include "entity.hpp"
+#include "../header/player.hpp"
+#include "../header/entity.hpp"
 
 using namespace std;
 

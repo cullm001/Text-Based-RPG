@@ -2,7 +2,6 @@
 #define PLAYER_HPP
 
 #include "entity.hpp"
-#include "Weapon/weaponWeapon/weapon.hpp"
 
 
 using namespace std;
@@ -16,4 +15,4 @@ class Player : public Entity {
         virtual void ability() const = 0;
 };
 
-endif
+#endif
