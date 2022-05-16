@@ -4,10 +4,13 @@
 using namespace std;
 
 Player::Player(){
-   maxHealth = 1;
-            currHealth = 1;
-            defense = 1;
-            critRate = 0.5;
+    maxHealth = 1;
+    currHealth = 1;
+    defense = 1;
+    critRate = 0.5;
+    attack = 1;
+    tempHealth = 0;
+
 //`            resetTempStats();
 } 
 
