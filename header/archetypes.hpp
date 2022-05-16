@@ -12,7 +12,7 @@ class Paladin : public Player {
             Weapon* flimsySword = new Weapon("Flimsy Sword", 1, "slashes");
             this->weapon = flimsySword;
         }
-        void Paladin::class_ability() {
+        void class_ability() {
             this->addDefense(3);
             return;
         }
@@ -20,11 +20,11 @@ class Paladin : public Player {
 
 class Wizard : public Player {
     public:
-        Wizard() {
+        Wizard() : Player() {
             Weapon* moldyStaff = new Weapon("Moldy Staff", 1, "blasts");
             this->weapon = moldyStaff;
         }
-        void Wizard::class_ability() {
+        void class_ability() {
             this->addAttack(1);
             this->addDefense(1);
             this->addMaxHealth(1);
@@ -34,11 +34,11 @@ class Wizard : public Player {
 
 class Archer : public Player {
     public:
-        Archer() {
+        Archer() : Player() {
             Weapon* brittleBow = new Weapon("Brittle Bow", 1, "shoots");
             this->weapon = brittleBow;
         }
-        void Archer::class_ability() {
+        void class_ability() {
             this->addTempCritRate(0.25);
         }
 };
@@ -47,11 +47,11 @@ class Cleric : public Player {
     private:
 
     public:
-        Cleric() {
+        Cleric() : Player() {
             Weapon* rustyMace = new Weapon("Rusty Mace", 1, "smashes");
             this->weapon = rustyMace;
         }
-        void Cleric::class_ability() {
+        void class_ability() {
             this->addCurrHealth(3);
         }
 };
@@ -60,11 +60,11 @@ class Barbarian : public Player {
     private:
 
     public:
-        Barbarian() {
+        Barbarian() : Player() {
             Weapon* woodenHammer = new Weapon("Wooden Hammer", 1, "bonks");
             this->weapon = woodenHammer;
         }
-        void Barbarian::class_ability() {
+        void class_ability() {
             this->addTempAttack(3);
         }
 };

@@ -31,6 +31,6 @@ string Player::attackDescription() {
     if (weapon != nullptr) {
         return weapon->getAttackDescription();
     } else 
-    return "punched";
+    return "punches";
 }
 
