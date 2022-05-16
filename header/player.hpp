@@ -1,19 +1,20 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "entity.hpp"
-#include "Weapon/weaponWeapon/weapon.hpp"
+#include "../header/entity.hpp"
 
 
 using namespace std;
 class Player : public Entity {
     private:
         //Weapon weapon;
+        int random;
     public:
         Player(); //we'll put weapons here later
+        ~Player();
         void levelUp();
         int Attack();
-        virtual void ability() const = 0;
+        virtual void ability();
 };
 
-endif
+#endif

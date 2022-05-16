@@ -1,11 +1,12 @@
 #include <iostream>
 #include "../header/item.hpp"
+#include "../header/player.hpp"
+#include "../header/entity.hpp"
 
 using namespace std;
 
 int main()
 {
-    Item bob("healing potion", "epic games",4,4);  
-    bob.use();   
+    Player bob(); 
     return 0;
 }

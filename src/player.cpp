@@ -1,22 +1,23 @@
-#include "src/player.hpp"
-#include "entity.hpp"
+#include "../header/player.hpp"
+#include "../header/entity.hpp"
 
 using namespace std;
 
-Player::Player(): Entitiy(1,1,1){
-    
+Player::~Player(){}
+
+Player::Player(): Entity(){
+   random = 0;
 } 
 
-void Player::levelUp(int levels) {
+void Player::levelUp() {
     this->addMaxHealth(1);
     this->addDefense(1);
     this->addAttack(1);
 }
-void Player::Class_ability(){
+void Player::ability(){
     return;
 }
-void Player::Attack(){
-    int temp = this->getAttack();
-    return temp;
+int Player::Attack() {
+    return Entity::getAttack();
 }
 

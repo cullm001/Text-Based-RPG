@@ -2,6 +2,9 @@
 
 using namespace std;
 
+
+
+Entity::~Entity() {}
 // *Note that this does not remove currHealth unless it exceeds maxHealth
 void Entity::removeTempHealth() {
     maxHealth -= tempHealth;
