@@ -3,11 +3,15 @@
 
 using namespace std;
 
-Player::Player(): Entitiy(1,1,1){
-    
+Player::Player(){
+   maxHealth = 1;
+            currHealth = 1;
+            defense = 1;
+            critRate = 0.5;
+//`            resetTempStats();
 } 
 
-void Player::levelUp(int levels) {
+void Player::levelUp() {
     this->addMaxHealth(1);
     this->addDefense(1);
     this->addAttack(1);
@@ -15,7 +19,7 @@ void Player::levelUp(int levels) {
 void Player::Class_ability(){
     return;
 }
-void Player::Attack(){
+int Player::Attack() {
     int temp = this->getAttack();
     return temp;
 }

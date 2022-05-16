@@ -6,7 +6,7 @@
 using namespace std;
 
 class Entity {
-    private: 
+    protected: 
         int maxHealth;
         int currHealth;
         int defense;
@@ -20,19 +20,25 @@ class Entity {
         double tempCritRate;
 
     public:
+	Entity(){
+		maxHealth = 0;
+		currHealth = 0;
+		defense = 0;
+		critRate = 0;
+}
         Entity(int attac, int defens, int health){
             maxHealth = health;
             currHealth = health;
             defense = defens;
             critRate = 0.5;
-            resetTempStats();
+          //  resetTempStats();
             
         }
 
 
-        virtual int Attack() const = 0;
+        
         int Health();
-
+	virtual int Attack() = 0;
         // used to get current stats for combat purposes
         int const getMaxHealth() { return maxHealth; }
         int const getCurrHealth() { return currHealth; }
@@ -59,7 +65,7 @@ class Entity {
         void removeTempDefense() { defense -= tempDefense; tempDefense = 0; }
         void removeTempCritRate() { critRate -= tempCritRate; critRate = 0; }
         // removes all temporary stats, not just one
-        void resetTempStats();
+     //   void resetTempStats();
         // the charcter take damage;
         void takedmg(int dmg);
         void fullheal();
