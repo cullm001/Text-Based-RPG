@@ -29,6 +29,8 @@
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
  > * Before the meeting you should perform a sprint plan like you did in Phase II.
+ > <img width="857" alt="Screen Shot 2022-05-15 at 5 08 53 PM" src="https://user-images.githubusercontent.com/90822210/168500464-5b94ec76-5623-4ffb-8827-c64d6febbcc0.png">
+
  > * You should also update this README file by adding the following:
  >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
  >     * Why did you pick this pattern? And what feature did you implement with it?
