@@ -23,7 +23,7 @@ void Player::levelUp() {
 void Player::class_ability(){
     return;
 }
-int Player::use_attack() {
+int Player::Attack() {
     int temp = this->getAttack();
     return temp;
 }
