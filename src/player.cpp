@@ -27,10 +27,4 @@ int Player::Attack() {
     int temp = this->getAttack();
     return temp;
 }
-string Player::attackDescription() {
-    if (weapon != nullptr) {
-        return weapon->getAttackDescription();
-    } else 
-    return "punches";
-}
 
