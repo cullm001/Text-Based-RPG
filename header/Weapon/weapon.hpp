@@ -5,11 +5,13 @@ using namespace std;
 
 class Weapon {
     public:
-	Weapon(string n, int b);
+	Weapon(string n, int b, string atk);
 	int getBoost();
 	void print();
+	string getAttackDescription();
     private:
 	string name;
+	string attackDescription;
 	int buff;
 
 };

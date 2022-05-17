@@ -1,5 +1,6 @@
 #include "../header/player.hpp"
 #include "../header/entity.hpp"
+#include "../header/Weapon/weapon.hpp"
 
 using namespace std;
 
@@ -19,11 +20,17 @@ void Player::levelUp() {
     this->addDefense(1);
     this->addAttack(1);
 }
-void Player::Class_ability(){
+void Player::class_ability(){
     return;
 }
-int Player::Attack() {
+int Player::use_attack() {
     int temp = this->getAttack();
     return temp;
+}
+string Player::attackDescription() {
+    if (weapon != nullptr) {
+        return weapon->getAttackDescription();
+    } else 
+    return "punches";
 }
 
