@@ -37,7 +37,7 @@ class Entity {
 
         
         int getHealth();
-	    virtual int use_attack() = 0;
+	    virtual int Attack() = 0;
         
         // used to get current stats for combat purposes
         int const getMaxHealth() { return maxHealth; }
