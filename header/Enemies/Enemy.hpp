@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class Enemy{
+class Enemy: public Entity{
 	protected:
 		string name;
 	public:

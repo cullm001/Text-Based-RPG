@@ -7,7 +7,7 @@ class Weapon {
     public:
 	Weapon(string n, int b);
 	int getBoost();
-	int print();
+	void print();
     private:
 	string name;
 	int buff;

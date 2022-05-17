@@ -20,25 +20,25 @@ class Entity {
         double tempCritRate;
 
     public:
-	Entity(){
-		maxHealth = 0;
-		currHealth = 0;
-		defense = 0;
-		critRate = 0;
-}
+        Entity(){
+            maxHealth = 0;
+            currHealth = 0;
+            defense = 0;
+            critRate = 0;
+        }
         Entity(int attac, int defens, int health){
             maxHealth = health;
             currHealth = health;
             defense = defens;
             critRate = 0.5;
-          //  resetTempStats();
-            
+            //  resetTempStats();
         }
 
 
         
         int Health();
-	virtual int Attack() = 0;
+	    virtual int Attack() = 0;
+        
         // used to get current stats for combat purposes
         int const getMaxHealth() { return maxHealth; }
         int const getCurrHealth() { return currHealth; }

@@ -9,3 +9,10 @@ ADD_EXECUTABLE(player
   src/player.cpp
 )
 
+ADD_EXECUTABLE(enemy
+	header/Enemies/Boss.cpp
+	header/Enemies/Minion.cpp
+	header/Enemies/Enemy.hpp
+	header/Enemies/enemy_test.cpp
+)
+
