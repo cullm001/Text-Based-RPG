@@ -5,6 +5,7 @@ SET(CMAKE_CXX_STANDARD 11)
  ADD_EXECUTABLE(player
  	header/player_test.cpp
  	header/bag.hpp
+  header/combat.hpp
   src/player.cpp
  )
 

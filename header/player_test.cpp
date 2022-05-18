@@ -1,3 +1,4 @@
+#include "combat.hpp"
 #include "player.hpp"
 #include "bag.hpp"
 #include "item.hpp"

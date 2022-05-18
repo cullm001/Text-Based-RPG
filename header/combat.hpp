@@ -38,10 +38,16 @@ class combat {
             return;
         }
         void mattack(){
-            int roll = monster->Attack();
+            int roll = monster->Move();
             int dmg = (roll*2)/(play->getplayer()->getDefense());
             play->getplayer()->takedmg(dmg);
-            cout << "The monster attacks you\nThe monster takes " << dmg << " damage\n";
+            if(roll > 0){
+            cout << "You take " << dmg << "points of damage\n";
+            }
+            if(play->getplayer()->getHealth() <= 0){
+            cout << "You have died\n";
+            exit(0);
+            }
             return;
         }
         void accessbag(){
