@@ -13,7 +13,6 @@ class Player : public Entity {
         void levelUp();
         int Attack();
         virtual void class_ability();
-        string attackDescription();
 };
 
 #endif

@@ -7,17 +7,17 @@
 #include "item.hpp"
 #include "player.hpp"
 #include "Enemies/Enemy.hpp"
-
+#include "bag.hpp"
 
 using namespace std;
 
 class combat {
     private:
         Enemy *monster;
-        Player *play;
+        Bag *play;
         Item *loot;
     public:
-        combat(Player *p, Enemy *e, Item *l){
+        combat(Bag *p, Enemy *e, Item *l){
             play = p;
             monster = e;
             loot = l;
@@ -28,6 +28,58 @@ class combat {
             int rec = 0;
             cin >> rec;
             return rec;
+        }
+        void pattack(){
+            int roll = play->getplayer()->Attack();
+            int dmg = (roll*2)/(monster->getDefense());
+            monster->takedmg(dmg);
+
+            cout << "You attack the monster\nThe monster takes " << dmg << " damage\n";
+            return;
+        }
+        void mattack(){
+            int roll = monster->Move();
+            int dmg = (roll*2)/(play->getplayer()->getDefense());
+            play->getplayer()->takedmg(dmg);
+            if(roll > 0){
+            cout << "You take " << dmg << "points of damage\n";
+            }
+            if(play->getplayer()->getHealth() <= 0){
+            cout << "You have died\n";
+            exit(0);
+            }
+            return;
+        }
+        void accessbag(){
+            play->print();
+            int bob;
+            cin >> bob;
+            play->use(bob);
+        }
+        void run(){
+            cout << "You've failed to run away\n";
+        }
+        void ability(){
+            play->getplayer()->class_ability();
+        }
+        bool start(string start){
+            cout << start << endl;
+            while(play->getplayer()->getCurrHealth() > 0 || monster->getCurrHealth() > 0){
+                print();
+                int bob;
+                cin >> bob;
+                if(bob == 1){
+                    pattack();
+                }else if(bob == 2){
+                    accessbag(); 
+                }else if(bob == 3){
+                    ability();
+                }else{
+                    run();
+                }
+                mattack();
+        }
+        
         }
 };
 
