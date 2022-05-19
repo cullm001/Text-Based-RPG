@@ -25,6 +25,8 @@
  >   
 ## UML Class Diagram
  > <img width="892" alt="image" src="https://user-images.githubusercontent.com/90822210/166167385-6482112a-9ffc-49d9-8116-b9f6c2a32c3c.png">
+ > 
+ > Our text-based RPG will run mainly through a Story Class that will describe the story, read user inputs, and conduct combat between two entities. The two Entity Classes stored within the Story Class represent the user's player character and whatever enemy they are in combat with. The Entity Class is a blank slate of stats to store a character on, it has basic RPG stats like health, attack, and defense. The first class that inherits from it, the Player Class, will store a Bag that stores multiple usable items and a weapon. The various player character archetypes with unique abilites will also inherit from this class. The Enemy class is the superclass of the two possible enemy types, a Boss Class and a Minion Class. The main difference between these two are the combat patterns and the ability that the Boss Class also has.  
 
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
