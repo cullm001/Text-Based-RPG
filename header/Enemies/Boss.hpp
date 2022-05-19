@@ -4,22 +4,18 @@
 using namespace std;
 
 class Boss: public Enemy{
-	public:
+	private:
 		int Attack();
 		void ClassAbility();
-	Boss(){
-                maxHealth = 0;
-                currHealth = 0;
-                defense = 0;
-                critRate = 0;
-}
-        Boss(int attac, int defens, int health){
-	    attack = attac;
-            maxHealth = health;
-            currHealth = health;
-            defense = defens;
-            critRate = 0.5;
-}
+	public:
+		int move();
+		Boss(int i, int j, int b,string n): Enemy(i, j, b,n){
+			int nothing = 0;
+		}	
+
+
+
+
           //  resetTempStats();
           //
           //          }

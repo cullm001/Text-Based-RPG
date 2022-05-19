@@ -9,6 +9,10 @@ using namespace std;
 int Minion::Attack(){
 	srand(time(0));
 	int damage =  this->getAttack() + rand() % 11;
-//	reset();
+	cout << name << " attacked dealing " << damage << " damage!" << endl;
         return damage;
+}
+
+int Minion::move(){
+	return Attack();
 }
