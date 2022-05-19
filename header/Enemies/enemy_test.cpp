@@ -6,11 +6,11 @@
 using namespace std;
 
 int main(){
-	Boss test = Boss(30,30,30);
-	cout << "Boss attack: " << test.Attack() << " damage" << endl;
-	
-	Minion test2 = Minion(20,20,20);
-	cout << "Minion attack: " << test2.Attack() << " damage" << endl;
+	Boss test = Boss(30,30,30, "Bowser");
+	test.move();
+
+	Minion test2 = Minion(20,20,20, "Goomba");
+	test2.move();
 	
 	return 0;
 }

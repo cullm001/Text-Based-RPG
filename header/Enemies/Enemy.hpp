@@ -8,7 +8,17 @@ using namespace std;
 class Enemy: public Entity{
 	protected:
 		string name;
+		int move();
 	public:
-		int Move();
+		
+		 Enemy(int attac, int defens, int health, string nm){
+	           attack = attac;
+        	   maxHealth = health;
+           	   currHealth = health;
+           	   defense = defens;
+           	   critRate = 0.5;
+		   name = nm;
+		}
+
 }; 
 #endif
