@@ -8,10 +8,10 @@ using namespace std;
 class Enemy: public Entity{
 	protected:
 		string name;
-		int move();
-	public:
 		
-		 Enemy(int attac, int defens, int health, string nm){
+	public:
+		virtual int move() = 0;;
+		Enemy(int attac, int defens, int health, string nm){
 	           attack = attac;
         	   maxHealth = health;
            	   currHealth = health;
@@ -19,6 +19,9 @@ class Enemy: public Entity{
            	   critRate = 0.5;
 		   name = nm;
 		}
+    void takedmg(int i){
+        currHealth = currHealth - i;
+    }
 
 }; 
 #endif

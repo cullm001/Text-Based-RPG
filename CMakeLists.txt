@@ -6,6 +6,10 @@ SET(CMAKE_CXX_STANDARD 11)
  	header/player_test.cpp
  	header/bag.hpp
   header/combat.hpp
+  header/Enemies/Boss.cpp
+ 	header/Enemies/Minion.cpp
+ 	header/Enemies/Enemy.hpp
+
   src/player.cpp
  )
 

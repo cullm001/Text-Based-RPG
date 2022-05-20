@@ -12,7 +12,14 @@ class Player : public Entity {
         Player(); //we'll put weapons here later
         void levelUp();
         int Attack();
+        void takedmg(int i){
+            currHealth = currHealth - i;
+            return;
+        }
         virtual void class_ability();
+        void heal(){
+            currHealth = maxHealth;
+        }
 };
 
 #endif

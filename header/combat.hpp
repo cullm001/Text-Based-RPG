@@ -6,6 +6,7 @@
 #include <vector>
 #include "item.hpp"
 #include "player.hpp"
+#include "entity.hpp"
 #include "Enemies/Enemy.hpp"
 #include "bag.hpp"
 
@@ -24,10 +25,10 @@ class combat {
         }
         ~combat(){}
         int print(){
-            cout << "-------------------------\n      Attack          Bag\n      Ability          Run\n";
+            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << endl;     
+            cout << "Enemy:   " << monster->getCurrHealth() << endl;
+            cout << "------------------------------------\n  Attack\t\t  Bag\n  Ability\t\tRun\n-------------------------------------\n";
             int rec = 0;
-            cin >> rec;
-            return rec;
         }
         void pattack(){
             int roll = play->getplayer()->Attack();
@@ -38,13 +39,13 @@ class combat {
             return;
         }
         void mattack(){
-            int roll = monster->Move();
+            int roll = monster->move();
             int dmg = (roll*2)/(play->getplayer()->getDefense());
             play->getplayer()->takedmg(dmg);
             if(roll > 0){
-            cout << "You take " << dmg << "points of damage\n";
+            cout << "You take " << dmg << " points of damage\n";
             }
-            if(play->getplayer()->getHealth() <= 0){
+            if(play->getplayer()->getCurrHealth() <= 0){
             cout << "You have died\n";
             exit(0);
             }
@@ -64,9 +65,10 @@ class combat {
         }
         bool start(string start){
             cout << start << endl;
-            while(play->getplayer()->getCurrHealth() > 0 || monster->getCurrHealth() > 0){
+            while(play->getplayer()->getCurrHealth() > 0 && monster->getCurrHealth() > 0){
                 print();
                 int bob;
+                cin.clear();
                 cin >> bob;
                 if(bob == 1){
                     pattack();
@@ -79,6 +81,8 @@ class combat {
                 }
                 mattack();
         }
+            cout << "You've defeated the monster!!" << endl;
+            cout << "You have earned " << loot->getname() << endl;
         
         }
 };
