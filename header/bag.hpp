@@ -20,12 +20,24 @@ class Bag {
         ~Bag(){}
         
         void use(int i){
+            
+            
             if(i > 0){
                 int index = i - 1;
                 baglist.at(index)->use(play);
+            }else if(i > baglist.size()){
+                cout << "Item does not exist" << endl;
             }
+
+            swap(baglist.at(i-1), baglist.at((baglist.size()-1)));
+            baglist.pop_back();
         }
         void print(){
+            if(baglist.size() == 0){
+                cout << "nothing in the bag, you wasted your turn" << endl;
+                return;
+            }
+                
             for(int i = 0; i < baglist.size(); i++){
                 cout << i+1 << ": " << baglist.at(i)->getname() << endl;
             }
