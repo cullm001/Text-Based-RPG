@@ -53,9 +53,6 @@ class combat {
         }
         void accessbag(){
             play->print();
-            int bob;
-            cin >> bob;
-            play->use(bob);
         }
         void run(){
             cout << "You've failed to run away\n";
