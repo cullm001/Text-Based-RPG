@@ -15,6 +15,7 @@ int Boss::Attack(){
 
 void Boss::ClassAbility(){
 	cout << "Boss used class ability" << endl;	
+	this->addTempHealth(5);
 }
 
 int Boss::move(){

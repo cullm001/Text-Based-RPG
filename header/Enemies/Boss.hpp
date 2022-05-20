@@ -13,12 +13,5 @@ class Boss: public Enemy{
 			int nothing = 0;
 		}	
 
-
-
-
-          //  resetTempStats();
-          //
-          //          }
-          //
 };
 #endif
