@@ -29,6 +29,9 @@ class Bag {
             for(int i = 0; i < baglist.size(); i++){
                 cout << i+1 << ": " << baglist.at(i)->getname() << endl;
             }
+            int bob;
+            cin >> bob;
+            use(bob);
         }
         void add(Item *b){
             baglist.push_back(b);

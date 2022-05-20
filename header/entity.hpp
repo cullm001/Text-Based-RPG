@@ -67,7 +67,7 @@ class Entity {
         // removes all temporary stats, not just one
      //   void resetTempStats();
         // the charcter take damage;
-        void takedmg(int dmg);
+        //void takedmg(int dmg);
         void fullheal();
 };
 
