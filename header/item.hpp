@@ -16,9 +16,7 @@ class Item {
         virtual void use(Player *&p) = 0;//In the future this use will have the player obejct in it so it can modify it
         void print(); //print the description
         virtual ~Item() = default;
-        string getname(){
-            return name;
-        }
+        string getname(){ return name; }
 };
 class healthpot: public Item
 {

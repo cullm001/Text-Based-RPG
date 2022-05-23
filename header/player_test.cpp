@@ -10,13 +10,12 @@ using namespace std;
 
 
 int main(){
-  
     Bag fiction;
-    healthpot heal("healpotion", "When taken, a small angel pops out and sings a song", 1);
-    dmgpot dmg("Attackpotion", "When taken the user feels a slight boost to their muscles", 1);
+    healthpot heal("Healing Potion", "When taken, a small angel pops out and sings a song", 1);
+    dmgpot dmg("Strength Potion", "When taken the user feels a slight boost to their muscles", 1);
     fiction.add(&heal);
     fiction.add(&dmg);
-    Minion bob(5, 5, 5, "hello");
+    Minion bob(5, 5, 5, "goblin");
     combat epic(&fiction, &bob, &heal);
     for(int i = 0; i < 20; i++){
         fiction.getplayer()->levelUp();
@@ -27,7 +26,7 @@ int main(){
     cout << "health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
     cout << "attack " << fiction.getplayer()->getAttack() << endl;
     cout << "defense " << fiction.getplayer()->getDefense() << "\n" << endl;
-    epic.start("bob");
+    epic.start("Goblin Combat Test");
 
   //fiction.print();
   //fiction.use(1);
