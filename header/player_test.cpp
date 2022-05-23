@@ -26,8 +26,8 @@ int main(){
     //fiction.getplayer();
     cout << "health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
     cout << "attack " << fiction.getplayer()->getAttack() << endl;
-    cout << "defense " << fiction.getplayer()->getDefense() << endl;
-     epic.start("bob");
+    cout << "defense " << fiction.getplayer()->getDefense() << "/n" << endl;
+    epic.start("bob");
 
   //fiction.print();
   //fiction.use(1);

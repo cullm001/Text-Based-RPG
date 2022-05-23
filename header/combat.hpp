@@ -25,9 +25,9 @@ class combat {
         }
         ~combat(){}
         int print(){
-            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << endl;     
-            cout << "Enemy:   " << monster->getCurrHealth() << endl;
-            cout << "------------------------------------\n  Attack\t\t  Bag\n  Ability\t\tRun\n-------------------------------------\n";
+            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
+            cout << "Enemy:   " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << " HP" << endl;
+            cout << "------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n";
             int rec = 0;
         }
         void pattack(){
@@ -68,7 +68,7 @@ class combat {
                 cin.clear();
                 cin >> bob;
                 if(bob == 1){
-                    pattack();
+                    pattack(); // 
                 }else if(bob == 2){
                     accessbag(); 
                 }else if(bob == 3){
@@ -76,9 +76,9 @@ class combat {
                 }else{
                     run();
                 }
-                mattack();
-        }
-            cout << "You've defeated the monster!!" << endl;
+                mattack(); // fix so that monster does not attack after dying, return false if death
+        } // fix damage rolls
+            cout << "You've defeated the monster!!" << endl; // fix so that you do not always win
             cout << "You have earned " << loot->getname() << endl;
         
         }
