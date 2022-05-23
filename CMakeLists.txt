@@ -5,12 +5,14 @@ SET(CMAKE_CXX_STANDARD 11)
  ADD_EXECUTABLE(player
  	header/player_test.cpp
  	header/bag.hpp
-  header/combat.hpp
-  header/Enemies/Boss.cpp
+    header/combat.hpp
+  	header/Enemies/Boss.cpp
  	header/Enemies/Minion.cpp
  	header/Enemies/Enemy.hpp
+	header/Weapon/weapon.hpp
+	header/Weapon/weapon.cpp
 
-  src/player.cpp
+  	src/player.cpp
  )
 
  ADD_EXECUTABLE(enemy

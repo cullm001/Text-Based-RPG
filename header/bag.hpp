@@ -17,16 +17,17 @@ class Bag {
         Bag(){
         play = new Player(); 
         }
+        Bag(Player* p) {
+            play = p;
+        }
         ~Bag(){}
         
         void use(int i){
-            
-            
             if(i > 0){
                 int index = i - 1;
                 baglist.at(index)->use(play);
             }else if(i > baglist.size()){
-                cout << "Item does not exist" << endl;
+                cout << "The item does not exist." << endl;
             }
 
             swap(baglist.at(i-1), baglist.at((baglist.size()-1)));
@@ -34,7 +35,7 @@ class Bag {
         }
         void print(){
             if(baglist.size() == 0){
-                cout << "nothing in the bag, you wasted your turn" << endl;
+                cout << "There is nothing in your bag, you wasted your turn" << endl;
                 return;
             }
                 

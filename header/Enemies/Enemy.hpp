@@ -19,9 +19,12 @@ class Enemy: public Entity{
            	   critRate = 0.5;
 		   name = nm;
 		}
-    void takedmg(int i){
-        currHealth = currHealth - i;
-    }
+		void takedmg(int i){
+			currHealth = currHealth - i;
+		}
+		string getName() {
+			return name;
+		}
 
 }; 
 #endif

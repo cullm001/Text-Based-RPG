@@ -18,69 +18,81 @@ class combat {
         Bag *play;
         Item *loot;
     public:
-        combat(Bag *p, Enemy *e, Item *l){
+        combat(Bag *p, Enemy *e, Item *l) {
             play = p;
             monster = e;
             loot = l;
         }
         ~combat(){}
-        int print(){
-            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << endl;     
-            cout << "Enemy:   " << monster->getCurrHealth() << endl;
-            cout << "------------------------------------\n  Attack\t\t  Bag\n  Ability\t\tRun\n-------------------------------------\n";
+        int print() {
+            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
+            cout << "Enemy:   " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << " HP" << endl;
+            cout << "------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n";
             int rec = 0;
         }
-        void pattack(){
+        void pattack() {
             int roll = play->getplayer()->Attack();
-            int dmg = (roll*2)/(monster->getDefense());
+            int dmg = roll - monster->getDefense();
             monster->takedmg(dmg);
 
-            cout << "You attack the monster\nThe monster takes " << dmg << " damage\n";
+            cout << "You attack the " << monster->getName() << " for "<< dmg << " damage.\n";
             return;
         }
-        void mattack(){
+        void mattack() {
             int roll = monster->move();
-            int dmg = (roll*2)/(play->getplayer()->getDefense());
-            play->getplayer()->takedmg(dmg);
-            if(roll > 0){
-            cout << "You take " << dmg << " points of damage\n";
+            int dmg = roll - (play->getplayer()->getDefense());
+            
+            if(dmg > 0){
+                cout << "You take " << dmg << " points of damage.\n";
+                play->getplayer()->takedmg(dmg);
+            } else {
+                cout << "Your defense is impenetrable, you take 0 damage." << endl;
             }
             if(play->getplayer()->getCurrHealth() <= 0){
-            cout << "You have died\n";
-            exit(0);
+                cout << "You have died.\n";
+                exit(0);
             }
             return;
         }
-        void accessbag(){
+        void accessbag() {
             play->print();
         }
-        void run(){
-            cout << "You've failed to run away\n";
+        void run() {
+            cout << "You've failed to run away.\n";
         }
         void ability(){
             play->getplayer()->class_ability();
         }
-        bool start(string start){
+        bool start(string start) {
             cout << start << endl;
-            while(play->getplayer()->getCurrHealth() > 0 && monster->getCurrHealth() > 0){
+            while(play->getplayer()->getCurrHealth() > 0 && monster->getCurrHealth() > 0) {
                 print();
-                int bob;
+                int input;
                 cin.clear();
-                cin >> bob;
-                if(bob == 1){
-                    pattack();
-                }else if(bob == 2){
+                cin >> input;
+                if(input == 1) {
+                    pattack(); 
+                } else if(input == 2) {
                     accessbag(); 
-                }else if(bob == 3){
+                } else if(input == 3) {
                     ability();
-                }else{
+                } else {
                     run();
                 }
-                mattack();
-        }
-            cout << "You've defeated the monster!!" << endl;
-            cout << "You have earned " << loot->getname() << endl;
-        
+                if (monster->getCurrHealth() > 0) {
+                    mattack();
+                }
+                cout << endl;
+            }
+            if (play->getplayer()->getCurrHealth() > 0) {
+                cout << "You've defeated the monster!!" << endl; // fix so that you do not always win
+                cout << "You have earned a " << loot->getname() << ".\n" << endl;
+                return true;
+            }
+            else {
+                cout << "You were defeated in battle." << endl;
+                return false; 
+            }
         }
 };
 

@@ -57,8 +57,6 @@ class Cleric : public Player {
 };
 
 class Barbarian : public Player {
-    private:
-
     public:
         Barbarian() : Player() {
             Weapon* woodenHammer = new Weapon("Wooden Hammer", 1, "bonks");
