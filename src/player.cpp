@@ -5,20 +5,18 @@
 using namespace std;
 
 Player::Player(){
-    maxHealth = 1;
-    currHealth = 1;
-    defense = 1;
+    maxHealth = 10;
+    currHealth = 10;
+    defense = 5;
     critRate = 0.5;
-    attack = 1;
+    attack = 10;
     tempHealth = 0;
-
-//`            resetTempStats();
 } 
 
 void Player::levelUp() {
-    this->addMaxHealth(1);
+    this->addMaxHealthAndCurrHealth(5);
     this->addDefense(1);
-    this->addAttack(1);
+    this->addAttack(5);
 }
 void Player::class_ability(){
     return;

@@ -17,6 +17,9 @@ class Bag {
         Bag(){
         play = new Player(); 
         }
+        Bag(Player* p) {
+            play = p;
+        }
         ~Bag(){}
         
         void use(int i){

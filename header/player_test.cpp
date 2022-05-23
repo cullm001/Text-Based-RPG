@@ -5,21 +5,24 @@
 #include "./Enemies/Enemy.hpp"
 #include "./Enemies/Minion.hpp"
 #include "item.hpp"
+#include "archetypes.hpp"
+#include "Weapon/weapon.hpp"
 #include <iostream>
 using namespace std;
 
 
 int main(){
-    Bag fiction;
-    healthpot heal("Healing Potion", "When taken, a small angel pops out and sings a song", 1);
-    dmgpot dmg("Strength Potion", "When taken the user feels a slight boost to their muscles", 1);
+    Player* Paul = new Barbarian();
+    Bag fiction(Paul);
+    healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
+    dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
     fiction.add(&heal);
     fiction.add(&dmg);
-    Minion bob(5, 5, 5, "goblin");
+    Minion bob(7, 6, 6, "goblin");
     combat epic(&fiction, &bob, &heal);
-    for(int i = 0; i < 20; i++){
-        fiction.getplayer()->levelUp();
-    }
+    // for(int i = 0; i < 20; i++){
+    //     fiction.getplayer()->levelUp();
+    // }
     fiction.getplayer()->heal();
     //epic.start("bob");
     //fiction.getplayer();

@@ -32,7 +32,7 @@ class combat {
         }
         void pattack() {
             int roll = play->getplayer()->Attack();
-            int dmg = (roll*2)/(monster->getDefense());
+            int dmg = roll - monster->getDefense();
             monster->takedmg(dmg);
 
             cout << "You attack the " << monster->getName() << " for "<< dmg << " damage.\n";
@@ -40,14 +40,17 @@ class combat {
         }
         void mattack() {
             int roll = monster->move();
-            int dmg = (roll*2)/(play->getplayer()->getDefense());
-            play->getplayer()->takedmg(dmg);
-            if(roll > 0){
-            cout << "You take " << dmg << " points of damage.\n";
+            int dmg = roll - (play->getplayer()->getDefense());
+            
+            if(dmg > 0){
+                cout << "You take " << dmg << " points of damage.\n";
+                play->getplayer()->takedmg(dmg);
+            } else {
+                cout << "Your defense is impenetrable, you take 0 damage." << endl;
             }
             if(play->getplayer()->getCurrHealth() <= 0){
-            cout << "You have died.\n";
-            exit(0);
+                cout << "You have died.\n";
+                exit(0);
             }
             return;
         }
@@ -55,7 +58,7 @@ class combat {
             play->print();
         }
         void run() {
-            cout << "You've failed to run away\n";
+            cout << "You've failed to run away.\n";
         }
         void ability(){
             play->getplayer()->class_ability();
