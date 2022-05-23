@@ -23,7 +23,8 @@ void Entity::resetTempStats() {
 //    if(temp > 0){
 //        currHealth = currHealth - temp;
 //    }
-}
+//}
+
 void Entity::fullheal(){
     resetTempStats();
     currHealth = maxHealth;
