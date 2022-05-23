@@ -8,7 +8,7 @@ using namespace std;
 
 int Minion::Attack(){
 	srand(time(0));
-	int damage =  this->getAttack() + rand() % 11;
+	int damage =  this->getAttack();
 	cout << "The " << name << " swings it's fists at you!" << endl;
     return damage;
 }
