@@ -64,14 +64,14 @@ class combat {
             cout << start << endl;
             while(play->getplayer()->getCurrHealth() > 0 && monster->getCurrHealth() > 0){
                 print();
-                int bob;
+                int input;
                 cin.clear();
-                cin >> bob;
-                if(bob == 1){
+                cin >> input;
+                if(input == 1){
                     pattack(); // 
-                }else if(bob == 2){
+                }else if(input == 2){
                     accessbag(); 
-                }else if(bob == 3){
+                }else if(input == 3){
                     ability();
                 }else{
                     run();
