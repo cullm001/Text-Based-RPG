@@ -65,7 +65,7 @@ class Entity {
         void removeTempDefense() { defense -= tempDefense; tempDefense = 0; }
         void removeTempCritRate() { critRate -= tempCritRate; critRate = 0; }
         // removes all temporary stats, not just one
-     //   void resetTempStats();
+        void resetTempStats();
         // the charcter take damage;
         //void takedmg(int dmg);
         void fullheal();
