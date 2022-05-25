@@ -8,6 +8,8 @@
 #include "player.hpp"
 #include "entity.hpp"
 #include "Enemies/Enemy.hpp"
+#include "Enemies/Minion.hpp"
+#include "Enemies/Boss.hpp"
 #include "bag.hpp"
 
 using namespace std;
@@ -25,28 +27,24 @@ class combat {
         }
         ~combat(){}
         int print() {
-            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
-            cout << "Enemy:   " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << " HP" << endl;
+            cout << "Health:  " << (int) (play->getplayer()->getCurrHealth()) << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
+            cout << "Enemy:   " << (int) (monster->getCurrHealth()) << "/" << monster->getMaxHealth() << " HP" << endl;
             cout << "------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n";
             int rec = 0;
         }
         void pattack() {
-            int roll = play->getplayer()->Attack();
-            int dmg = roll - monster->getDefense();
-            monster->takedmg(dmg);
+            double dmg = play->getplayer()->getAttackDamage();
 
-            cout << "You attack the " << monster->getName() << " for "<< dmg << " damage.\n";
+            cout << "You attack the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
             return;
         }
         void mattack() {
-            int roll = monster->move();
-            int dmg = roll - (play->getplayer()->getDefense());
+            double dmg = monster->move();
             
             if(dmg > 0){
-                cout << "You take " << dmg << " points of damage.\n";
-                play->getplayer()->takedmg(dmg);
+                cout << "The " + monster->getName() + " " + monster->getAttackNoise() + " you." + " You take " << (int) play->getplayer()->takedmg(dmg) << " points of damage.\n";
             } else {
-                cout << "Your defense is impenetrable, you take 0 damage." << endl;
+                cout << monster->get_class_ability_line() << "\n" << endl;
             }
             if(play->getplayer()->getCurrHealth() <= 0){
                 cout << "You have died.\n";
@@ -62,6 +60,7 @@ class combat {
         }
         void ability(){
             play->getplayer()->class_ability();
+            cout << play->getplayer()->get_class_ability_line() << endl;
         }
         bool start(string start) {
             cout << start << endl;
@@ -85,7 +84,7 @@ class combat {
                 cout << endl;
             }
             if (play->getplayer()->getCurrHealth() > 0) {
-                cout << "You've defeated the monster!!" << endl; // fix so that you do not always win
+                cout << "You've defeated the monster!!" << endl;
                 cout << "You have earned a " << loot->getname() << ".\n" << endl;
                 return true;
             }

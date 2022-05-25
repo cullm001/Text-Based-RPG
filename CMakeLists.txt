@@ -4,6 +4,8 @@ SET(CMAKE_CXX_STANDARD 11)
 
  ADD_EXECUTABLE(player
  	header/player_test.cpp
+	src/entity.cpp
+	src/player.cpp
  	header/bag.hpp
     header/combat.hpp
   	header/Enemies/Boss.cpp
@@ -11,22 +13,20 @@ SET(CMAKE_CXX_STANDARD 11)
  	header/Enemies/Enemy.hpp
 	header/Weapon/weapon.hpp
 	header/Weapon/weapon.cpp
-
-  	src/player.cpp
  )
 
- ADD_EXECUTABLE(enemy
- 	header/Enemies/Boss.cpp
- 	header/Enemies/Minion.cpp
- 	header/Enemies/Enemy.hpp
- 	header/Enemies/enemy_test.cpp
- )
+#  ADD_EXECUTABLE(enemy
+#  	header/Enemies/Boss.cpp
+#  	header/Enemies/Minion.cpp
+#  	header/Enemies/Enemy.hpp
+#  	header/Enemies/enemy_test.cpp
+#  )
 
-ADD_EXECUTABLE(archetypes
-	header/archetypes_test.cpp
-	header/archetypes.hpp
-	header/player.hpp
-	src/player.cpp
-	header/Weapon/weapon.hpp
-	header/Weapon/weapon.cpp
-)
+# ADD_EXECUTABLE(archetypes
+# 	header/archetypes_test.cpp
+# 	header/archetypes.hpp
+# 	header/player.hpp
+# 	src/player.cpp
+# 	header/Weapon/weapon.hpp
+# 	header/Weapon/weapon.cpp
+# )

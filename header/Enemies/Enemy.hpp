@@ -5,26 +5,25 @@
 #include <string>
 using namespace std;
 
-class Enemy: public Entity{
+class Enemy: public Entity {
 	protected:
 		string name;
+		string attackNoise = "punches";
 		
 	public:
-		virtual int move() = 0;;
-		Enemy(int attac, int defens, int health, string nm){
-	           attack = attac;
-        	   maxHealth = health;
-           	   currHealth = health;
-           	   defense = defens;
-           	   critRate = 0.5;
-		   name = nm;
-		}
-		void takedmg(int i){
-			currHealth = currHealth - i;
-		}
-		string getName() {
-			return name;
-		}
+		virtual double move() = 0;
+		virtual string get_class_ability_line() {return ""; }
 
+		// a = attack, d = defense, h = health, l = level, nm = name, an = attackNoise
+		Enemy(int l, string nm) : Entity(l) {}
+		Enemy(string nm) : Entity() {}
+		Enemy(double a, double d, double h, int l, string nm) : Entity(a, d, h, l) {}
+
+		Enemy(int l, string nm, string an) : Entity(l) { attackNoise = an; }
+		Enemy(string nm, string an) : Entity() { name = nm; attackNoise = an; }
+		Enemy(double a, double d, double h, int l, string nm, string an) : Entity(a, d, h, l) { name = nm; attackNoise = an; }
+
+		string getName() { return name; }
+		string getAttackNoise() { return attackNoise; }
 }; 
 #endif

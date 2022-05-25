@@ -3,16 +3,16 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
+#include <time.h>
+
 using namespace std;
 
-int Minion::Attack(){
+double Minion::move() {
 	srand(time(0));
-	int damage =  this->getAttack();
-	cout << "The " << name << " swings it's fists at you!" << endl;
-    return damage;
-}
-
-int Minion::move(){
-	return Attack();
+	double abilityChance = rand() % 3;
+	if (abilityChance < 1) {
+		class_ability();
+		return 0;
+	}
+	return getAttackDamage();
 }
