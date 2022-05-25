@@ -30,3 +30,12 @@ ADD_EXECUTABLE(archetypes
 	header/Weapon/weapon.hpp
 	header/Weapon/weapon.cpp
 )
+
+ADD_EXECUTABLE(story
+	src/main.cpp
+	src/player.cpp
+	src/entity.cpp
+        header/Enemies/Minion.cpp
+        header/Enemies/Boss.cpp
+        header/Weapon/weapon.cpp
+)
