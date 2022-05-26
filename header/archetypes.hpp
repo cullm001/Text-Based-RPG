@@ -11,7 +11,7 @@ using namespace std;
 
 class Paladin : public Player {
     public:
-        Paladin() : Player() { equipFirstWeapon(); }
+        Paladin() : Player() { equipFirstWeapon(); setArchetype("Paladin"); }
         void class_ability() {
             this->addDefenseBoost(1);
         }
@@ -26,7 +26,7 @@ class Paladin : public Player {
 
 class Wizard : public Player {
     public:
-        Wizard() : Player() { equipFirstWeapon(); }
+        Wizard() : Player() { equipFirstWeapon(); setArchetype("Wizard"); }
         void class_ability() {
             srand(time(0));
             int choice = rand() % 3;
@@ -45,7 +45,7 @@ class Wizard : public Player {
 
 class Archer : public Player {
     public:
-        Archer() : Player() { equipFirstWeapon(); }
+        Archer() : Player() { equipFirstWeapon(); setArchetype("Archer"); }
         void class_ability() {
             this->addCritBoost(1);
         }
@@ -60,7 +60,7 @@ class Archer : public Player {
 
 class Cleric : public Player {
     public:
-        Cleric() : Player() { equipFirstWeapon(); }
+        Cleric() : Player() { equipFirstWeapon(); setArchetype("Cleric"); }
         void class_ability() {
             this->heal(this->getMaxHealth()*0.25);
         }
@@ -75,7 +75,7 @@ class Cleric : public Player {
 
 class Barbarian : public Player {
     public:
-        Barbarian() : Player() { equipFirstWeapon(); }
+        Barbarian() : Player() { equipFirstWeapon(); setArchetype("Barbarian"); }
         void class_ability() {
             this->addAttackBoost(1);
         }
