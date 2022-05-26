@@ -18,6 +18,7 @@ class Boss: public Enemy{
 		Boss(double a, double d, double h, int l, string nm, string an): Enemy(a, d, h, l, nm, an) {}
 
 		double move();
+		virtual string get_class_ability_line() = 0;
 };
 
 class HobgoblinBoss : public Boss {
@@ -27,8 +28,10 @@ class HobgoblinBoss : public Boss {
 		HobgoblinBoss(double a, double d, double h, int l) : Boss(a, d, h, l, "hobgoblin", "crushes") {}
 
 		void class_ability() {
-			cout << "The hobgoblin roars, its veins popping out. It looks extremely enraged." << endl;
 			this->addAttackBoost(2);
+		}
+		string get_class_ability_line() {
+			return "The hobgoblin roars, its veins popping out. It looks extremely enraged.";
 		}
 };
 #endif
