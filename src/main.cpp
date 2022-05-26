@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include "../header/item.hpp"
 #include "../header/archetypes.hpp"
 #include "../header/bag.hpp"
@@ -20,20 +21,21 @@ void print_base_stats(Bag);
 
 int main()
 {
+    char anyKey;
     cout << "----------------------------------------------------------" << endl;
-    cout << "|                                                        |" << endl;
     cout << "|                                                        |" << endl;
     cout << "|                                                        |" << endl;
     cout << "|                Gary Goomba's Labyrinth                 |" << endl;
     cout << "|                                                        |" << endl;
     cout << "|                                                        |" << endl;
-    cout << "|                                                        |" << endl;
-    cout << "|                                                        |" << endl;
     cout << "----------------------------------------------------------" << endl;
     cout << endl;
+    cout << "Press any key to continue . . ." << endl
+    cin >> anyKey;
+    system("cls");
     cout << endl;
-
-
+    cout << endl;
+ 
     Player* adventurer = archetype_choice();
     Bag inventory(adventurer);
     story(adventurer, inventory);
@@ -92,6 +94,8 @@ Player* archetype_choice() {
 
 void story(Player* adventurer, Bag inventory) {
     char decision = ' ';
+
+
     healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
     inventory.add(&heal);
     cout << "You have entered the infamous dungeon and are presented to 2 dark paths to the left and to the right. Which one would you choose? (l/r)" << endl;
