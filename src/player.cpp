@@ -4,25 +4,14 @@
 
 using namespace std;
 
-Player::Player(){
-    maxHealth = 10;
-    currHealth = 10;
-    defense = 5;
-    critRate = 0.5;
-    attack = 10;
-    tempHealth = 0;
-} 
+//constructors
+Player::Player() : Entity() {}
+Player::Player(int lvl) : Entity(lvl) {}
+Player::Player(double a, double d, double h, int l) : Entity(a, d, h, l) {}
 
-void Player::levelUp() {
-    this->addMaxHealthAndCurrHealth(5);
-    this->addDefense(1);
-    this->addAttack(5);
+void Player::equip(Weapon* wep) {
+    if (weapon != nullptr) { addAttack(-(weapon->getBoost())); delete weapon; }
+    weapon = wep;
+    setAttackNoise(weapon->getAttackDescription());
+    addAttack(weapon->getBoost());
 }
-void Player::class_ability(){
-    return;
-}
-int Player::Attack() {
-    int temp = this->getAttack();
-    return temp;
-}
-
