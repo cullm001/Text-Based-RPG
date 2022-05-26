@@ -13,7 +13,7 @@ using namespace std;
 
 
 int main() {
-  Player* ptest = new Archer();
+  Player* ptest = new Wizard();
   Bag fiction(ptest);
   ptest->levelUp(10);
 
@@ -22,13 +22,11 @@ int main() {
   fiction.add(&heal);
   fiction.add(&dmg);
 
-  Enemy* bobby = new SlimeMinion(10);
+  Enemy* bobby = new ChickenMinion(10);
   combat testFight(&fiction, bobby, &heal);
 
-  cout << "Health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
-  cout << "Attack " << fiction.getplayer()->getAttack() << endl;
-  cout << "Defense " << fiction.getplayer()->getDefense() << "\n" << endl;
-  testFight.start("Slime Combat");
+  testFight.printStats();
+  testFight.start("Chicken Combat");
 
   return 0;
 }
