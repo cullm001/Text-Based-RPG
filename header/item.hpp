@@ -30,7 +30,7 @@ class healthpot: public Item
             value = v;
         }
         void use(Player *&p){
-           p->heal(5);
+           p->addCurrHealth(5);
         }
 };
 class dmgpot: public Item
