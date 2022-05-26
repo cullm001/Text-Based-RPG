@@ -20,10 +20,15 @@ class Boss: public Enemy{
 		double move();
 };
 
-class Hobgoblin : public Boss {
-	void class_ability() {
-		cout << "The hobgoblin roars, its veins popping out. It looks like its enraged." << endl;
-		this->addAttackBoost(2);
-	}
+class HobgoblinBoss : public Boss {
+	public: 
+		HobgoblinBoss() : Boss("hobgoblin", "crushes") {}
+		HobgoblinBoss(int l) : Boss(l, "hobgoblin", "crushes") {}
+		HobgoblinBoss(double a, double d, double h, int l) : Boss(a, d, h, l, "hobgoblin", "crushes") {}
+
+		void class_ability() {
+			cout << "The hobgoblin roars, its veins popping out. It looks extremely enraged." << endl;
+			this->addAttackBoost(2);
+		}
 };
 #endif
