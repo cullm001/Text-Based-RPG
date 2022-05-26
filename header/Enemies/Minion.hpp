@@ -26,7 +26,7 @@ class GoblinMinion : public Minion {
 	public:
 		GoblinMinion() : Minion("goblin", "shanks") {}
 		GoblinMinion(int l) : Minion(l, "goblin", "shanks") {}
-		GoblinMinion(double a, double d, double h, int l) : Minion (a, d, h, l, "goblin", "shanks") {}
+		GoblinMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "goblin", "shanks") {}
 
 		void class_ability() {
 			this->addCritBoost(1);
@@ -40,7 +40,8 @@ class SlimeMinion : public Minion {
 	public:
 		SlimeMinion() : Minion("slime", "tackles") {}
 		SlimeMinion(int l) : Minion(l, "slime", "tackles") {}
-		SlimeMinion(double a, double d, double h, int l) : Minion (a, d, h, l, "slime", "tackles") {}
+		SlimeMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "slime", "tackles") {}
+		
 		void class_ability() {
 			this->addCurrHealth(this->getMaxHealth()*0.2);
 		}
@@ -50,12 +51,17 @@ class SlimeMinion : public Minion {
 };
 
 class ChickenMinion : public Minion {
-	void class_ability() {
-		this->addAttackBoost(1);
-	}
-	string get_class_ability_line() {
-		return "The chicken sharpened its beak with its claws, it looks more dangerous.";
-	}
+	public: 
+		ChickenMinion() : Minion("fierce chicken", "pecks") {}
+		ChickenMinion(int l) : Minion(l, "fierce chicken", "pecks") {}
+		ChickenMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "fierce chicken", "pecks") {}
+
+		void class_ability() {
+			this->addAttackBoost(1);
+		}
+		string get_class_ability_line() {
+			return "The chicken sharpened its beak with its claws, it looks more dangerous.";
+		}
 };
 
 #endif
