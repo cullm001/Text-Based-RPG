@@ -8,7 +8,10 @@
 #include "player.hpp"
 #include "entity.hpp"
 #include "Enemies/Enemy.hpp"
+#include "Enemies/Minion.hpp"
+#include "Enemies/Boss.hpp"
 #include "bag.hpp"
+#include <cmath>
 
 using namespace std;
 
@@ -22,32 +25,39 @@ class combat {
             play = p;
             monster = e;
             loot = l;
+            srand(time(0));
         }
         ~combat(){}
-        int print() {
-            cout << "Health:  " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
-            cout << "Enemy:   " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << " HP" << endl;
+        void print() {
+            cout << "Health:  " << ceil(play->getplayer()->getCurrHealth()) << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
+            cout << "Enemy:   " << ceil(monster->getCurrHealth()) << "/" << monster->getMaxHealth() << " HP" << endl;
             cout << "------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n";
             int rec = 0;
         }
         void pattack() {
-            int roll = play->getplayer()->Attack();
-            int dmg = roll - monster->getDefense();
-            monster->takedmg(dmg);
-
-            cout << "You attack the " << monster->getName() << " for "<< dmg << " damage.\n";
+            double dmg = play->getplayer()->getAttackDamage();
+            int crit = rand() % 100;
+            if (crit < (play->getplayer()->getCritRate()*100)) {
+                dmg *= 1.5;
+                cout << "You critically strike the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
+                return;
+            }
+            cout << "You attack the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
             return;
         }
         void mattack() {
-            int roll = monster->move();
-            int dmg = roll - (play->getplayer()->getDefense());
-            
-            if(dmg > 0){
-                cout << "You take " << dmg << " points of damage.\n";
-                play->getplayer()->takedmg(dmg);
-            } else {
-                cout << "Your defense is impenetrable, you take 0 damage." << endl;
+            double dmg = monster->move();
+            int crit = rand() % 100;
+            if ((crit < (monster->getCritRate()*100)) && dmg > 0) {
+                dmg *= 1.5;
+                cout << "It's a critical strike! ";
             }
+            if(dmg > 0){
+                cout << "The " + monster->getName() + " " + monster->getAttackNoise() + " you." + " You take " << (int) play->getplayer()->takedmg(dmg) << " points of damage.\n";
+            } else {
+                cout << monster->get_class_ability_line() << "\n" << endl;
+            }
+            // is this necessary?
             if(play->getplayer()->getCurrHealth() <= 0){
                 cout << "You have died.\n";
                 exit(0);
@@ -62,6 +72,7 @@ class combat {
         }
         void ability(){
             play->getplayer()->class_ability();
+            cout << play->getplayer()->get_class_ability_line() << endl;
         }
         bool start(string start) {
             cout << start << endl;
@@ -85,14 +96,30 @@ class combat {
                 cout << endl;
             }
             if (play->getplayer()->getCurrHealth() > 0) {
-                cout << "You've defeated the monster!!" << endl; // fix so that you do not always win
-                cout << "You have earned a " << loot->getname() << ".\n" << endl;
+                cout << "You defeated the " << monster->getName() << "!!" << endl;
+                cout << "You earned a " << loot->getname() << ".\n" << endl;
+                play->getplayer()->resetBoosts();
+                play->getplayer()->resetTempStats();
                 return true;
             }
             else {
                 cout << "You were defeated in battle." << endl;
                 return false; 
             }
+        }
+        void printStats() {
+            cout << "--- Player's Stats ---" << endl;
+            cout << " Archetype: " << play->getplayer()->getArchetype() << " (Level " << play->getplayer()->getLevel() << ")" << endl;
+            cout << " Health: " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << "HP" << endl;
+            cout << " Attack: " << play->getplayer()->getAttack() << endl;
+            cout << " Defense: " << play->getplayer()->getDefense() << endl;
+            cout << " Crit Rate: " << play->getplayer()->getCritRate() << "\n" << endl;
+            cout << "--- Monster's Stats ---" << endl;
+            cout << " Monster: " << monster->getName() << " (Level " << monster->getLevel() << ")" << endl;
+            cout << " Health: " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << "HP" << endl;
+            cout << " Attack: " << monster->getAttack() << endl;
+            cout << " Defense: " << monster->getDefense() << endl;
+            cout << " Crit Rate: " << monster->getCritRate() << "\n" << endl;
         }
 };
 

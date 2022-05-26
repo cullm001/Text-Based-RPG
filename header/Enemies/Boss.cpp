@@ -3,29 +3,17 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
+#include <time.h>
+
 using namespace std;
 
-int Boss::Attack(){
+double Boss::move() {
 	srand(time(0));
-	int damage =  this->getAttack() + rand() % 11;
-	cout << "Boss swang its fist dealing " << damage << " damage!" << endl;
-	return damage;
-}
-
-void Boss::ClassAbility(){
-	cout << "Boss used class ability" << endl;	
-	this->addTempHealth(5);
-}
-
-int Boss::move(){
-	srand(time(0));
-	double abilityChance = rand() % 5;
-	if (abilityChance < 1){
-		ClassAbility();
+	double abilityChance = rand() % 3;
+	if (abilityChance < 1) {
+		class_ability();
 		return 0;
 	}
-	
-	return Attack();
+	return getAttackDamage();
 }
 

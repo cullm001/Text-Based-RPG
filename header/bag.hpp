@@ -15,7 +15,7 @@ class Bag {
         Player *play;
     public:
         Bag(){
-        play = new Player(); 
+        play = nullptr; 
         }
         Bag(Player* p) {
             play = p;

@@ -1,4 +1,5 @@
 #include "combat.hpp"
+#include "entity.hpp"
 #include "player.hpp"
 #include "bag.hpp"
 #include "./Enemies/Boss.hpp"
@@ -11,35 +12,21 @@
 using namespace std;
 
 
-int main(){
-    Player* Paul = new Barbarian();
-    Bag fiction(Paul);
-    healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
-    dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
-    fiction.add(&heal);
-    fiction.add(&dmg);
-    Minion bob(7, 6, 6, "goblin");
-    combat epic(&fiction, &bob, &heal);
-    // for(int i = 0; i < 20; i++){
-    //     fiction.getplayer()->levelUp();
-    // }
-    fiction.getplayer()->heal();
-    //epic.start("bob");
-    //fiction.getplayer();
-    cout << "health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
-    cout << "attack " << fiction.getplayer()->getAttack() << endl;
-    cout << "defense " << fiction.getplayer()->getDefense() << "\n" << endl;
-    epic.start("Goblin Combat Test");
+int main() {
+  Player* ptest = new Wizard();
+  Bag fiction(ptest);
+  ptest->levelUp(10);
 
-  //fiction.print();
-  //fiction.use(1);
-  //cout << "health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
-  //cout << "attack " << fiction.getplayer()->getAttack() << endl;
-  //cout << "defense " << fiction.getplayer()->getDefense() << endl;
-  //fiction.use(2);
-  //cout << "health " << fiction.getplayer()->getCurrHealth() <<"/"<< fiction.getplayer()->getMaxHealth() << endl;
-  //cout << "attack " << fiction.getplayer()->getAttack() << endl;
-  //cout << "defense " << fiction.getplayer()->getDefense() << endl;
+  healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
+  dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
+  fiction.add(&heal);
+  fiction.add(&dmg);
 
-	return 0;
+  Enemy* bobby = new ChickenMinion(10);
+  combat testFight(&fiction, bobby, &heal);
+
+  testFight.printStats();
+  testFight.start("Chicken Combat");
+
+  return 0;
 }
