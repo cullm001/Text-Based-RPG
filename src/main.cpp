@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "../header/item.hpp"
 #include "../header/archetypes.hpp"
 #include "../header/bag.hpp"
@@ -17,13 +19,23 @@ Player* archetype_choice();
 void story(Player*, Bag);
 void print_base_stats(Bag);
 void print_level_up(Bag);
+Enemy* check_enemy(string, int);
 
-const int size = 1;
-const string scenario[100] = {
+const int size = 3;
+const int size_prompt = 1;
+const string prompt[10] = {
+    "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore (l/r)",
+};
+
+//Using i*2+1 to access left child and i*2+2 to access right child
+const string choices[100] = {
     "You have entered the infamous dungeon and as you traverse the dungeon you stumble across 2 dark paths to the left and to the right. Which one will you choose? (l/r)", 
     "You have chosen the left path and you hear a faint shhhhhh sound",
     "You have decided to take the right path and you see something jumping",
-    "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore (l/r)",
+    "You explore the left path and realize that you are hungry. Coincidently, a medium-sized chicken approaches you, but something bizarre occurs",
+    "You decided to venture the right path. As you keep surveilling you feel an immense presence and something running towards you"
+    "You have chosen the left path and you feel a small shake as if something heavy was jumping",
+    "You chose to proceed to the right path and you yearn for some food. A chicken walks up to you"
 }; 
 
 
@@ -114,17 +126,18 @@ Player* archetype_choice() {
 
 void story(Player* adventurer, Bag inventory) {
     string decision = "";
-    char anyKey;
+    string anyKey;
     
-    int fightCounter = 0;
+    int fightCounter = 0; //Level up after 1 fight, then level up after 2 fights, and so on
     int levelTrigger = 1;
-     
+    int promptCounter = 0;
+
     dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
     healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
     inventory.add(&heal);
 
-    cout << scenario[0] << endl;
-
+    cout << choices[0] << endl;
+	
     for(unsigned int i = 0; i < size;) {
 	while(decision != "l" && decision != "r") {
             cout << "> ";
@@ -132,9 +145,10 @@ void story(Player* adventurer, Bag inventory) {
 	    if(decision == "l") {
                 Enemy* goblin = new GoblinMinion(2);
 	        i = i * 2 + 1;
-                cout << scenario[i] << endl;
-	        combat fight(&inventory, goblin, &dmg);
-                fight.start("From the shadows, a goblin charges at you!");
+                cout << choices[i] << endl;
+                cout << endl;
+	        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
+                fight.start("From the shadows, an enemy charges towards you");
                 inventory.add(&dmg);         
                 fightCounter++;
 
@@ -142,9 +156,10 @@ void story(Player* adventurer, Bag inventory) {
 	    else if(decision == "r") {
 		 Enemy* slime = new SlimeMinion(2);
                  i = i * 2 + 2;
-                 cout << scenario[i] << endl;
-		 combat fight_two(&inventory, slime, &heal);
-		 fight_two.start("A vast slime leaps toward you!");       
+                 cout << choices[i] << endl;
+                 cout << endl;
+		 combat fight_two(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
+		 fight_two.start("An enemy jumps you!");       
                  inventory.add(&heal);
                  fightCounter++;
 	    }
@@ -160,7 +175,10 @@ void story(Player* adventurer, Bag inventory) {
         cout << "Press any key to continue and enter . . ." << endl;
         cin >> anyKey;
         system("clear");
-        cin.clear();
+        cout << prompt[promptCounter] << endl;
+        promptCounter++;
+        cin.ignore();
+        decision = "";
     }
 }
 
@@ -181,7 +199,19 @@ void print_level_up(Bag inventory) {
     print_base_stats(inventory);
 }
 
+//Makes and returns an enemy based on the choice the user made, that has the same level as the player
+Enemy* check_enemy(string narrative, int level) {
+    if(narrative.find("shh") || narrative.find("run")) {
+	Enemy* goblin = new GoblinMinion(level);
+        return goblin;
+    }
+    else if(narrative.find("jump")) {
+	Enemy* slime = new SlimeMinion(level);
+        return slime;
+    }
+    else {
+	Enemy* chicken = new ChickenMinion(level);
+        return chicken;
+    }
 
-
-
-
+}
