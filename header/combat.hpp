@@ -107,6 +107,20 @@ class combat {
                 return false; 
             }
         }
+        void printStats() {
+            cout << "--- Player's Stats ---" << endl;
+            cout << " Archetype: " << play->getplayer()->getArchetype() << " (Level " << play->getplayer()->getLevel() << ")" << endl;
+            cout << " Health: " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << "HP" << endl;
+            cout << " Attack: " << play->getplayer()->getAttack() << endl;
+            cout << " Defense: " << play->getplayer()->getDefense() << endl;
+            cout << " Crit Rate: " << play->getplayer()->getCritRate() << "\n" << endl;
+            cout << "--- Monster's Stats ---" << endl;
+            cout << " Monster: " << monster->getName() << " (Level " << monster->getLevel() << ")" << endl;
+            cout << " Health: " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << "HP" << endl;
+            cout << " Attack: " << monster->getAttack() << endl;
+            cout << " Defense: " << monster->getDefense() << endl;
+            cout << " Crit Rate: " << monster->getCritRate() << "\n" << endl;
+        }
 };
 
 #endif //blah

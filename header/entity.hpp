@@ -68,6 +68,7 @@ class Entity {
         double const getDefense() { return defense * (1 + (defenseBoost*0.25)); }
         double const getAttack() { return attack * (1 + (attackBoost*0.25)); }
         double const getCritRate() { return critRate + (critBoost*0.15); }
+        int const getLevel() { return level; }
 
         // adds additional permanent stats to the character
         void addMaxHealthAndCurrHealth(double val) { maxHealth += val; currHealth += val; }
