@@ -34,7 +34,7 @@ void Entity::resetBoosts() {
 // dmg = ((2*level)/5 + 2) * attack
 // full damage taken = ((2*level)/5 + 2) * attack / defense
 double Entity::takedmg(double dmg) {
-    double damageTaken = dmg / (defense * (1+(0.25*defenseBoost)));
+    double damageTaken = (dmg / getDefense());
     currHealth -= damageTaken;
     return damageTaken;
 }
