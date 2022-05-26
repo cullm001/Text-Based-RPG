@@ -19,6 +19,7 @@ class Player : public Entity {
         string getAttackNoise() { return attackNoise; }
         virtual void class_ability() = 0;
         virtual string get_class_ability_line() = 0;
+        virtual void equipFirstWeapon() = 0;
 };
 
 #endif
