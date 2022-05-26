@@ -32,7 +32,7 @@ class GoblinMinion : public Minion {
 			this->addCritBoost(1);
 		}
 		string get_class_ability_line() {
-			return "The goblin honed its focus, its more likely to crit.";
+			return "The goblin hones its focus, its more likely to crit.";
 		}
 };
 
@@ -52,15 +52,15 @@ class SlimeMinion : public Minion {
 
 class ChickenMinion : public Minion {
 	public: 
-		ChickenMinion() : Minion("fierce chicken", "pecks") {}
-		ChickenMinion(int l) : Minion(l, "fierce chicken", "pecks") {}
-		ChickenMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "fierce chicken", "pecks") {}
+		ChickenMinion() : Minion("chicken", "pecks") {}
+		ChickenMinion(int l) : Minion(l, "chicken", "pecks") {}
+		ChickenMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "chicken", "pecks") {}
 
 		void class_ability() {
 			this->addAttackBoost(1);
 		}
 		string get_class_ability_line() {
-			return "The chicken sharpened its beak with its claws, it looks more dangerous.";
+			return "The chicken sharpens its beak and claws, it looks more dangerous.";
 		}
 };
 
