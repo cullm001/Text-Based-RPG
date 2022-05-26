@@ -103,6 +103,8 @@ class Entity {
 
         // the character is fully healed;
         void fullheal() { currHealth = maxHealth + tempHealth; }
+
+        void heal(double val);
 };
 
 #endif

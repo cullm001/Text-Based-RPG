@@ -38,3 +38,10 @@ double Entity::takedmg(double dmg) {
     currHealth -= damageTaken;
     return damageTaken;
 }
+
+void Entity::heal(double val) {
+    currHealth += val;
+    if (currHealth > getMaxHealth()) {
+        currHealth == getMaxHealth();
+    }
+}

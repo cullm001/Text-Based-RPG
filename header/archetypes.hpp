@@ -64,7 +64,7 @@ class Cleric : public Player {
             equip(rustyMace);
         }
         void class_ability() {
-            this->addCurrHealth(this->getMaxHealth()*0.25);
+            this->heal(this->getMaxHealth()*0.25);
         }
         string get_class_ability_line() {
             return "You clasps your hands together and pray. You receive a heal of " + to_string((this->getMaxHealth()*0.25)) + "health.";
