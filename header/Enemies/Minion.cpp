@@ -9,7 +9,7 @@ using namespace std;
 
 double Minion::move() {
 	srand(time(0));
-	double abilityChance = rand() % 3;
+	double abilityChance = rand() % 5;
 	if (abilityChance < 1) {
 		class_ability();
 		return 0;
