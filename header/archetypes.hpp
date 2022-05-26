@@ -67,7 +67,7 @@ class Cleric : public Player {
             this->heal(this->getMaxHealth()*0.25);
         }
         string get_class_ability_line() {
-            return "You clasps your hands together and pray. You receive a heal of " + to_string((this->getMaxHealth()*0.25)) + "health.";
+            return "You clasps your hands together and pray. You receive a heal of " + to_string((int)(this->getMaxHealth()*0.25)) + " health.";
         }
 };
 
