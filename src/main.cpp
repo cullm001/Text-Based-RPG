@@ -16,10 +16,11 @@ using namespace std;
 Player* archetype_choice();
 void story(Player*, Bag);
 void print_base_stats(Bag);
-
+void print_level_up(Bag);
 
 int main()
 {
+    system("clear");
     string anyKey;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|                                                         |" << endl;
@@ -29,20 +30,28 @@ int main()
     cout << "|                                                         |" << endl;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << endl;
-    cout << "Press any key to continue . . ." << endl;
-    cin >> anyKey;
+    while(anyKey != "1" && anyKey != "2") {
+        cout << "[1] Play\n[2] Exit" << endl;
+        cout << ">";
+        cin >> anyKey;
+        if(anyKey == "1") break;
+        else if(anyKey == "2") exit(0);
+        else cout << "Sorry that is an invalid option, please type '1' to play and '2' to quit" << endl;
+    }
+
     system("clear");
     
     Player* adventurer = archetype_choice();
     Bag inventory(adventurer);
 
-    cout << "Press any key to continue . . ." << endl;
+    cout << "Press any key and enter to continue . . ." << endl;
     cin >> anyKey;
     system("clear");
 
     story(adventurer, inventory);
 
     return 0;
+
 }
 
 Player* archetype_choice() {
@@ -52,7 +61,7 @@ Player* archetype_choice() {
     cout << "|                                         |" << endl;
     cout << "|  [1] Barbarian           [2] Wizard     |" << endl;
     cout << "|  [3] Archer              [4] Cleric     |" << endl;
-    cout << "|               [5] Paladin               |" << endl;
+    cout << "|              [5] Paladin                |" << endl;
     cout << "|                                         |" << endl;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << endl;
@@ -96,8 +105,9 @@ Player* archetype_choice() {
 
 void story(Player* adventurer, Bag inventory) {
     string decision = "";
+    char anyKey;
 
-
+    dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
     healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
     inventory.add(&heal);
     cout << "You have entered the infamous dungeon and are presented to 2 dark paths to the left and to the right. Which one would you choose? (l/r)" << endl;
@@ -106,34 +116,54 @@ void story(Player* adventurer, Bag inventory) {
         cout << "> ";
 	cin >> decision;
 	if(decision == "l") {
-            dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
-	    Minion goblin = GoblinMinion(7, 5, 8, 2);
-            combat fight(&inventory, &goblin, &dmg);
+	    Enemy* goblin = new GoblinMinion(2);
+            combat fight(&inventory, goblin, &dmg);
             inventory.add(&dmg);         
-            print_base_stats(inventory);
             fight.start("From the shadows, a goblin charges at you!");
+            decision = "left";
+            break;
 	}
         else if(decision == "r") {
-            healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
-            Minion skeleton(10, 4, 7, "skeleton");
+            Enemy* slime = new SlimeMinion(2);
 	    inventory.add(&heal);
-            combat fight_two(&inventory, &skeleton, &heal);
-            print_base_stats(inventory);
-            fight_two.start("A skeleton speedily approaches you!");
-            
+            combat fight_two(&inventory, slime, &heal);
+            fight_two.start("A vast slime leaps toward you!");       
+            decision = "right";
+            break;
 	}
         else {
 	    cout << "Sorry that's not a valid choice, please type in 'l' for left or 'r' for right" << endl;
         }
     }
+    
+    print_level_up(inventory);
+    cout << "Press any key to continue and enter . . ." << endl;
+    cin >> anyKey;
+    system("clear");
 
+    cout << "You chose to go to the " << decision << " path where you defeated an enemy. As you keep exploring, the dungeon is still looming darkness and a bawking sound becomes much clearer by the second" << endl;
+    Enemy* chicken = new ChickenMinion(4);
+    inventory.add(&heal);
+    combat fight_three(&inventory, chicken, &heal);
+    fight_three.start("A chicken flies to your direction!");
 
 }
 
 void print_base_stats(Bag inventory) {
-    cout << "Health - " <<  inventory.getplayer()->getCurrHealth() << "/" << inventory.getplayer()->getMaxHealth() << endl;
-    cout << "Attack - " << inventory.getplayer()->getAttack() << endl;
-    cout << "Defense - " << inventory.getplayer()->getDefense() << endl;
+    cout << "Health: " <<  inventory.getplayer()->getCurrHealth() << "/" << inventory.getplayer()->getMaxHealth() << endl;
+    cout << "Attack: " << inventory.getplayer()->getAttack() << endl;
+    cout << "Defense: " << inventory.getplayer()->getDefense() << endl; 
+    cout << "Crit Rate: " << inventory.getplayer()->getCritRate() << endl;
+}
+
+void print_level_up(Bag inventory) {
+    cout << "----------------------------------------" << endl;
+    cout << "| Congratulations, you gained 1 level! |" << endl; 
+    cout << "----------------------------------------" << endl;
+    print_base_stats(inventory);
+    inventory.getplayer()->levelUp(1);
+    cout << "      ↓      " << endl;
+    print_base_stats(inventory);
 }
 
 
