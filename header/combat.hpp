@@ -98,6 +98,8 @@ class combat {
             if (play->getplayer()->getCurrHealth() > 0) {
                 cout << "You've defeated the monster!!" << endl;
                 cout << "You have earned a " << loot->getname() << ".\n" << endl;
+                play->getplayer()->resetBoosts();
+                play->getplayer()->resetTempStats();
                 return true;
             }
             else {
