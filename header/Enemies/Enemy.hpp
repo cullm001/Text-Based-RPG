@@ -19,7 +19,7 @@ class Enemy: public Entity {
 		Enemy(string nm) : Entity() {}
 		Enemy(double a, double d, double h, int l, string nm) : Entity(a, d, h, l) {}
 
-		Enemy(int l, string nm, string an) : Entity(l) { attackNoise = an; }
+		Enemy(int l, string nm, string an) : Entity(l) { name = nm; attackNoise = an; }
 		Enemy(string nm, string an) : Entity() { name = nm; attackNoise = an; }
 		Enemy(double a, double d, double h, int l, string nm, string an) : Entity(a, d, h, l) { name = nm; attackNoise = an; }
 

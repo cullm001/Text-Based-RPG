@@ -11,6 +11,7 @@
 #include "Enemies/Minion.hpp"
 #include "Enemies/Boss.hpp"
 #include "bag.hpp"
+#include <cmath>
 
 using namespace std;
 
@@ -24,28 +25,39 @@ class combat {
             play = p;
             monster = e;
             loot = l;
+            srand(time(0));
         }
         ~combat(){}
-        int print() {
-            cout << "Health:  " << (int) (play->getplayer()->getCurrHealth()) << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
-            cout << "Enemy:   " << (int) (monster->getCurrHealth()) << "/" << monster->getMaxHealth() << " HP" << endl;
+        void print() {
+            cout << "Health:  " << ceil(play->getplayer()->getCurrHealth()) << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
+            cout << "Enemy:   " << ceil(monster->getCurrHealth()) << "/" << monster->getMaxHealth() << " HP" << endl;
             cout << "------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n";
             int rec = 0;
         }
         void pattack() {
             double dmg = play->getplayer()->getAttackDamage();
-
+            int crit = rand() % 100;
+            if (crit < (play->getplayer()->getCritRate()*100)) {
+                dmg *= 1.5;
+                cout << "You critically strike the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
+                return;
+            }
             cout << "You attack the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
             return;
         }
         void mattack() {
             double dmg = monster->move();
-            
+            int crit = rand() % 100;
+            if ((crit < (monster->getCritRate()*100)) && dmg > 0) {
+                dmg *= 1.5;
+                cout << "It's a critical strike! ";
+            }
             if(dmg > 0){
                 cout << "The " + monster->getName() + " " + monster->getAttackNoise() + " you." + " You take " << (int) play->getplayer()->takedmg(dmg) << " points of damage.\n";
             } else {
                 cout << monster->get_class_ability_line() << "\n" << endl;
             }
+            // is this necessary?
             if(play->getplayer()->getCurrHealth() <= 0){
                 cout << "You have died.\n";
                 exit(0);

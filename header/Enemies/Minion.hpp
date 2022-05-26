@@ -37,12 +37,16 @@ class GoblinMinion : public Minion {
 };
 
 class SlimeMinion : public Minion {
-	void class_ability() {
-		this->addDefenseBoost(1);
-	}
-	string get_class_ability_line() {
-		return "The slime condensed itself down, it looks more durable.";
-	}
+	public:
+		SlimeMinion() : Minion("slime", "tackles") {}
+		SlimeMinion(int l) : Minion(l, "slime", "tackles") {}
+		SlimeMinion(double a, double d, double h, int l) : Minion (a, d, h, l, "slime", "tackles") {}
+		void class_ability() {
+			this->addCurrHealth(this->getMaxHealth()*0.2);
+		}
+		string get_class_ability_line() {
+			return "The slime eats a strange substance, it looks lively.";
+		}
 };
 
 class ChickenMinion : public Minion {
