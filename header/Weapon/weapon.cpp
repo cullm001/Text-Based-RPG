@@ -1,16 +1,17 @@
 #include "weapon.hpp"
 #include <iostream>
 
-Weapon::Weapon(string t, int b, string atk, string rar) {
+Weapon::Weapon(string t, int b, int lvl, string atk, string rar) {
     type = t;
     buff = b;
+    level = lvl;
     attackDescription = atk;
     rarity = rar;
 }
 
 string Weapon::printFound() {
     string output;
-    output += "You discovered a " + getRarity() + " " + getType() + " (+" + to_string(getBoost()) + ")!";
+    output += "You discovered a Lvl. " + to_string(getLevel()) + " " + getRarity() + " " + getType() + " (+" + to_string(getBoost()) + ")!";
     return output;
 }
 
