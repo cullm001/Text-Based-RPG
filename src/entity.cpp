@@ -2,11 +2,60 @@
 
 using namespace std;
 
-// dmg = ((2*level)/5 + 2) * attack
+// constructors
+Entity::Entity(){
+    maxHealth = 20;
+    currHealth = 20;
+    attack = 13;
+    defense = 10;
+    critRate = 0.15;
+    level = 5;
+}
 
+Entity::Entity(int lvl) {
+    maxHealth = 12 + (lvl*2);
+    currHealth = maxHealth;
+    attack = 6 + (lvl*1.7);
+    defense = 6 + (lvl);
+    critRate = 0.15;
+    level = lvl;
+}
+
+Entity::Entity(double atk, double def, double hth, int lvl){
+    maxHealth = hth;
+    currHealth = hth;
+    attack = atk;
+    defense = defense;
+    critRate = 0.15;
+    level = lvl;
+}
+
+// dmg = ((2*level)/5 + 2) * attack
 double Entity::getAttackDamage() {
     double dmg = (((2*level)/5) + 2) * getAttack();
     return dmg;
+}
+
+// damage taken = damage the enemy deals / defense
+double Entity::takedmg(double dmg) {
+    double damageTaken = (dmg / getDefense());
+    currHealth -= damageTaken;
+    return damageTaken;
+}
+
+void Entity::heal(double val) {
+    currHealth += val;
+    if (currHealth > getMaxHealth()) {
+        currHealth == getMaxHealth();
+    }
+}
+
+void Entity::levelUp(int lvl) {
+    maxHealth += (lvl*2);
+    currHealth = maxHealth;
+    attack += (lvl*1.7);
+    defense += lvl;
+    level += lvl;
 }
 
 // *Note that this does not remove currHealth unless it exceeds maxHealth
@@ -29,19 +78,4 @@ void Entity::resetBoosts() {
     attackBoost = 0;
     defenseBoost = 0;
     critBoost = 0;
-}
-
-// dmg = ((2*level)/5 + 2) * attack
-// full damage taken = ((2*level)/5 + 2) * attack / defense
-double Entity::takedmg(double dmg) {
-    double damageTaken = (dmg / getDefense());
-    currHealth -= damageTaken;
-    return damageTaken;
-}
-
-void Entity::heal(double val) {
-    currHealth += val;
-    if (currHealth > getMaxHealth()) {
-        currHealth == getMaxHealth();
-    }
 }
