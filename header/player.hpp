@@ -20,6 +20,7 @@ class Player : public Entity {
         string getAttackNoise() { return attackNoise; }
         void setArchetype(string i) { archetype = i; }
         string getArchetype() { return archetype; }
+        Weapon* getWeapon() { return weapon; }
         virtual void class_ability() = 0;
         virtual string get_class_ability_line() = 0;
         virtual void equipFirstWeapon() = 0;
