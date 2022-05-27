@@ -6,17 +6,17 @@ using namespace std;
 Entity::Entity(){
     maxHealth = 20;
     currHealth = 20;
-    attack = 13;
+    attack = 13.5;
     defense = 10;
     critRate = 0.15;
     level = 5;
 }
 
 Entity::Entity(int lvl) {
-    maxHealth = 12 + (lvl*2);
+    maxHealth = 10 + (lvl*2);
     currHealth = maxHealth;
-    attack = 6 + (lvl*1.7);
-    defense = 6 + (lvl);
+    attack = 5 + (lvl*1.7);
+    defense = 5 + (lvl);
     critRate = 0.15;
     level = lvl;
 }
