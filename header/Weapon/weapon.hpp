@@ -13,6 +13,7 @@ class Weapon {
 		double calcBoost(string r);
 		string randRarity();
     public:
+		Weapon(Weapon* base, int lvl); //creates a weapon based on the type of the previous
 		Weapon(string t, int lvl, string atk); //randomly determines rarity and buff based on lvl*rarity
 		Weapon(string t, int lvl, string atk, string rar); //only determines buff
 		Weapon(string t, int b, int lvl, string atk, string rar); //set every stat

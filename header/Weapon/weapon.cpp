@@ -1,6 +1,14 @@
 #include "weapon.hpp"
 #include <iostream>
 
+Weapon::Weapon(Weapon* base, int lvl) {
+    type = base->getType();
+    level = lvl;
+    attackDescription = base->getAttackDescription();
+    rarity = randRarity();
+    buff = calcBoost(rarity);
+}
+
 Weapon::Weapon(string t, int lvl, string atk) {
     type = t;
     level = lvl;
