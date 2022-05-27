@@ -39,10 +39,10 @@ class combat {
             int crit = rand() % 100;
             if (crit < (play->getplayer()->getCritRate()*100)) {
                 dmg *= 1.5;
-                cout << "You critically strike the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
+                cout << "You critically " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
                 return;
             }
-            cout << "You attack the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
+            cout << "You " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
             return;
         }
         void mattack() {
@@ -110,7 +110,7 @@ class combat {
         void printStats() {
             cout << "--- Player's Stats ---" << endl;
             cout << " Archetype: " << play->getplayer()->getArchetype() << " (Level " << play->getplayer()->getLevel() << ")" << endl;
-            cout << " Health: " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << "HP" << endl;
+            cout << " Health: " << play->getplayer()->getCurrHealth() << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;
             cout << " Attack: " << play->getplayer()->getAttack() << endl;
             cout << " Defense: " << play->getplayer()->getDefense() << endl;
             cout << " Crit Rate: " << play->getplayer()->getCritRate() << "\n" << endl;

@@ -12,6 +12,5 @@ Player::Player(double a, double d, double h, int l) : Entity(a, d, h, l) {}
 void Player::equip(Weapon* wep) {
     if (weapon != nullptr) { addAttack(-(weapon->getBoost())); delete weapon; }
     weapon = wep;
-    setAttackNoise(weapon->getAttackDescription());
     addAttack(weapon->getBoost());
 }

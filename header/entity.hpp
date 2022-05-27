@@ -26,41 +26,17 @@ class Entity {
         int critBoost = 0;
 
     public:
-        Entity(){
-            maxHealth = 20;
-            currHealth = 20;
-            attack = 13;
-            defense = 10;
-            critRate = 0.15;
-            level = 5;
-        }
-        Entity(int lvl) {
-            maxHealth = 12 + (lvl*2);
-            currHealth = maxHealth;
-            attack = 6 + (lvl*1.7);
-            defense = 6 + (lvl);
-            critRate = 0.15;
-            level = lvl;
-        }
-        Entity(double atk, double def, double hth, int lvl){
-            maxHealth = hth;
-            currHealth = hth;
-            attack = atk;
-            defense = defense;
-            critRate = 0.15;
-            level = lvl;
-            //  resetTempStats();
-        }
+        // constructors 
+        Entity();
+        Entity(int lvl);
+        Entity(double atk, double def, double hth, int lvl);
 
         int getHealth();
-	    double getAttackDamage();
-
-        void levelUp(int lvl) {
-            maxHealth += (lvl*2);
-            currHealth = maxHealth;
-            attack += (lvl*1.7);
-            defense += lvl;
-        }
+	    double getAttackDamage(); // get the damage the character would cause
+        double takedmg(double dmg); // the charcter takes damage;
+        void fullheal() { currHealth = maxHealth + tempHealth; } // the character is fully healed;
+        void heal(double val); // the character is partially healed
+        void levelUp(int lvl); // the character is levelled up
         
         // used to get current stats for combat purposes
         double const getMaxHealth() { return maxHealth; }
@@ -92,20 +68,13 @@ class Entity {
         // removes all temporary stats, not just one
         void resetTempStats();
 
+        // add boosts to stats, % based increases
         void addAttackBoost(int val) { attackBoost += val; }
         void addDefenseBoost(int val) { defenseBoost += val; }
         void addCritBoost(int val) { critBoost += val; }
 
         //removes all boosts
         void resetBoosts();
-        
-        // the charcter takes damage;
-        double takedmg(double dmg);
-
-        // the character is fully healed;
-        void fullheal() { currHealth = maxHealth + tempHealth; }
-
-        void heal(double val);
 };
 
 #endif
