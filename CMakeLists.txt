@@ -42,5 +42,13 @@ ADD_EXECUTABLE(test
 	src/player.cpp
 )
 
+ADD_EXECUTABLE(story
+	src/main.cpp
+	src/player.cpp
+	src/entity.cpp
+        header/Enemies/Minion.cpp
+        header/Enemies/Boss.cpp
+        header/Weapon/weapon.cpp
+)
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)

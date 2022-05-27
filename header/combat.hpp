@@ -80,6 +80,7 @@ class combat {
                 print();
                 int input;
                 cin.clear();
+                cout << "> ";
                 cin >> input;
                 if(input == 1) {
                     pattack(); 
