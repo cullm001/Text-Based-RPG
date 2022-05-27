@@ -22,7 +22,7 @@ void print_level_up(Bag);
 void print_paths();
 Enemy* check_enemy(string, int);
 
-const int size = 4;
+const int size = 8;
 const int size_prompt = 3;
 const string prompt[10] = {
     "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore? (l/r)",
@@ -176,7 +176,7 @@ void story(Player* adventurer, Bag inventory) {
             cout << "> ";
 	    cin >> decision;
 	    if(decision == "l") {
-	        i = i * 2 + 1;
+	        i = i * 2 + 1; //If the user chooses the left path, the left child of choices[] will be accessed
                 cout << choices[i] << endl;
                 cout << endl;
 	        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
@@ -187,6 +187,7 @@ void story(Player* adventurer, Bag inventory) {
 
 	    }
 	    else if(decision == "r") {
+                 i = i * 2 + 2; //If the user chooses the right path, the right child of choices[] will be accessed
                  cout << choices[i] << endl;
                  cout << endl;
 		 combat fight_two(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
@@ -235,15 +236,15 @@ void print_level_up(Bag inventory) {
 //Makes and returns an enemy based on the choice the user made, that has the same level as the player
 Enemy* check_enemy(string narrative, int level) {
     if(narrative.find("shh") != -1 || narrative.find("run") != -1 || narrative.find("goblin") != -1) {
-	Enemy* goblin = new GoblinMinion(level-1);
+	Enemy* goblin = new GoblinMinion(level-2);
         return goblin;
     }
     else if(narrative.find("jump") != -1 || narrative.find("slimy") != -1) {
-	Enemy* slime = new SlimeMinion(level-1);
+	Enemy* slime = new SlimeMinion(level-2);
         return slime;
     }
     else {
-	Enemy* chicken = new ChickenMinion(level-1);
+	Enemy* chicken = new ChickenMinion(level-2);
         return chicken;
     }
 
