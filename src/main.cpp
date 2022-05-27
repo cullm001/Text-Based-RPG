@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <thread>        
+#include <chrono>
 #include "../header/item.hpp"
 #include "../header/archetypes.hpp"
 #include "../header/bag.hpp"
@@ -13,16 +13,14 @@
 #include "../header/Enemies/Enemy.hpp"
 #include "../header/Weapon/weapon.hpp"
 
-using namespace std;
-
 Player* archetype_choice();
 void story(Player*, Bag);
 void print_base_stats(Bag);
 void print_level_up(Bag);
-void print_paths();
+void chest(Bag);
 Enemy* check_enemy(string, int);
 
-const int size = 8;
+const int size_choices = 8;
 const int size_prompt = 3;
 const string prompt[10] = {
     "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore? (l/r)",
@@ -79,6 +77,7 @@ int main()
     Bag inventory(adventurer);
 
     cout << "Press any key and enter to continue . . ." << endl;
+    cout << "> ";
     cin >> anyKey;
     system("clear");
 
@@ -101,7 +100,7 @@ Player* archetype_choice() {
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << endl;
     while(choice != "1" && choice != "2" && choice != "3" && choice != "4" && choice != "5") {
-        cout << "Select the Archetype of your liking" << endl;
+        cout << "Select the archetype of your liking" << endl;
         cout << "> ";
 	cin >> choice;
         cout << endl;
@@ -136,10 +135,11 @@ Player* archetype_choice() {
             Bag inventory(adventurer);
             cout << "Your archetype's base stats:" << endl;
             print_base_stats(inventory); 
+            cout << endl;
             cout << "Your starter weapon:" << endl;
             cout << adventurer->getWeapon()->printStats() << endl;
             cout << endl;
-            while(choice != "y" || choice != "n") {
+            while(choice != "y" && choice != "n") {
                 cout << "Are you sure you want the " << adventurer->getArchetype() << " class? Yes (y) or No (n)" << endl;
                 cout << "> ";
                 cin >> choice;
@@ -147,6 +147,7 @@ Player* archetype_choice() {
 	            return adventurer;
 	        }
                 else if(choice == "n") {
+                    delete adventurer;
 		    break;
 	        }
                 else {
@@ -160,7 +161,8 @@ Player* archetype_choice() {
 void story(Player* adventurer, Bag inventory) {
     string decision = "";
     string anyKey;
-    
+    srand(time(0));    
+
     int fightCounter = 0; //Level up after 1 fight, then level up after 2 fights, and so on
     int levelTrigger = 1;
     int promptCounter = 0;
@@ -171,14 +173,15 @@ void story(Player* adventurer, Bag inventory) {
 
     cout << choices[0] << endl;
 	
-    for(unsigned int i = 0; i < size;) {
+    for(unsigned int i = 0; i < size_choices;) {
 	while(decision != "l" && decision != "r") {
             cout << "> ";
 	    cin >> decision;
 	    if(decision == "l") {
 	        i = i * 2 + 1; //If the user chooses the left path, the left child of choices[] will be accessed
-                cout << choices[i] << endl;
+                cout << choices[i] << endl; //Prints enemy encounter
                 cout << endl;
+                this_thread::sleep_for(chrono::seconds(1));
 	        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
                 fight.printStats();
                 fight.start("You have encountered an enemy!");
@@ -190,6 +193,7 @@ void story(Player* adventurer, Bag inventory) {
                  i = i * 2 + 2; //If the user chooses the right path, the right child of choices[] will be accessed
                  cout << choices[i] << endl;
                  cout << endl;
+                 this_thread::sleep_for(chrono::seconds(1));
 		 combat fight_two(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
                  fight_two.printStats();
                  cout << endl;
@@ -201,15 +205,35 @@ void story(Player* adventurer, Bag inventory) {
 		 cout << "Sorry that's not a valid choice, please type in 'l' for left or 'r' for right" << endl;
 	    }
         }
-        if(levelTrigger == fightCounter) {
+        if(levelTrigger == fightCounter) { //Level up checkpoint
 	    print_level_up(inventory);
             levelTrigger++;
             fightCounter = 0;
-        }       
+        }
+        else  { //Else ask the user if they would like to use an item
+	    cout << "Would you like to use an item your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+            while(decision != "y" && decision != "n") {
+		cout << "> ";
+                cin >> decision;
+                if(decision == "y") {
+		    inventory.print();
+		}
+                else if(decision == "n") {
+		    break;
+                }
+                else {
+		    cout << "Sorry that is not a valid choice. Please type 'y' for yes or 'n' for no" << endl; 
+		}
+	    }
+	} 
+        
+	chest(inventory);	   
+
         cout << "Press any key to continue and enter . . ." << endl;
+        cout << "> ";
         cin >> anyKey;
         system("clear");
-        cout << prompt[promptCounter] << endl;
+        cout << prompt[promptCounter] << endl; //Prints new prompt
         promptCounter++;
         cin.ignore();
         decision = "";
@@ -217,7 +241,8 @@ void story(Player* adventurer, Bag inventory) {
 }
 
 void print_base_stats(Bag inventory) {
-    cout << "Health: " <<  inventory.getplayer()->getCurrHealth() << "/" << inventory.getplayer()->getMaxHealth() << endl;
+    cout << "Level: " << inventory.getplayer()->getLevel() << endl;
+    cout << "Health: " << inventory.getplayer()->getCurrHealth() << "/" << inventory.getplayer()->getMaxHealth() << endl;
     cout << "Attack: " << inventory.getplayer()->getAttack() << endl;
     cout << "Defense: " << inventory.getplayer()->getDefense() << endl; 
     cout << "Crit Rate: " << inventory.getplayer()->getCritRate() << endl;
@@ -250,7 +275,40 @@ Enemy* check_enemy(string narrative, int level) {
 
 }
 
-
+void chest(Bag inventory) {
+    string choice;
+    srand(time(0));
+    int level = inventory.getplayer()->getLevel();
+    if(rand() % 5 + 1 < 4) {
+        this_thread::sleep_for(chrono::seconds(1));
+        cout << endl;
+        cout << "As you reach the end of the path, you see a wooden chest" << endl;
+        Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % level) + level-2);
+        cout << contents->printFound() << endl;
+        cout << endl;
+        cout << "Your weapon stats:" << endl;
+        cout << inventory.getplayer()->getWeapon()->printStats() << endl;
+        cout << "        ↕       " << endl; 
+        cout << "Discovered weapon stats:" << endl;
+        cout << contents->printStats() << endl;
+        cout << endl;
+	cout << "Would you like to equip this weapon? (y/n)" << endl;
+        while(choice != "y" && choice != "n") {
+	    cout << ">";
+            cin >> choice;
+            if(choice == "y") {
+		cout << "You have equiped the " << contents->getType() << "!" << endl;
+	    }
+            else if(choice == "n") {
+		delete contents;
+                break;
+	    }
+            else {
+		cout << "Sorry you entered an invalid choice, type 'y' for yes or 'n' for no";
+	    }
+	}
+    }
+}
 
 
 

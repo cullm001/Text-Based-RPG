@@ -43,6 +43,7 @@ class Bag {
                 cout << i+1 << ": " << baglist.at(i)->getname() << endl;
             }
             int bob;
+            cout << "> ";
             cin >> bob;
             use(bob);
         }
