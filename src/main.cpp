@@ -77,8 +77,6 @@ int main()
     
     Player* adventurer = archetype_choice();
     Bag inventory(adventurer);
-    cout << "Your archetype's base stats:" << endl;
-    print_base_stats(inventory);
 
     cout << "Press any key and enter to continue . . ." << endl;
     cin >> anyKey;
@@ -92,6 +90,7 @@ int main()
 
 Player* archetype_choice() {
     string choice;
+    Player* adventurer;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|               Archetypes                |" << endl;
     cout << "|                                         |" << endl;
@@ -108,33 +107,52 @@ Player* archetype_choice() {
         cout << endl;
         if(choice == "1") {
 	    cout << "You have selected the Barbarian class!" << endl;
-            Player* adventurer = new Barbarian();
-            return adventurer;
+            adventurer = new Barbarian();
         }
 	else if(choice == "2") {
 	    cout << "You have selected the Wizard class!" << endl;
-            Player* adventurer = new Wizard();
-            return adventurer;
+            adventurer = new Wizard();
         }
         else if(choice == "3") {
 	    cout << "You have selected the Archer class!" << endl;
-            Player* adventurer = new Archer();
-            return adventurer;
+            adventurer = new Archer();
         }
 
         else if(choice == "4") {
 	    cout << "You have selected the Cleric class!" << endl;
-            Player* adventurer = new Cleric();
-            return adventurer;
+            adventurer = new Cleric();
         }
 
         else if(choice == "5") {
 	    cout << "You have selected the Paladin class!" << endl;
-            Player* adventurer = new Paladin();
-            return adventurer;
+            adventurer = new Paladin();
         }
         else {
             cout << "Sorry that's not a valid choice, please type in the number corresponding to the archetype" << endl;
+	}
+
+
+        if(choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5") { //Confirms if the player wants the selected class after base stats and starter weapons stats print
+            Bag inventory(adventurer);
+            cout << "Your archetype's base stats:" << endl;
+            print_base_stats(inventory); 
+            cout << "Your starter weapon:" << endl;
+            cout << adventurer->getWeapon()->printStats() << endl;
+            cout << endl;
+            while(choice != "y" || choice != "n") {
+                cout << "Are you sure you want the " << adventurer->getArchetype() << " class? Yes (y) or No (n)" << endl;
+                cout << "> ";
+                cin >> choice;
+                if(choice == "y") {
+	            return adventurer;
+	        }
+                else if(choice == "n") {
+		    break;
+	        }
+                else {
+		    cout << "Sorry that is not a valid option, type in 'y' for Yes and 'n' for No" << endl;
+		}
+            }
 	}
     }
 }

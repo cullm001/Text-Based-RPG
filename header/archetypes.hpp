@@ -3,67 +3,88 @@
 
 #include "player.hpp"
 #include "Weapon/weapon.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
 class Paladin : public Player {
     public:
-        Paladin() : Player() {
-            Weapon* flimsySword = new Weapon("Flimsy Sword", 1, "slashes");
-            this->weapon = flimsySword;
-        }
+        Paladin() : Player() { equipFirstWeapon(); setArchetype("Paladin"); }
         void class_ability() {
-            this->addDefense(3);
-            return;
+            this->addDefenseBoost(1);
+        }
+        string get_class_ability_line() {
+            return "You call upon the heavens to protect you. A divine shield bolsters your defense.";
+        }
+        void equipFirstWeapon() {
+            Weapon* flimsySword = new Weapon("Sword", 5, "slash", "Common");
+            equip(flimsySword);
         }
 };
 
 class Wizard : public Player {
     public:
-        Wizard() : Player() {
-            Weapon* moldyStaff = new Weapon("Moldy Staff", 1, "blasts");
-            this->weapon = moldyStaff;
-        }
+        Wizard() : Player() { equipFirstWeapon(); setArchetype("Wizard"); }
         void class_ability() {
-            this->addAttack(1);
-            this->addDefense(1);
-            this->addMaxHealth(1);
-            return;
+            srand(time(0));
+            int choice = rand() % 3;
+            if (choice == 0) { this->addAttackBoost(2); }
+            if (choice == 1) { this->addDefenseBoost(2); }
+            if (choice == 2) { this->addCritBoost(2); }
+        }
+        string get_class_ability_line() {
+            return "You channel your magic into the air, and feel a tingling sensation. You feel more powerful but you're not sure how.";
+        }
+        void equipFirstWeapon() {
+            Weapon* moldyStaff = new Weapon("Staff", 5, "zap", "Common");
+            equip(moldyStaff);
         }
 };
 
 class Archer : public Player {
     public:
-        Archer() : Player() {
-            Weapon* brittleBow = new Weapon("Brittle Bow", 1, "shoots");
-            this->weapon = brittleBow;
-        }
+        Archer() : Player() { equipFirstWeapon(); setArchetype("Archer"); }
         void class_ability() {
-            this->addTempCritRate(0.25);
+            this->addCritBoost(1);
+        }
+        string get_class_ability_line() {
+            return "You meditate for a moment and your focus sharpens greatly. Your crit rate has increased.";
+        }
+        void equipFirstWeapon() {
+            Weapon* brittleBow = new Weapon("Bow", 5, "shoot", "Common");
+            equip(brittleBow);
         }
 };
 
 class Cleric : public Player {
-    private:
-
     public:
-        Cleric() : Player() {
-            Weapon* rustyMace = new Weapon("Rusty Mace", 1, "smashes");
-            this->weapon = rustyMace;
-        }
+        Cleric() : Player() { equipFirstWeapon(); setArchetype("Cleric"); }
         void class_ability() {
-            this->addCurrHealth(3);
+            this->heal(this->getMaxHealth()*0.25);
+        }
+        string get_class_ability_line() {
+            return "You clasps your hands together and pray. You receive a heal of " + to_string((int)(this->getMaxHealth()*0.25)) + " health.";
+        }
+        void equipFirstWeapon() {
+            Weapon* rustyMace = new Weapon("Mace", 5, "smite", "Common");
+            equip(rustyMace);
         }
 };
 
 class Barbarian : public Player {
     public:
-        Barbarian() : Player() {
-            Weapon* woodenHammer = new Weapon("Wooden Hammer", 1, "bonks");
-            this->weapon = woodenHammer;
-        }
+        Barbarian() : Player() { equipFirstWeapon(); setArchetype("Barbarian"); }
         void class_ability() {
-            this->addTempAttack(3);
+            this->addAttackBoost(1);
+        }
+        string get_class_ability_line() {
+            return "You shout towards the sky and enter a rage. You feel stronger.";
+        }
+        void equipFirstWeapon() {
+            Weapon* woodenHammer = new Weapon("Hammer", 5, "smash", "Common");
+            equip(woodenHammer);
         }
 };
 
