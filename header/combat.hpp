@@ -39,7 +39,7 @@ class combat {
             int crit = rand() % 100;
             if (crit < (play->getplayer()->getCritRate()*100)) {
                 dmg *= 1.5;
-                cout << "You critically " << play->getplayer()->getWeapon()->getAttackDescription() << "the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
+                cout << "You critically " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
                 return;
             }
             cout << "You " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
