@@ -19,7 +19,7 @@ class Paladin : public Player {
             return "You call upon the heavens to protect you. A divine shield bolsters your defense.";
         }
         void equipFirstWeapon() {
-            Weapon* flimsySword = new Weapon("Flimsy Sword", 1, "slashes");
+            Weapon* flimsySword = new Weapon("Sword", 5, "slash", "Common");
             equip(flimsySword);
         }
 };
@@ -38,7 +38,7 @@ class Wizard : public Player {
             return "You channel your magic into the air, and feel a tingling sensation. You feel more powerful but you're not sure how.";
         }
         void equipFirstWeapon() {
-            Weapon* moldyStaff = new Weapon("Moldy Staff", 1, "blasts");
+            Weapon* moldyStaff = new Weapon("Staff", 5, "zap", "Common");
             equip(moldyStaff);
         }
 };
@@ -53,7 +53,7 @@ class Archer : public Player {
             return "You meditate for a moment and your focus sharpens greatly. Your crit rate has increased.";
         }
         void equipFirstWeapon() {
-            Weapon* brittleBow = new Weapon("Brittle Bow", 1, "shoots");
+            Weapon* brittleBow = new Weapon("Bow", 5, "shoot", "Common");
             equip(brittleBow);
         }
 };
@@ -68,7 +68,7 @@ class Cleric : public Player {
             return "You clasps your hands together and pray. You receive a heal of " + to_string((int)(this->getMaxHealth()*0.25)) + " health.";
         }
         void equipFirstWeapon() {
-            Weapon* rustyMace = new Weapon("Rusty Mace", 1, "smashes");
+            Weapon* rustyMace = new Weapon("Mace", 5, "smite", "Common");
             equip(rustyMace);
         }
 };
@@ -83,7 +83,7 @@ class Barbarian : public Player {
             return "You shout towards the sky and enter a rage. You feel stronger.";
         }
         void equipFirstWeapon() {
-            Weapon* woodenHammer = new Weapon("Wooden Hammer", 1, "bonks");
+            Weapon* woodenHammer = new Weapon("Hammer", 5, "smash", "Common");
             equip(woodenHammer);
         }
 };
