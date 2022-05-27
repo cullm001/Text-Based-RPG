@@ -15,7 +15,8 @@ class Weapon {
 		int getBoost()  { return buff; }
 		string getRarity() { return rarity; }
 		string getAttackDescription() { return attackDescription; }
-		void print();
+		string printStats();
+		string printFound();
 };
 
 #endif

@@ -8,7 +8,15 @@ Weapon::Weapon(string n, int b, string atk, string rar) {
     rarity = rar;
 }
 
-void Weapon::print() {
-    cout << "The " << name << " glows in your hand";
-    return;
+string Weapon::printFound() {
+    string output;
+    output += "You discovered a " + getRarity() + " " + getName() + " (+" + to_string(getBoost()) + ")!";
+    return output;
+}
+
+string Weapon::printStats() {
+    string output;
+    output += "--- Weapon Stats ---\nName: " + getName() + "\nRarity: " + getRarity() + "\nBuff: " 
+    + to_string(getBoost()) + "\nAttack Description: " + getAttackDescription();
+    return output;
 }
