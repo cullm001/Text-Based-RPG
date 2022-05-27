@@ -60,6 +60,7 @@ class Entity {
             currHealth = maxHealth;
             attack += (lvl*1.7);
             defense += lvl;
+            level += lvl;
         }
         
         // used to get current stats for combat purposes
