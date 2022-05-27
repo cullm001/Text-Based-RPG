@@ -1,19 +1,14 @@
 #include "weapon.hpp"
 #include <iostream>
 
-Weapon::Weapon(string n, int b, string atk) {
+Weapon::Weapon(string n, int b, string atk, string rar) {
     name = n;
     buff = b;
     attackDescription = atk;
+    rarity = rar;
 }
 
-int Weapon::getBoost() {
-    return buff;
-}
 void Weapon::print() {
     cout << "The " << name << " glows in your hand";
     return;
-}
-string Weapon::getAttackDescription() {
-    return attackDescription;
 }
