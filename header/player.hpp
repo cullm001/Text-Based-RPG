@@ -8,8 +8,6 @@ using namespace std;
 class Player : public Entity {
     private:
         string archetype = "Default";
-        string attackNoise = "punches";
-        void setAttackNoise(string an) { attackNoise = an; }
     protected:
         Weapon* weapon = nullptr;
     public:
@@ -17,7 +15,6 @@ class Player : public Entity {
         Player(int lvl);
         Player(double a, double d, double h, int l);
         void equip(Weapon* wep);
-        string getAttackNoise() { return attackNoise; }
         void setArchetype(string i) { archetype = i; }
         string getArchetype() { return archetype; }
         Weapon* getWeapon() { return weapon; }
