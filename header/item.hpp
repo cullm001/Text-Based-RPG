@@ -30,6 +30,7 @@ class healthpot: public Item
             value = v;
         }
         void use(Player *&p){
+           cout << "You used a healing potion" << endl;
            p->heal(5);
         }
 };
@@ -45,6 +46,7 @@ class dmgpot: public Item
             value = v;
         }
         void use(Player *&p){
+           cout << "You used a damage potion" << endl;
            p->addTempAttack(5);
         }
 };

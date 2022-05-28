@@ -42,10 +42,19 @@ class Bag {
             for(int i = 0; i < baglist.size(); i++){
                 cout << i+1 << ": " << baglist.at(i)->getname() << endl;
             }
-            int bob;
-            cout << "> ";
-            cin >> bob;
-            use(bob);
+            int bob = 0;
+            while(bob != baglist.size()+1) {
+                cout << "> ";
+                cin >> bob;
+                if(bob != baglist.size()+1) {
+		    use(bob);
+                    return;
+		}
+                else {
+		    cout << "Sorry there is no item corresponding to the number you entered" << endl;
+		}
+	    }
+
         }
         void add(Item *b){
             baglist.push_back(b);

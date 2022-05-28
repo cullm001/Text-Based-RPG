@@ -292,9 +292,11 @@ void chest(Bag inventory) {
     if(rand() % 5 + 1 < 5) {
         this_thread::sleep_for(chrono::seconds(1));
         cout << endl;
+        cout << "----------------------------------------------------------" << endl;
         cout << "As you reach the end of the path, you see a wooden chest" << endl;
         Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % 5) + level-2);
 	cout << contents->printFound() << endl;
+        cout << "----------------------------------------------------------" << endl;
         cout << endl;
         cout << "Your weapon stats:" << endl;
         cout << inventory.getplayer()->getWeapon()->printStats() << endl;
