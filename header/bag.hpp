@@ -38,15 +38,17 @@ class Bag {
                 cout << "There is nothing in your bag, you wasted your turn" << endl;
                 return;
             }
-                
+            cout << endl;
+            cout << "Bag contents:" << endl;   
             for(int i = 0; i < baglist.size(); i++){
                 cout << i+1 << ": " << baglist.at(i)->getname() << endl;
             }
-            int bob = 0;
-            while(bob != baglist.size()+1) {
+            int bob = baglist.size();
+            while(bob >= baglist.size()) {
+                cout << "Which item would you like to use, please type the number corresponding to the specific item." << endl;
                 cout << "> ";
                 cin >> bob;
-                if(bob != baglist.size()+1) {
+                if(bob <= baglist.size()) {
 		    use(bob);
                     return;
 		}
