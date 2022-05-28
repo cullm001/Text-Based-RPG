@@ -79,7 +79,7 @@ int main()
     string anyKey;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|                                                 |" << endl;
-    cout << "|               Gary Goomba's Dungeon             |" << endl;
+    cout << "|               Gary Goomba Dungeon               |" << endl;
     cout << "|                                                 |" << endl;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << endl;
@@ -102,7 +102,26 @@ int main()
     cout << "> ";
     cin.get();
     system("clear");
+    
+    string start[6] = {"You are striving to become one of the best " + adventurer->getArchetype() + "s of all time.", 
+    "However, things have not been going your way for you as of lately.",
+    "You try joining clans so that you could gain some experience and clear some dungeons with them.",
+    "Unexpectedly, each of the clans were consisted of useless members, so you feel like you made zero progress.",
+    "Then hope arises when there were rumors of a dungeon so-called Gary Goomba that had the toughest boss and an overpowered reward.",
+    "Wasting no time you sprung into actions and decided to clear this dungeon."
+    };
+    
+    for(unsigned int i = 0; i < 6; i++) {
+        cout << start[i] << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+    }
 
+    cout << endl;
+    cout << "Press enter to continue . . ." << endl;
+    cout << "> ";
+    cin.get();
+    system("clear");
+	
     story(adventurer, inventory);
 
     return 0;
@@ -194,8 +213,10 @@ void story(Player* adventurer, Bag inventory) {
     healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
     inventory.add(&heal);
 
+    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
     cout << choices[0] << endl;
-	
+    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << endl;
     for(unsigned int i = 0; i < size_choices;) {
 	while(decision != "l" && decision != "r") {
             cout << "> ";
@@ -260,7 +281,10 @@ void story(Player* adventurer, Bag inventory) {
         cout << "> ";
         cin.get();
         system("clear");
+        cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
         cout << prompt[promptCounter] << endl; //Prints new prompt
+        cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+        cout << endl;
         promptCounter++;
         decision = "";
     }
