@@ -39,10 +39,10 @@ class combat {
             int crit = rand() % 100;
             if (crit < (play->getplayer()->getCritRate()*100)) {
                 dmg *= 1.5;
-                cout << "You critically " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage!\n";
+                cout << "You critically " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " point(s) of damage!\n";
                 return;
             }
-            cout << "You " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " damage.\n";
+            cout << "You " << play->getplayer()->getWeapon()->getAttackDescription() << " the " << monster->getName() << " for "<< (int) monster->takedmg(dmg) << " point(s) of damage.\n";
             return;
         }
         void mattack() {
@@ -53,7 +53,7 @@ class combat {
                 cout << "It's a critical strike! ";
             }
             if(dmg > 0){
-                cout << "The " + monster->getName() + " " + monster->getAttackNoise() + " you." + " You take " << (int) play->getplayer()->takedmg(dmg) << " points of damage.\n";
+                cout << "The " + monster->getName() + " " + monster->getAttackNoise() + " you." + " You take " << (int) play->getplayer()->takedmg(dmg) << " point(s) of damage.\n";
             } else {
                 cout << monster->get_class_ability_line() << "\n" << endl;
             }
@@ -117,7 +117,7 @@ class combat {
             cout << " Crit Rate: " << play->getplayer()->getCritRate() << "\n" << endl;
             cout << "--- Monster's Stats ---" << endl;
             cout << " Monster: " << monster->getName() << " (Level " << monster->getLevel() << ")" << endl;
-            cout << " Health: " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << "HP" << endl;
+            cout << " Health: " << monster->getCurrHealth() << "/" << monster->getMaxHealth() << " HP" << endl;
             cout << " Attack: " << monster->getAttack() << endl;
             cout << " Defense: " << monster->getDefense() << endl;
             cout << " Crit Rate: " << monster->getCritRate() << "\n" << endl;

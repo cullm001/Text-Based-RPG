@@ -24,29 +24,29 @@ const int size_choices = 8;
 const int size_prompt = 3;
 const string prompt[10] = {
     "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore? (l/r)",
-    "You continue to survey the eerie dungeon and come across another set of paths. One with loud sounds and another with mist. Which one will you partake? in (l/r)",
+    "You continue to survey the eerie dungeon and come across another set of paths. One with loud sounds and another with mist. Which one will you partake in? (l/r)",
     "As you get deeper into the dungeon, an additional pair of left and right paths come into your vision. Both paths radiating an immense pressure. Choose carefully. (l/r)",
 };
 
 //Using i*2+1 to access left child and i*2+2 to access right child
 const string choices[100] = {
     "You have entered the infamous dungeon and as you traverse the dungeon you stumble across 2 dark paths to the left and to the right. Which one will you choose? (l/r)", 
-    "You have chosen the left path and you hear a faint shhhhhh sound", //Goblin
-    "You have decided to take the right path and you see something jumping", //Slime
+    "You have chosen the left path and you hear a faint shhhhhh sound.", //Goblin
+    "You have decided to take the right path and you see something jumping.", //Slime
     //2nd Level
-    "You explore the left path and realize that you are hungry. Coincidently, a medium-sized chicken approaches you, but something bizarre occurs", //Chicken
-    "You decided to venture the right path. As you keep surveilling you feel an immense presence and something running towards you", //Goblin
-    "You have chosen the left path and you feel a small shake as if something heavy was jumping", //Slime
-    "You chose to proceed to the right path and you yearn for some food. A chicken walks up to you", //Chicken
+    "You explore the left path and realize that you are hungry. Coincidently, a medium-sized chicken approaches you, but something bizarre occurs.", //Chicken
+    "You decided to venture the right path. As you keep surveilling you feel an immense presence and something running towards you.", //Goblin
+    "You have chosen the left path and you feel a small shake as if something heavy was jumping.", //Slime
+    "You chose to proceed to the right path and you yearn for some food. A chicken walks up to you.", //Chicken
     //3rd Level
-    "Upon exploring the left path, you realize that this dungeon ain't too bad aside from the chicken. You then hear a bouncing, slimy sound", //Slime
-    "While traversing the right path, you stumble across a natural, rocky slide. As you slide down deeper into the dungeon, a goblin jumps from the shadows", //Goblin
-    "As you continue to investigate the dungeon, you see something flapping its wings and fall gracefully", //Chicken
-    "You decided to investigate the right path. As you wonder why there are only 2 paths throughout the dungeon, a goblin leaps from the shadows", //Goblin
-    "You think to yourself that the dungeon is a piece of cake as you explore the left path. Then a something fat that is jumping comes into sight", //Slime
-    "You decided to venture the right path in which you hear a bawk bawk sound", //Chicken
-    "Decidingly, you inspect the left path and are immediately with a sole goblin", //Goblin
-    "You chose to proceed to the right path. As you keep inspecting, you see a cluster of small slimes that merge", //Slime
+    "Upon exploring the left path, you realize that this dungeon ain't too bad aside from the chicken. You then hear a bouncing, slimy sound.", //Slime
+    "While traversing the right path, you stumble across a natural, rocky slide. As you slide down deeper into the dungeon, a goblin jumps from the shadows.", //Goblin
+    "As you continue to investigate the dungeon, you see something flapping its wings and fall gracefully.", //Chicken
+    "You decided to investigate the right path. As you wonder why there are only 2 paths throughout the dungeon, a goblin leaps from the shadows.", //Goblin
+    "You think to yourself that the dungeon is a piece of cake as you explore the left path. Then a something fat that is jumping comes into sight.", //Slime
+    "You decided to venture the right path in which you hear a bawk bawk sound.", //Chicken
+    "Decidingly, you inspect the left path and are immediately with a sole goblin.", //Goblin
+    "You chose to proceed to the right path. As you keep inspecting, you see a cluster of small slimes that merge.", //Slime
 }; 
 
 
@@ -127,7 +127,7 @@ Player* archetype_choice() {
             adventurer = new Paladin();
         }
         else {
-            cout << "Sorry that's not a valid choice, please type in the number corresponding to the archetype" << endl;
+            cout << "Sorry that's not a valid choice, please type in the number corresponding to the archetype." << endl;
 	}
 
 
@@ -211,7 +211,7 @@ void story(Player* adventurer, Bag inventory) {
             fightCounter = 0;
         }
         else  { //Else ask the user if they would like to use an item
-	    cout << "Would you like to use an item your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+	    cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
             while(decision != "y" && decision != "n") {
 		cout << "> ";
                 cin >> decision;
@@ -297,7 +297,7 @@ void chest(Bag inventory) {
 	    cout << ">";
             cin >> choice;
             if(choice == "y") {
-		cout << "You have equiped the " << contents->getType() << "!" << endl;
+		cout << "You have equipped the " << contents->getRarity() << " " << contents->getType() << "!" << endl;
 	    }
             else if(choice == "n") {
 		delete contents;
