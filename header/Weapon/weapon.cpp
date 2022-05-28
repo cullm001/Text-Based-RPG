@@ -61,6 +61,13 @@ string Weapon::printFound() {
 string Weapon::printStats() {
     string output;
     output += "--- Weapon Stats ---\nType: " + getType() + "\nRarity: " + getRarity() + "\nBuff: " 
+    + to_string(getBoost());
+    return output;
+}
+
+string Weapon::printAllStats() {
+    string output;
+    output += "--- Weapon Stats ---\nType: " + getType() + "\nRarity: " + getRarity() + "\nBuff: " 
     + to_string(getBoost()) + "\nAttack Description: " + getAttackDescription();
     return output;
 }

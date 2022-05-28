@@ -24,43 +24,43 @@ class Minion : public Enemy {
 
 class GoblinMinion : public Minion {
 	public:
-		GoblinMinion() : Minion("goblin", "shanks") {}
-		GoblinMinion(int l) : Minion(l, "goblin", "shanks") {}
-		GoblinMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "goblin", "shanks") {}
+		GoblinMinion() : Minion("Goblin", "shanks") {}
+		GoblinMinion(int l) : Minion(l, "Goblin", "shanks") {}
+		GoblinMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "Goblin", "shanks") {}
 
 		void class_ability() {
 			this->addCritBoost(1);
 		}
 		string get_class_ability_line() {
-			return "The goblin hones its focus, its more likely to crit.";
+			return "The Goblin hones its focus, its more likely to crit.";
 		}
 };
 
 class SlimeMinion : public Minion {
 	public:
-		SlimeMinion() : Minion("slime", "tackles") {}
-		SlimeMinion(int l) : Minion(l, "slime", "tackles") {}
-		SlimeMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "slime", "tackles") {}
+		SlimeMinion() : Minion("Slime", "tackles") {}
+		SlimeMinion(int l) : Minion(l, "Slime", "tackles") {}
+		SlimeMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "Slime", "tackles") {}
 		
 		void class_ability() {
 			this->addCurrHealth(this->getMaxHealth()*0.2);
 		}
 		string get_class_ability_line() {
-			return "The slime eats a strange substance, it looks lively.";
+			return "The Slime eats a strange substance, it looks lively.";
 		}
 };
 
 class ChickenMinion : public Minion {
 	public: 
-		ChickenMinion() : Minion("chicken", "pecks") {}
-		ChickenMinion(int l) : Minion(l, "chicken", "pecks") {}
-		ChickenMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "chicken", "pecks") {}
+		ChickenMinion() : Minion("Angry Chicken", "pecks") {}
+		ChickenMinion(int l) : Minion(l, "Angry Chicken", "pecks") {}
+		ChickenMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "Angry Chicken", "pecks") {}
 
 		void class_ability() {
 			this->addAttackBoost(1);
 		}
 		string get_class_ability_line() {
-			return "The chicken sharpens its beak and claws, it looks more dangerous.";
+			return "The Angry Chicken sharpens its beak and claws, it looks more dangerous.";
 		}
 };
 

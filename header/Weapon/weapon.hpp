@@ -24,6 +24,7 @@ class Weapon {
 		string getAttackDescription() { return attackDescription; }
 		string printStats();
 		string printFound();
+		string printAllStats();
 };
 
 #endif
