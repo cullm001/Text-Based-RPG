@@ -28,6 +28,9 @@ class combat {
             srand(time(0));
         }
         ~combat(){}
+        Enemy* getMonster() {
+	    return monster;
+	}
         void print() {
             cout << "Health:  " << ceil(play->getplayer()->getCurrHealth()) << "/" << play->getplayer()->getMaxHealth() << " HP" << endl;    
             cout << "Enemy:   " << ceil(monster->getCurrHealth()) << "/" << monster->getMaxHealth() << " HP" << endl;

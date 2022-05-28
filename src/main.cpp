@@ -20,17 +20,19 @@ void print_level_up(Bag);
 void chest(Bag);
 Enemy* check_enemy(string, int);
 
-const int size_choices = 8;
-const int size_prompt = 3;
+const int size_choices = 15;
+const int size_prompt = 4;
 const string prompt[10] = {
     "You have defeated your first enemy and continue to explore the dungeon. There appears a dimly lit path to the left and a shiny path to the right. Which one will you explore? (l/r)",
     "You continue to survey the eerie dungeon and come across another set of paths. One with loud sounds and another with mist. Which one will you partake in? (l/r)",
     "As you get deeper into the dungeon, an additional pair of left and right paths come into your vision. Both paths radiating an immense pressure. Choose carefully. (l/r)",
+    "You suddenly realize that the other path converged to where you are at. You feel get closer and closer to a discomforting, menacing prescence."
 };
 
 //Using i*2+1 to access left child and i*2+2 to access right child
 const string choices[100] = {
     "You have entered the infamous dungeon and as you traverse the dungeon you stumble across 2 dark paths to the left and to the right. Which one will you choose? (l/r)", 
+    //1st Level
     "You have chosen the left path and you hear a faint shhhhhh sound.", //Goblin
     "You have decided to take the right path and you see something jumping.", //Slime
     //2nd Level
@@ -47,6 +49,25 @@ const string choices[100] = {
     "You decided to venture the right path in which you hear a bawk bawk sound.", //Chicken
     "Decidingly, you inspect the left path and are immediately with a sole goblin.", //Goblin
     "You chose to proceed to the right path. As you keep inspecting, you see a cluster of small slimes that merge.", //Slime
+    //4th Level
+    "Decidingly, you investigate the left path and you suddenly feel an strong aura. You must be getting closer to the boss but a chicken gets in your way.", //Chicken
+    "While exploring the right path you feel as if you are approaching the boss closer due to spiritual pressure. As you prepare yourself a human-shaped slime is approaching you." //Slime
+    "You decided to traverse the left path, hoping to kill the boss for some notoriety. However out of nowhere,, a speedy goblin charges at you.", //Goblin
+    "Ideally, you chose to venture out into the right path. You get closer to a radiating prescence. Just as you experience that feeling, a phat goblin comes into your sight.", //Goblin
+    "Confidently, you have chosen to dip your feet into the left path where you hear a bawking noise becoming more comprehendable by the second.", //Chicken
+    "So you chose to explore the right path. You feel noticeable spiritual pressure as if you are getting closer to the boss. These thoughts seemed to deter when am ugly goblin approaches you.", //Chicken
+    "So you chose to traverse the left path. You feel the ground shaking as if something is jumping up and down repeatedly. You then brace for combat.", //Slime
+    "Decidingly, you inspect the right path. You notice an unbearable prescence as you keep exploring. Then, under a fake hole, a goblin plops up.", //Goblin
+    "So you decided to explore the left path and as you keep looking around, feisty chicken sprints towards you.", //Chicken
+    "Confidently, you charge into the right path and a group of slimes appears in your sight. They all merge with each other.", //Slime
+    "While exploring the left path, you feel a strange prescence. As you get closer to that prescence, a goblin comes at you from the shadows.", //Goblin
+    "You chose the right path hoping to clear the dungeon. You notice that you are getting deeper into the dungeon and at the same time your feet sticks to a slimy rock.", //Slime
+    "Confidently, you sprint past the left path yearning to kill the boss. From the ceiling, a goblin jumps on you." //Goblin
+    "You have chosen to go to the right path. As you keep inspecting, you see the most macho chicken you have seen in your life." //Chicken
+    "So you chose to proceed to the left path, eager to clear this dungeon. While dreaming of the notoriety and fame from clearing the dungeon, a shhh sound becomes hearable.", //Goblin
+    "Upon exploring the right path, you feel a discomforting prescence as if something minister is nearby. As you feel that prescence, there is a bawking sound that is deafening.", //Chicken
+    //"Upon exploring the left path, you hear an annoying plop, slimy sound. Here we go again." //Slime
+    //"Upon exploring the right path, you yearn to kill the boss. You imagine of the clout you would obtain until you hear something flapping it wings." //Chicken
 }; 
 
 
@@ -76,9 +97,10 @@ int main()
     Player* adventurer = archetype_choice();
     Bag inventory(adventurer);
 
-    cout << "Press any key and enter to continue . . ." << endl;
+    cin.ignore();
+    cout << "Press enter to continue . . ." << endl;
     cout << "> ";
-    cin >> anyKey;
+    cin.get();
     system("clear");
 
     story(adventurer, inventory);
@@ -127,7 +149,7 @@ Player* archetype_choice() {
             adventurer = new Paladin();
         }
         else {
-            cout << "Sorry that's not a valid choice, please type in the number corresponding to the archetype." << endl;
+            cout << "Sorry that's not a valid choice, please type in the number corresponding to the archetype" << endl;
 	}
 
 
@@ -161,6 +183,7 @@ Player* archetype_choice() {
 void story(Player* adventurer, Bag inventory) {
     string decision = "";
     string anyKey;
+
     srand(time(0));    
 
     int fightCounter = 0; //Level up after 1 fight, then level up after 2 fights, and so on
@@ -178,33 +201,36 @@ void story(Player* adventurer, Bag inventory) {
             cout << "> ";
 	    cin >> decision;
 	    if(decision == "l") {
-	        i = i * 2 + 1; //If the user chooses the left path, the left child of choices[] will be accessed
-                cout << choices[i] << endl; //Prints enemy encounter
-                cout << endl;
-                this_thread::sleep_for(chrono::seconds(1));
-	        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
-                fight.printStats();
-                fight.start("You have encountered an enemy!");
-                inventory.add(&dmg);         
-                fightCounter++;
-
+	        i = i * 2 + 1;
 	    }
 	    else if(decision == "r") {
-                 i = i * 2 + 2; //If the user chooses the right path, the right child of choices[] will be accessed
-                 cout << choices[i] << endl;
-                 cout << endl;
-                 this_thread::sleep_for(chrono::seconds(1));
-		 combat fight_two(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
-                 fight_two.printStats();
-                 cout << endl;
-		 fight_two.start("An enemy jumps you!");       
-                 inventory.add(&heal);
-                 fightCounter++;
+                 i = i * 2 + 2;
 	    }
 	    else {
 		 cout << "Sorry that's not a valid choice, please type in 'l' for left or 'r' for right" << endl;
 	    }
         }
+ 
+        cout << choices[i] << endl; //Prints enemy encounter
+        cout << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        if(rand() % 2 == 1) { //This if-else statement makes the fight randomly drop either a healing potion or strength potion
+ 	    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
+            fight.printStats();
+            fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
+            inventory.add(&dmg);         
+            fightCounter++;
+        }
+	else {
+ 	    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
+            fight.printStats();
+            fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
+            inventory.add(&heal);         
+            fightCounter++;
+	}
+
+
         if(levelTrigger == fightCounter) { //Level up checkpoint
 	    print_level_up(inventory);
             levelTrigger++;
@@ -227,15 +253,15 @@ void story(Player* adventurer, Bag inventory) {
 	    }
 	} 
         
-	chest(inventory);	   
-
-        cout << "Press any key to continue and enter . . ." << endl;
+	chest(inventory);
+	   
+	cin.ignore();
+        cout << "Press enter to continue . . ." << endl;
         cout << "> ";
-        cin >> anyKey;
+        cin.get();
         system("clear");
         cout << prompt[promptCounter] << endl; //Prints new prompt
         promptCounter++;
-        cin.ignore();
         decision = "";
     }
 }
@@ -264,7 +290,7 @@ Enemy* check_enemy(string narrative, int level) {
 	Enemy* goblin = new GoblinMinion(level-2);
         return goblin;
     }
-    else if(narrative.find("jump") != -1 || narrative.find("slimy") != -1) {
+    else if(narrative.find("jump") != -1 || narrative.find("slimy") != -1 || narrative.find("slime") != -1) {
 	Enemy* slime = new SlimeMinion(level-2);
         return slime;
     }
@@ -279,12 +305,14 @@ void chest(Bag inventory) {
     string choice;
     srand(time(0));
     int level = inventory.getplayer()->getLevel();
-    if(rand() % 5 + 1 < 4) {
+    if(rand() % 5 + 1 < 5) {
         this_thread::sleep_for(chrono::seconds(1));
         cout << endl;
+        cout << "----------------------------------------------------------" << endl;
         cout << "As you reach the end of the path, you see a wooden chest" << endl;
-        Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % level) + level-2);
-        cout << contents->printFound() << endl;
+        Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % 5) + level-2);
+	cout << contents->printFound() << endl;
+        cout << "----------------------------------------------------------" << endl;
         cout << endl;
         cout << "Your weapon stats:" << endl;
         cout << inventory.getplayer()->getWeapon()->printStats() << endl;
@@ -294,10 +322,11 @@ void chest(Bag inventory) {
         cout << endl;
 	cout << "Would you like to equip this weapon? (y/n)" << endl;
         while(choice != "y" && choice != "n") {
-	    cout << ">";
+	    cout << "> ";
             cin >> choice;
             if(choice == "y") {
 		cout << "You have equipped the " << contents->getRarity() << " " << contents->getType() << "!" << endl;
+                inventory.getplayer()->equip(contents);
 	    }
             else if(choice == "n") {
 		delete contents;
@@ -309,7 +338,4 @@ void chest(Bag inventory) {
 	}
     }
 }
-
-
-
 
