@@ -47,6 +47,14 @@ const string choices[100] = {
     "You decided to venture the right path in which you hear a bawk bawk sound", //Chicken
     "Decidingly, you inspect the left path and are immediately with a sole goblin", //Goblin
     "You chose to proceed to the right path. As you keep inspecting, you see a cluster of small slimes that merge", //Slime
+    //4th Level
+    "Decidingly, you investigate the left path and you suddenly feel an strong aura. You must be getting closer to the boss but a chicken gets in your way", //Chicken
+    "While exploring the right path you feel as if you are approaching the boss closer due to spiritual pressure. As you prepare yourself a human-shaped slime is approaching you" //Slime
+    "You decided to traverse the left path, hoping to kill the boss for some notoriety. However out of nowhere,, a speedy goblin charges at you", //Goblin
+    "Ideally, you chose to venture out into the right path. You get closer to a radiating prescence. Just as you experience that feeling, a phat goblin comes into your sight", //Goblin
+    "Confidently, you have chosen to dip your feet into the left path where you hear a bawking noise becoming more comprehendable by the second", //Chicken
+    "So you chose to explore the right path. You feel noticeable spiritual pressure as if you are getting closer to the boss. These thoughts seemed to deter when am ugly goblin approaches you", //Chicken
+    "So you chose to traverse the left path. You feel the ground shaking as if something is jumping up and down repeatedly. You then brace for combat", //Slime
 }; 
 
 
@@ -76,9 +84,10 @@ int main()
     Player* adventurer = archetype_choice();
     Bag inventory(adventurer);
 
-    cout << "Press any key and enter to continue . . ." << endl;
+    cin.ignore();
+    cout << "Press enter to continue . . ." << endl;
     cout << "> ";
-    cin >> anyKey;
+    cin.get();
     system("clear");
 
     story(adventurer, inventory);
@@ -175,6 +184,7 @@ void story(Player* adventurer, Bag inventory) {
 	
     for(unsigned int i = 0; i < size_choices;) {
 	while(decision != "l" && decision != "r") {
+            
             cout << "> ";
 	    cin >> decision;
 	    if(decision == "l") {
@@ -184,7 +194,7 @@ void story(Player* adventurer, Bag inventory) {
                 this_thread::sleep_for(chrono::seconds(1));
 	        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
                 fight.printStats();
-                fight.start("You have encountered an enemy!");
+                fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
                 inventory.add(&dmg);         
                 fightCounter++;
 
@@ -197,7 +207,7 @@ void story(Player* adventurer, Bag inventory) {
 		 combat fight_two(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
                  fight_two.printStats();
                  cout << endl;
-		 fight_two.start("An enemy jumps you!");       
+		 fight_two.start("A " + fight_two.getMonster()->getName() + " jumps at you!");       
                  inventory.add(&heal);
                  fightCounter++;
 	    }
@@ -227,15 +237,15 @@ void story(Player* adventurer, Bag inventory) {
 	    }
 	} 
         
-	chest(inventory);	   
-
-        cout << "Press any key to continue and enter . . ." << endl;
+	chest(inventory);
+	   
+	cin.ignore();
+        cout << "Press enter to continue . . ." << endl;
         cout << "> ";
-        cin >> anyKey;
+        cin.get();
         system("clear");
         cout << prompt[promptCounter] << endl; //Prints new prompt
         promptCounter++;
-        cin.ignore();
         decision = "";
     }
 }
@@ -279,12 +289,12 @@ void chest(Bag inventory) {
     string choice;
     srand(time(0));
     int level = inventory.getplayer()->getLevel();
-    if(rand() % 5 + 1 < 4) {
+    if(rand() % 5 + 1 < 5) {
         this_thread::sleep_for(chrono::seconds(1));
         cout << endl;
         cout << "As you reach the end of the path, you see a wooden chest" << endl;
-        Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % level) + level-2);
-        cout << contents->printFound() << endl;
+        Weapon* contents = new Weapon(inventory.getplayer()->getWeapon(), (rand() % 5) + level-2);
+	cout << contents->printFound() << endl;
         cout << endl;
         cout << "Your weapon stats:" << endl;
         cout << inventory.getplayer()->getWeapon()->printStats() << endl;
@@ -294,10 +304,11 @@ void chest(Bag inventory) {
         cout << endl;
 	cout << "Would you like to equip this weapon? (y/n)" << endl;
         while(choice != "y" && choice != "n") {
-	    cout << ">";
+	    cout << "> ";
             cin >> choice;
             if(choice == "y") {
 		cout << "You have equiped the " << contents->getType() << "!" << endl;
+                inventory.getplayer()->equip(contents);
 	    }
             else if(choice == "n") {
 		delete contents;
