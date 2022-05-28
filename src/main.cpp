@@ -1,5 +1,5 @@
 #include "../header/story.hpp"
-Story archetype_choice();
+Story* archetype_choice();
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
 
     system("clear");
     
-    Story game = archetype_choice();
+    Story* game = archetype_choice();
 
     cin.ignore();
     cout << "Press enter to continue . . ." << endl;
@@ -30,7 +30,7 @@ int main()
     cin.get();
     system("clear");
     
-    string start[6] = {"You are striving to become one of the best " + game.getPlayer()->getArchetype() + "s of all time.", 
+    string start[6] = {"You are striving to become one of the best " + game->getPlayer()->getArchetype() + "s of all time.", 
     "However, things have not been going your way for you as of lately.",
     "You try joining clans so that you could gain some experience and clear some dungeons with them.",
     "Unexpectedly, each of the clans were consisted of useless members, so you feel like you made zero progress.",
@@ -40,6 +40,7 @@ int main()
     
     for(unsigned int i = 0; i < 6; i++) {
         cout << start[i] << endl;
+        cout << endl;
         this_thread::sleep_for(chrono::seconds(2));
     }
 
@@ -49,13 +50,15 @@ int main()
     cin.get();
     system("clear");
 	
-    game.story();
+    game->story();
+
+    cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
 
     return 0;
 
 }
 
-Story archetype_choice() {
+Story* archetype_choice() {
     string choice;
     Player* adventurer;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
@@ -102,8 +105,8 @@ Story archetype_choice() {
         if(choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5") { //Confirms if the player wants the selected class after base stats and starter weapons stats print
             Bag inventory(adventurer);
             cout << "Your archetype's base stats:" << endl;
-            Story gameplay = Story(inventory, adventurer);
-            gameplay.print_base_stats(); 
+            Story* gameplay = new Story(inventory, adventurer);
+            gameplay->print_base_stats(); 
             cout << endl;
             cout << "Your starter weapon:" << endl;
             cout << adventurer->getWeapon()->printStats() << endl;
@@ -116,7 +119,7 @@ Story archetype_choice() {
 	            return gameplay;
 	        }
                 else if(choice == "n") {
-                    delete adventurer;
+                    delete gameplay;
 		    break;
 	        }
                 else {

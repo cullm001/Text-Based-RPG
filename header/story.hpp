@@ -19,6 +19,9 @@ class Story {
 	    this->inventory = inventory;
             this->adventurer = adventurer;
 	}
+        ~Story() {
+	    delete adventurer;
+	}
         Player* getPlayer() {
 	    return adventurer;
 	}
@@ -45,10 +48,10 @@ class Story {
                     cout << "> ";
                     cin >> decision;
                     if(decision == "l") {
-                        i = i * 2 + 1;
+                        i = i * 2 + 1; //Visit left child
                     }
                     else if(decision == "r") {
-                         i = i * 2 + 2;
+                         i = i * 2 + 2; //Visit right child
                     }
                     else {
                          cout << "Sorry that's not a valid choice, please type in 'l' for left or 'r' for right" << endl;
@@ -65,6 +68,36 @@ class Story {
                     fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
                     inventory.add(&dmg);
                     fightCounter++;
+                    if(levelTrigger == fightCounter) { //Level up checkpoint
+                        print_level_up();
+                        levelTrigger++;
+                        fightCounter = 0;
+                    }
+                    cout << endl;
+                    cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                    item_checkpoint(decision);
+                    press_continue();
+                    chest();
+                    cout << endl;
+                    if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
+                        this_thread::sleep_for(chrono::seconds(2));
+                        cout << "As you continue exploring you hear something in the back of your head" << endl;
+                        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
+                        fight.printStats();
+                        fight.start("A " + fight.getMonster()->getName() + " jumps from behind!");
+                        inventory.add(&dmg);
+                        fightCounter++;
+                        if(levelTrigger == fightCounter) { //Level up checkpoint
+                            print_level_up();
+                            levelTrigger++;
+                            fightCounter = 0;
+                        }
+                        cout << endl;
+                        cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                        item_checkpoint(decision);
+                        press_continue();
+                        chest();
+                    }
                 }
                 else {
                     combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
@@ -72,36 +105,40 @@ class Story {
                     fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
                     inventory.add(&heal);
                     fightCounter++;
-                }
-                if(levelTrigger == fightCounter) { //Level up checkpoint
-                    print_level_up();
-                    levelTrigger++;
-                    fightCounter = 0;
-                }
-                else  { //Else ask the user if they would like to use an item
-                    cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                    while(decision != "y" && decision != "n") {
-                        cout << "> ";
-                        cin >> decision;
-                        if(decision == "y") {
-                            inventory.print();
+                    if(levelTrigger == fightCounter) { //Level up checkpoint
+                        print_level_up();
+                        levelTrigger++;
+                        fightCounter = 0;
+                    }
+                    cout << endl;
+	            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                    item_checkpoint(decision);
+                    press_continue();
+                    chest();
+                    cout << endl;
+                    if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
+                        this_thread::sleep_for(chrono::seconds(2));
+                        cout << "As you continue exploring you hear something in the back of your head" << endl;
+		        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
+                        fight.printStats();
+                        fight.start("A " + fight.getMonster()->getName() + " jumps from behind!");
+                        inventory.add(&heal);
+                        fightCounter++;
+                        if(levelTrigger == fightCounter) { //Level up checkpoint
+                            print_level_up();
+                            levelTrigger++;
+                            fightCounter = 0;
                         }
-                        else if(decision == "n") {
-                            break;
-                        }
-                        else {
-                            cout << "Sorry that is not a valid choice. Please type 'y' for yes or 'n' for no" << endl;
-                        }
+                        cout << endl;
+                        cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                        item_checkpoint(decision);
+                        press_continue();
+                        chest();
                     }
                 }
-        
-                chest();
-        
-                cin.ignore();
-                cout << "Press enter to continue . . ." << endl;
-                cout << "> ";
-                cin.get();
-                system("clear");
+                
+		press_continue();
+		
                 cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
                 cout << prompt[promptCounter] << endl; //Prints new prompt
                 cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
@@ -109,6 +146,27 @@ class Story {
                 promptCounter++;
                 decision = "";
             }
+            //Boss Battle
+            this_thread::sleep_for(chrono::seconds(2));
+            cout << "As you keep inspecting this mystery, you notice a huge door in front of you. Similar to the other dungeons you explored, this must be where the boss resides." << endl; 
+            cout << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            cout << "You then mentally and physically prepare yourself to clear this dungeon and hopefully reap the benefits." << endl;
+            cout << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+  
+            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl; 
+            item_checkpoint(decision);
+
+	    press_continue();
+
+            cout << "You then open the door and are greeted with the boss" << endl;
+            this_thread::sleep_for(chrono::seconds(2));
+            HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
+            combat fight(&inventory, boss, &heal);
+            fight.printStats();
+            cout << endl;
+            fight.start("The Hobgoblin charges straight at you");
         }
     
         void print_base_stats() {
@@ -118,6 +176,7 @@ class Story {
             cout << "Defense: " << adventurer->getDefense() << endl;
             cout << "Crit Rate: " << adventurer->getCritRate() << endl;
         }
+
     private:
         Bag inventory;
         Player* adventurer;
@@ -170,32 +229,56 @@ class Story {
         //"Upon exploring the left path, you hear an annoying plop, slimy sound. Here we go again." //Slime
         //"Upon exploring the right path, you yearn to kill the boss. You imagine of the clout you would obtain until you hear something flapping it wings." //Chicken
         }; 
-    
+        
+        void item_checkpoint(string decision) { //Allows user to use an item after each fight if the user doesn't level up or before the boss battle
+            while(decision != "y" && decision != "n") {
+                cout << "> ";
+                cin >> decision;
+                if(decision == "y") {
+	            inventory.print();
+                }
+	       else if(decision == "n") {
+	            break;
+	       }
+               else {
+	            cout << "Sorry that is not a valid choice. Please type 'y' for yes or 'n' for no" << endl;
+	       }
+            }
+	}
+
+        void press_continue() {
+            cin.ignore();
+            cout << "Press enter to continue . . ." << endl;
+            cout << "> ";
+            cin.get();
+            system("clear");
+	}
+
 	void print_level_up() {
-            cout << "----------------------------------------" << endl;
+            cout << "-----------------------------------------" << endl;
             cout << "| Congratulations, you gained 2 levels! |" << endl; 
-            cout << "----------------------------------------" << endl;
+            cout << "-----------------------------------------" << endl;
             print_base_stats();
             adventurer->levelUp(2);
             cout << "      ↓      " << endl;
             print_base_stats();
         }
-   
+   	
         //Summons an enemy based on the decision the user makes and the users level
         Enemy* check_enemy(string narrative, int level) {
+            srand(time(0));
             if(narrative.find("shh") != -1 || narrative.find("run") != -1 || narrative.find("goblin") != -1) {
-                Enemy* goblin = new GoblinMinion(level-2);
+                Enemy* goblin = new GoblinMinion((rand() % 2) + level-3); //level-3 to level-2
                 return goblin;
             }
             else if(narrative.find("jump") != -1 || narrative.find("slimy") != -1 || narrative.find("slime") != -1) {
-                Enemy* slime = new SlimeMinion(level-2);
+                Enemy* slime = new SlimeMinion((rand() % 2) + level-3);
                 return slime;
             }
             else {
-                Enemy* chicken = new ChickenMinion(level-2);
+                Enemy* chicken = new ChickenMinion((rand() % 2) + level-3);
                 return chicken;
             }
-        
         }
         
         void chest() {
@@ -230,7 +313,7 @@ class Story {
                         break;
                     }
                     else {
-                        cout << "Sorry you entered an invalid choice, type 'y' for yes or 'n' for no";
+                        cout << "Sorry you entered an invalid choice, type 'y' for yes or 'n' for no" << endl;
                     }
                 }
             }
