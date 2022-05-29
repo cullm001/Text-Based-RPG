@@ -4,18 +4,19 @@ SET(CMAKE_CXX_STANDARD 11)
 
 ADD_SUBDIRECTORY(googletest)
 
-# ADD_EXECUTABLE(player
-#  	header/player_test.cpp
-# 	src/entity.cpp
-# 	src/player.cpp
-#  	header/bag.hpp
-#     header/combat.hpp
-#   	header/Enemies/Boss.cpp
-#  	header/Enemies/Minion.cpp
-#  	header/Enemies/Enemy.hpp
-# 	header/Weapon/weapon.hpp
-# 	header/Weapon/weapon.cpp
-# )
+ADD_EXECUTABLE(player
+ 	header/player_test.cpp
+	src/entity.cpp
+	src/player.cpp
+	src/item.cpp
+ 	header/bag.hpp
+    header/combat.hpp
+  	header/Enemies/Boss.cpp
+ 	header/Enemies/Minion.cpp
+ 	header/Enemies/Enemy.hpp
+	header/Weapon/weapon.hpp
+	header/Weapon/weapon.cpp
+)
 
 # ADD_EXECUTABLE(weapon
 # 	header/Weapon/test_weapon.cpp
@@ -40,6 +41,7 @@ ADD_EXECUTABLE(test
 	header/Weapon/weapon.cpp
 	src/entity.cpp
 	src/player.cpp
+	src/item.cpp
 )
 
 ADD_EXECUTABLE(story

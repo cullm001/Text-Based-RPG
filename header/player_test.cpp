@@ -13,20 +13,20 @@ using namespace std;
 
 
 int main() {
-  Player* ptest = new Wizard();
-  Bag fiction(ptest);
-  ptest->levelUp(10);
+  Player* testPlayer = new Wizard();
+  Bag* testBag = new Bag(testPlayer);
+  testPlayer->levelUp(10);
 
-  healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
-  strengthpot str("strength potion", "When taken the user feels a slight boost to their muscles", 1);
-  fiction.add(&heal);
-  fiction.add(&str);
+  Item* heal = new healthpot();
+  Item* str = new strengthpot();
+  testBag->add(heal);
+  testBag->add(str);
 
-  Enemy* bobby = new ChickenMinion(10);
-  combat testFight(&fiction, bobby, &heal);
+  Enemy* testEnemy = new ChickenMinion(10);
+  combat testFight(testBag, testEnemy, heal);
 
   testFight.printStats();
-  testFight.start("Chicken Combat");
+  testFight.start("Test Enemy Combat");
 
   return 0;
 }
