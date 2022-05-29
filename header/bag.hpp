@@ -22,20 +22,22 @@ class Bag {
         }
         ~Bag(){}
         
-        void use(int i){
+        string use(int i){
+            string output;
             if(i > 0){
                 int index = i - 1;
-                baglist.at(index)->use(play);
+                output = baglist.at(index)->use(play);
+                swap(baglist.at(i-1), baglist.at((baglist.size()-1)));
+                baglist.pop_back();
             }else if(i > baglist.size()){
-                cout << "The item does not exist." << endl;
+                output = "The item does not exist.";
             }
 
-            swap(baglist.at(i-1), baglist.at((baglist.size()-1)));
-            baglist.pop_back();
+            return output;
         }
         void print(){
             if(baglist.size() == 0){
-                cout << "There is nothing in your bag, you wasted your turn" << endl;
+                cout << "There is nothing in your bag." << endl;
                 return;
             }
             cout << endl;
@@ -49,11 +51,11 @@ class Bag {
                 cout << "> ";
                 cin >> bob;
                 if(bob <= baglist.size()) {
-		    use(bob);
+		            cout << use(bob) << endl;
                     return;
 		}
                 else {
-		    cout << "Sorry there is no item corresponding to the number you entered" << endl;
+		    cout << "There is no item corresponding to the number you entered" << endl;
 		}
 	    }
 

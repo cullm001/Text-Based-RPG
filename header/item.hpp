@@ -12,10 +12,11 @@ class Item {
     protected:
         string name;
         string description;
+        int value;
     public:
         Item();
-        Item(string nm, string des);
-        virtual void use(Player *&p) = 0;
+        Item(string nm, string des, int val);
+        virtual string use(Player *&p) = 0;
         string print() { return name + ", " + description; }
         virtual ~Item() = default;
         string getname() { return name; }
@@ -23,25 +24,24 @@ class Item {
 
 class healthpot: public Item
 {
-    private:
-        int value;
     public:
-        healthpot(string n, string d, int v) : Item (n, d) { value = v; }
-        void use(Player *&p){
-           cout << "You used a healing potion" << endl;
-           p->heal(5);
+        healthpot() : Item("Healing Potion", "When taken, a small angel pops out and sings a song to heal the user.", 5) {}
+        healthpot(string n, string d, int v = 5) : Item (n, d, v) {}
+        string use(Player *&p){
+            int healAmount = value * 0.05 * p->getMaxHealth(); // 5% of max health per value of the potion
+            p->heal(healAmount);
+            return "You used a healing potion. You restored " + to_string(healAmount) + " health.";
         }
 };
 
 class strengthpot: public Item
 {
-     private:
-        int value;
     public:
-        strengthpot(string n, string d, int v) : Item (n, d) { value = v; }
-        void use(Player *&p){
-           cout << "You used a strength potion" << endl;
-           p->addTempAttack(5);
+        strengthpot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength", 1) {}
+        strengthpot(string n, string d, int v = 1) : Item (n, d, v) { value = v; }
+        string use(Player *&p){
+           p->addAttackBoost(value);
+           return "You used an strength potion. You temporarily boosted your attack.";
         }
 };
 

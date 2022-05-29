@@ -35,9 +35,9 @@ class Story {
             int levelTrigger = 1;
             int promptCounter = 0;
         
-            strengthpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
-            healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
-            inventory.add(&heal);
+            Item* str = new strengthpot(); // boosts their attack stat by 25%
+            Item* heal = new healthpot(); // heals 25% of the player's health
+            inventory.add(heal);
         
             cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
             cout << choices[0] << endl;
@@ -63,10 +63,10 @@ class Story {
                 this_thread::sleep_for(chrono::seconds(2));
         
                 if(rand() % 2 == 1) { //This if-else statement makes the fight randomly drop either a healing potion or strength potion
-                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
+                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), str);
                     fight.printStats();
                     fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
-                    inventory.add(&dmg);
+                    inventory.add(str);
                     fightCounter++;
                     if(levelTrigger == fightCounter) { //Level up checkpoint
                         print_level_up();
@@ -82,10 +82,10 @@ class Story {
                     if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
                         this_thread::sleep_for(chrono::seconds(2));
                         cout << "As you continue exploring you hear something in the back of your head" << endl;
-                        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &dmg);
+                        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), str);
                         fight.printStats();
                         fight.start("A " + fight.getMonster()->getName() + " jumps from behind!");
-                        inventory.add(&dmg);
+                        inventory.add(str);
                         fightCounter++;
                         if(levelTrigger == fightCounter) { //Level up checkpoint
                             print_level_up();
@@ -100,10 +100,10 @@ class Story {
                     }
                 }
                 else {
-                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
+                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), heal);
                     fight.printStats();
                     fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
-                    inventory.add(&heal);
+                    inventory.add(heal);
                     fightCounter++;
                     if(levelTrigger == fightCounter) { //Level up checkpoint
                         print_level_up();
@@ -119,10 +119,10 @@ class Story {
                     if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
                         this_thread::sleep_for(chrono::seconds(2));
                         cout << "As you continue exploring you hear something run up from behind you." << endl;
-		        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
+		        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), heal);
                         fight.printStats();
                         fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
-                        inventory.add(&heal);
+                        inventory.add(heal);
                         fightCounter++;
                         if(levelTrigger == fightCounter) { //Level up checkpoint
                             print_level_up();
@@ -163,7 +163,7 @@ class Story {
             cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
             this_thread::sleep_for(chrono::seconds(2));
             HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
-            combat fight(&inventory, boss, &heal);
+            combat fight(&inventory, boss, heal);
             fight.printStats();
             cout << endl;
             fight.start("The Hobgoblin charges straight at you.");

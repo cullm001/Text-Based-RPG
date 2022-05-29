@@ -4,7 +4,8 @@
 
 using namespace std;
 
-Item::Item(string nm, string des) {
+Item::Item(string nm, string des, int val) {
     name = nm;
     description = des;
+    value = val;
 }
