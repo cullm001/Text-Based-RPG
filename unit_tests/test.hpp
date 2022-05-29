@@ -485,6 +485,140 @@ TEST(PlayerArchetypes, BarbarianFirstWeapon) {
     EXPECT_DOUBLE_EQ(test->getWeapon()->getBoost(), 0.5);
     delete test;
 }
+TEST(SlimeMinionClass, DefaultConstructor) {
+    GoblinMinion* test = new GoblinMinion();
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, LevelFiveConstructor) {
+    GoblinMinion* test = new GoblinMinion(5);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, LevelTenConstructor) {
+    GoblinMinion* test = new GoblinMinion(10);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 22);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 10);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, AllStatConstructor) {
+    GoblinMinion* test = new GoblinMinion(10, 20, 30, 40);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 10);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 20);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 40);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, ClassAbility) {
+    GoblinMinion* test = new GoblinMinion();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_FALSE(test->isBoosted());
+    test->class_ability();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.30);
+    EXPECT_TRUE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, GetClassAbility) {
+    GoblinMinion* test = new GoblinMinion();
+    test->get_class_ability_line();
+    EXPECT_EQ(test->get_class_ability_line(), "The Goblin hones its focus, its more likely to crit.");
+    delete test;
+}
+TEST(SlimeMinionClass, DefaultConstructor) {
+    GoblinMinion* test = new GoblinMinion();
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, LevelFiveConstructor) {
+    GoblinMinion* test = new GoblinMinion(5);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, LevelTenConstructor) {
+    GoblinMinion* test = new GoblinMinion(10);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 22);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 10);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, AllStatConstructor) {
+    GoblinMinion* test = new GoblinMinion(10, 20, 30, 40);
+    EXPECT_EQ(test->getName(), "Goblin");
+    EXPECT_EQ(test->getAttackNoise(), "shanks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 10);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 20);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 40);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, ClassAbility) {
+    GoblinMinion* test = new GoblinMinion();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_FALSE(test->isBoosted());
+    test->class_ability();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.30);
+    EXPECT_TRUE(test->isBoosted());
+    delete test;
+}
+TEST(SlimeMinionClass, GetClassAbility) {
+    GoblinMinion* test = new GoblinMinion();
+    test->get_class_ability_line();
+    EXPECT_EQ(test->get_class_ability_line(), "The Goblin hones its focus, its more likely to crit.");
+    delete test;
+}
 
 // weapon class unit tests
 TEST(WeaponClass, AllStatConstructor) {
