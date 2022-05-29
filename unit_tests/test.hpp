@@ -631,6 +631,141 @@ TEST(SlimeMinionClass, GetClassAbility) {
     delete test;
 }
 
+TEST(ChickenMinionClass, DefaultConstructor) {
+    ChickenMinion* test = new ChickenMinion();
+    EXPECT_EQ(test->getName(), "Angry Chicken");
+    EXPECT_EQ(test->getAttackNoise(), "pecks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(ChickenMinionClass, LevelFiveConstructor) {
+    ChickenMinion* test = new ChickenMinion(5);
+    EXPECT_EQ(test->getName(), "Angry Chicken");
+    EXPECT_EQ(test->getAttackNoise(), "pecks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(ChickenMinionClass, LevelTenConstructor) {
+    ChickenMinion* test = new ChickenMinion(10);
+    EXPECT_EQ(test->getName(), "Angry Chicken");
+    EXPECT_EQ(test->getAttackNoise(), "pecks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 22);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 10);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(ChickenMinionClass, AllStatConstructor) {
+    ChickenMinion* test = new ChickenMinion(10, 20, 30, 40);
+    EXPECT_EQ(test->getName(), "Angry Chicken");
+    EXPECT_EQ(test->getAttackNoise(), "pecks");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 10);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 20);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 40);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(ChickenMinionClass, ClassAbility) {
+    ChickenMinion* test = new ChickenMinion();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_FALSE(test->isBoosted());
+    test->class_ability();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 16.875);
+    EXPECT_TRUE(test->isBoosted());
+    delete test;
+}
+TEST(ChickenMinionClass, GetClassAbility) {
+    ChickenMinion* test = new ChickenMinion();
+    test->get_class_ability_line();
+    EXPECT_EQ(test->get_class_ability_line(), "The Angry Chicken sharpens its beak and claws, it looks more dangerous.");
+    delete test;
+}
+TEST(HobgoblinBossClass, DefaultConstructor) {
+    HobgoblinBoss* test = new HobgoblinBoss();
+    EXPECT_EQ(test->getName(), "Hobgoblin");
+    EXPECT_EQ(test->getAttackNoise(), "crushes");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(HobgoblinBossClass, LevelFiveConstructor) {
+    HobgoblinBoss* test = new HobgoblinBoss(5);
+    EXPECT_EQ(test->getName(), "Hobgoblin");
+    EXPECT_EQ(test->getAttackNoise(), "crushes");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 10);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 5);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(HobgoblinBossClass, LevelTenConstructor) {
+    HobgoblinBoss* test = new HobgoblinBoss(10);
+    EXPECT_EQ(test->getName(), "Hobgoblin");
+    EXPECT_EQ(test->getAttackNoise(), "crushes");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 22);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 10);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(HobgoblinBossClass, AllStatConstructor) {
+    HobgoblinBoss* test = new HobgoblinBoss(10, 20, 30, 40);
+    EXPECT_EQ(test->getName(), "Hobgoblin");
+    EXPECT_EQ(test->getAttackNoise(), "crushes");
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 30);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 10);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 20);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(test->getLevel(), 40);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+}
+TEST(HobgoblinBossClass, ClassAbility) {
+    HobgoblinBoss* test = new HobgoblinBoss();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
+    EXPECT_FALSE(test->isBoosted());
+    test->class_ability();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 20.25);
+    EXPECT_TRUE(test->isBoosted());
+    delete test;
+}
+TEST(HobgoblinBossClass, GetClassAbility) {
+    HobgoblinBoss* test = new HobgoblinBoss();
+    test->get_class_ability_line();
+    EXPECT_EQ(test->get_class_ability_line(), "The Hobgoblin roars, its veins popping out. It looks extremely enraged.");
+    delete test;
+}
+
 // weapon class unit tests
 TEST(WeaponClass, AllStatConstructor) {
     Weapon* test = new Weapon("Test Type", 5, 10, "searches", "Google");
