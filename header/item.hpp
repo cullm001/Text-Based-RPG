@@ -13,10 +13,12 @@ class Item {
         string name;
         string description;
     public:
-        virtual void use(Player *&p) = 0;//In the future this use will have the player obejct in it so it can modify it
-        void print(); //print the description
+        Item();
+        Item(string nm, string des);
+        virtual void use(Player *&p) = 0;
+        string print() { return name + ", " + description; }
         virtual ~Item() = default;
-        string getname(){ return name; }
+        string getname() { return name; }
 };
 
 class healthpot: public Item
@@ -24,12 +26,7 @@ class healthpot: public Item
     private:
         int value;
     public:
-        ~healthpot(){}
-        healthpot(string n, string d, int v){
-            name = n;
-            description = d;
-            value = v;
-        }
+        healthpot(string n, string d, int v) : Item (n, d) { value = v; }
         void use(Player *&p){
            cout << "You used a healing potion" << endl;
            p->heal(5);
@@ -41,12 +38,7 @@ class strengthpot: public Item
      private:
         int value;
     public:
-        ~strengthpot(){}
-        strengthpot(string n, string d, int v){
-            name = n;
-            description = d;
-            value = v;
-        }
+        strengthpot(string n, string d, int v) : Item (n, d) { value = v; }
         void use(Player *&p){
            cout << "You used a strength potion" << endl;
            p->addTempAttack(5);
