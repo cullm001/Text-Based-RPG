@@ -609,25 +609,31 @@ TEST(SlimeMinionClass, AllStatConstructor) {
 TEST(SlimeMinionClass, ClassAbilityDamaged) {
     SlimeMinion* test = new SlimeMinion();
     EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
     test->takedmg(100);
     EXPECT_DOUBLE_EQ(test->getCurrHealth(), 10);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 14);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 16);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 26);
     delete test;
 }
 TEST(SlimeMinionClass, ClassAbilityFull) {
     SlimeMinion* test = new SlimeMinion();
     EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
-    test->takedmg(20);
-    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 18);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
+    test->takedmg(50);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 15);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 20);
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 20);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 21);
+    EXPECT_DOUBLE_EQ(test->getMaxHealth(), 26);
     delete test;
 }
 TEST(SlimeMinionClass, GetClassAbility) {
     SlimeMinion* test = new SlimeMinion();
     test->get_class_ability_line();
-    EXPECT_EQ(test->get_class_ability_line(), "The Slime eats a strange substance, it looks lively.");
+    EXPECT_EQ(test->get_class_ability_line(), "The Slime eats a strange substance, it grows in size.");
     delete test;
 }
 
