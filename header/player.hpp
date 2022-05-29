@@ -12,6 +12,9 @@ class Player : public Entity {
         Weapon* weapon = nullptr;
     public:
         Player(); //we'll put weapons here later
+        ~Player(){
+            delete weapon;
+        }
         Player(int lvl);
         Player(double a, double d, double h, int l);
         void equip(Weapon* wep);
