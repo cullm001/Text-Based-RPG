@@ -38,10 +38,21 @@ class strengthpot: public Item
 {
     public:
         strengthpot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength", 1) {}
-        strengthpot(string n, string d, int v = 1) : Item (n, d, v) { value = v; }
+        strengthpot(string n, string d, int v = 1) : Item (n, d, v) {}
         string use(Player *&p){
            p->addAttackBoost(value);
            return "You used an strength potion. You temporarily boosted your attack.";
+        }
+};
+
+class luckpot : public Item
+{
+    public:
+        luckpot() : Item("Luck Potion", "When taken, the user will critically strike more often.", 1) {}
+        luckpot(string n, string d, int v = 1) : Item (n, d, v) {}
+        string use(Player *&p){
+           p->addCritBoost(value);
+           return "You used an luck potion. You temporarily boosted your crit rate.";
         }
 };
 
