@@ -9,6 +9,19 @@
 
 using namespace std;
 
+class TestArchetype : public Player {
+    public:
+        TestArchetype() : Player() { equipFirstWeapon(); setArchetype("Testing"); }
+        void class_ability() {}
+        string get_class_ability_line() {
+            return "Success";
+        }
+        void equipFirstWeapon() {
+            Weapon* testWeapon = new Weapon("Test Weapon", 5, "Test Noise", "Common");
+            equip(testWeapon);
+        }
+};
+
 class Paladin : public Player {
     public:
         Paladin() : Player() { equipFirstWeapon(); setArchetype("Paladin"); }
