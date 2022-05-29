@@ -43,7 +43,7 @@ class SlimeMinion : public Minion {
 		SlimeMinion(double a, double d, double h, int l) : Minion(a, d, h, l, "Slime", "tackles") {}
 		
 		void class_ability() {
-			this->addCurrHealth(this->getMaxHealth()*0.2);
+			this->heal(this->getMaxHealth()*0.2);
 		}
 		string get_class_ability_line() {
 			return "The Slime eats a strange substance, it looks lively.";
