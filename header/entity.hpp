@@ -31,7 +31,6 @@ class Entity {
         Entity(int lvl);
         Entity(double atk, double def, double hth, int lvl);
 
-        int getHealth();
 	    double getAttackDamage(); // get the damage the character would cause
         double takedmg(double dmg); // the charcter takes damage;
         void fullheal() { currHealth = maxHealth; } // the character is fully healed;
