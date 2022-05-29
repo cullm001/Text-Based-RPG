@@ -27,8 +27,7 @@ class Bag {
             if(i > 0){
                 int index = i - 1;
                 output = baglist.at(index)->use(play);
-                swap(baglist.at(i-1), baglist.at((baglist.size()-1)));
-                baglist.pop_back();
+                baglist.erase(baglist.begin() + index);
             }else if(i > baglist.size()){
                 output = "The item does not exist.";
             }
