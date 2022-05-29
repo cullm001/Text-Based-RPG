@@ -45,8 +45,8 @@ double Entity::takedmg(double dmg) {
 
 void Entity::heal(double val) {
     currHealth += val;
-    if (currHealth > getMaxHealth()) {
-        currHealth == getMaxHealth();
+    if (currHealth > maxHealth) {
+        currHealth = maxHealth;
     }
 }
 

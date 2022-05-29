@@ -34,7 +34,7 @@ class Entity {
         int getHealth();
 	    double getAttackDamage(); // get the damage the character would cause
         double takedmg(double dmg); // the charcter takes damage;
-        void fullheal() { currHealth = maxHealth + tempHealth; } // the character is fully healed;
+        void fullheal() { currHealth = maxHealth; } // the character is fully healed;
         void heal(double val); // the character is partially healed
         void levelUp(int lvl); // the character is levelled up
         bool isBoosted(); // checks if the entity has any stat boosting effects
