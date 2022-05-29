@@ -64,7 +64,7 @@ class Entity {
         void removeTempHealth();
         void removeTempAttack() { attack -= tempAttack; tempAttack = 0; }
         void removeTempDefense() { defense -= tempDefense; tempDefense = 0; }
-        void removeTempCritRate() { critRate -= tempCritRate; critRate = 0; }
+        void removeTempCritRate() { critRate -= tempCritRate; tempCritRate = 0; }
 
         // removes all temporary stats, not just one
         void resetTempStats();
