@@ -4,7 +4,7 @@ Story* archetype_choice();
 int main()
 {
     system("clear");
-    string anyKey;
+    string anyKey = "";
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|                                                 |" << endl;
     cout << "|               Gary Goomba Dungeon               |" << endl;
@@ -27,7 +27,7 @@ int main()
     cin.ignore();
     cout << "Press enter to continue . . ." << endl;
     cout << "> ";
-    cin.get();
+    getline(cin, anyKey);
     system("clear");
     
     string start[6] = {"You are striving to become one of the best " + game->getPlayer()->getArchetype() + "s of all time.", 
@@ -47,7 +47,7 @@ int main()
     cout << endl;
     cout << "Press enter to continue . . ." << endl;
     cout << "> ";
-    cin.get();
+    getline(cin, anyKey);
     system("clear");
 	
     game->story();
@@ -59,7 +59,7 @@ int main()
 }
 
 Story* archetype_choice() {
-    string choice;
+    string choice = "";
     Player* adventurer;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|               Archetypes                |" << endl;
