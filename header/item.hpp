@@ -18,6 +18,7 @@ class Item {
         virtual ~Item() = default;
         string getname(){ return name; }
 };
+
 class healthpot: public Item
 {
     private:
@@ -34,19 +35,20 @@ class healthpot: public Item
            p->heal(5);
         }
 };
-class dmgpot: public Item
+
+class strengthpot: public Item
 {
      private:
         int value;
     public:
-        ~dmgpot(){}
-        dmgpot(string n, string d, int v){
+        ~strengthpot(){}
+        strengthpot(string n, string d, int v){
             name = n;
             description = d;
             value = v;
         }
         void use(Player *&p){
-           cout << "You used a damage potion" << endl;
+           cout << "You used a strength potion" << endl;
            p->addTempAttack(5);
         }
 };

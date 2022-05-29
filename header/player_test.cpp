@@ -18,9 +18,9 @@ int main() {
   ptest->levelUp(10);
 
   healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
-  dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
+  strengthpot str("strength potion", "When taken the user feels a slight boost to their muscles", 1);
   fiction.add(&heal);
-  fiction.add(&dmg);
+  fiction.add(&str);
 
   Enemy* bobby = new ChickenMinion(10);
   combat testFight(&fiction, bobby, &heal);

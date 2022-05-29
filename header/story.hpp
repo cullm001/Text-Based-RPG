@@ -35,7 +35,7 @@ class Story {
             int levelTrigger = 1;
             int promptCounter = 0;
         
-            dmgpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
+            strengthpot dmg("strength potion", "When taken the user feels a slight boost to their muscles", 1);
             healthpot heal("healing potion", "When taken, a small angel pops out and sings a song", 1);
             inventory.add(&heal);
         
