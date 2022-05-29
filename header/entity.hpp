@@ -15,10 +15,10 @@ class Entity {
         int level;
 
         // temporary stat buffs will be added to the Entity's true stats, they are stored so they can be subtracted later.
-        int tempHealth;
-        int tempAttack;
-        int tempDefense;
-        double tempCritRate;
+        int tempHealth = 0;
+        int tempAttack = 0;
+        int tempDefense = 0;
+        double tempCritRate = 0;
 
         // tracks percentage-based stat buffs, every +1 results in a 25% increase
         int attackBoost = 0;
@@ -52,6 +52,7 @@ class Entity {
         void addCurrHealth(double val) { currHealth += val; }
         void addDefense(double val) { defense += val; }
         void addAttack(double val) { attack += val; }
+        void addCritRate(double val) { critRate += val; }
 
         // adds temporary buffs or debuffs to the character
         void addTempHealth(double val) { maxHealth += val; currHealth += val; tempHealth += val; }
