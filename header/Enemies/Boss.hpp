@@ -23,15 +23,15 @@ class Boss: public Enemy{
 
 class HobgoblinBoss : public Boss {
 	public: 
-		HobgoblinBoss() : Boss("hobgoblin", "crushes") {}
-		HobgoblinBoss(int l) : Boss(l, "hobgoblin", "crushes") {}
-		HobgoblinBoss(double a, double d, double h, int l) : Boss(a, d, h, l, "hobgoblin", "crushes") {}
+		HobgoblinBoss() : Boss("Hobgoblin", "crushes") {}
+		HobgoblinBoss(int l) : Boss(l, "Hobgoblin", "crushes") {}
+		HobgoblinBoss(double a, double d, double h, int l) : Boss(a, d, h, l, "Hobgoblin", "crushes") {}
 
 		void class_ability() {
 			this->addAttackBoost(2);
 		}
 		string get_class_ability_line() {
-			return "The hobgoblin roars, its veins popping out. It looks extremely enraged.";
+			return "The Hobgoblin roars, its veins popping out. It looks extremely enraged.";
 		}
 };
 #endif

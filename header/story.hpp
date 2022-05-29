@@ -118,10 +118,10 @@ class Story {
                     cout << endl;
                     if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
                         this_thread::sleep_for(chrono::seconds(2));
-                        cout << "As you continue exploring you hear something in the back of your head" << endl;
+                        cout << "As you continue exploring you hear something run up from behind you." << endl;
 		        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), &heal);
                         fight.printStats();
-                        fight.start("A " + fight.getMonster()->getName() + " jumps from behind!");
+                        fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
                         inventory.add(&heal);
                         fightCounter++;
                         if(levelTrigger == fightCounter) { //Level up checkpoint
@@ -160,13 +160,13 @@ class Story {
 
 	    press_continue();
 
-            cout << "You then open the door and are greeted with the boss" << endl;
+            cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
             this_thread::sleep_for(chrono::seconds(2));
             HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
             combat fight(&inventory, boss, &heal);
             fight.printStats();
             cout << endl;
-            fight.start("The Hobgoblin charges straight at you");
+            fight.start("The Hobgoblin charges straight at you.");
         }
     
         void print_base_stats() {
@@ -191,7 +191,7 @@ class Story {
         
         //Using i*2+1 to access left child and i*2+2 to access right child
         const string choices[100] = {
-        "You have entered the infamous dungeon and as you traverse the dungeon you stumble across 2 dark paths to the left and to the right. Which one will you choose? (l/r)", 
+        "You have entered the infamous dungeon. As you traverse down the halls you stumble across a dark path to the left and another to the right. Which one will you choose? (l/r)", 
         //1st Level
         "You have chosen the left path and you hear a faint shhhhhh sound.", //Goblin
         "You have decided to take the right path and you see something jumping.", //Slime

@@ -31,11 +31,11 @@ int main()
     system("clear");
     
     string start[6] = {"You are striving to become one of the best " + game->getPlayer()->getArchetype() + "s of all time.", 
-    "However, things have not been going your way for you as of lately.",
+    "However, things have not been going your way as of lately.",
     "You try joining clans so that you could gain some experience and clear some dungeons with them.",
-    "Unexpectedly, each of the clans were consisted of useless members, so you feel like you made zero progress.",
-    "Then hope arises when there were rumors of a dungeon so-called Gary Goomba that had the toughest boss and an overpowered reward.",
-    "Wasting no time you sprung into actions and decided to clear this dungeon."
+    "But each of the clans consisted of useless members, so you feel like you made zero progress.",
+    "However, hope arises when you hear rumors of a dungeon so-called \"Gary Goomba\" that had a tough boss and a powerful reward.",
+    "Wasting no time you spring into action and decide to clear this dungeon."
     };
     
     for(unsigned int i = 0; i < 6; i++) {
@@ -128,4 +128,5 @@ Story* archetype_choice() {
             }
 	}
     }
+    return 0;
 }
