@@ -61,83 +61,51 @@ class Story {
                 cout << choices[i] << endl; //Prints enemy encounter
                 cout << endl;
                 this_thread::sleep_for(chrono::seconds(2));
-        
-                if(rand() % 2 == 1) { //This if-else statement makes the fight randomly drop either a healing potion or strength potion
-                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), str);
+
+                int dropRoll = rand() % 2; // randomly decides the drop for the encounter, if the roll is 0, then you just get the heal potion
+                Item* drop = heal;
+                if(dropRoll == 1) { drop = str;}
+
+                combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), drop);
+                fight.printStats();
+                fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
+                inventory.add(heal);
+                fightCounter++;
+                if(levelTrigger == fightCounter) { //Level up checkpoint
+                    print_level_up();
+                    levelTrigger++;
+                    fightCounter = 0;
+                }
+                cout << endl;
+	            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                item_checkpoint(decision);
+                press_continue();
+                chest();
+                cout << endl;
+
+                if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
+                    this_thread::sleep_for(chrono::seconds(2));
+                    cout << "As you continue exploring you hear something run up from behind you." << endl;
+		            combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), heal);
                     fight.printStats();
-                    fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
-                    inventory.add(str);
+                    fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
+                    inventory.add(heal);
                     fightCounter++;
+
                     if(levelTrigger == fightCounter) { //Level up checkpoint
                         print_level_up();
                         levelTrigger++;
                         fightCounter = 0;
                     }
+
                     cout << endl;
                     cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
                     item_checkpoint(decision);
                     press_continue();
                     chest();
-                    cout << endl;
-                    if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
-                        this_thread::sleep_for(chrono::seconds(2));
-                        cout << "As you continue exploring you hear something in the back of your head" << endl;
-                        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), str);
-                        fight.printStats();
-                        fight.start("A " + fight.getMonster()->getName() + " jumps from behind!");
-                        inventory.add(str);
-                        fightCounter++;
-                        if(levelTrigger == fightCounter) { //Level up checkpoint
-                            print_level_up();
-                            levelTrigger++;
-                            fightCounter = 0;
-                        }
-                        cout << endl;
-                        cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                        item_checkpoint(decision);
-                        press_continue();
-                        chest();
-                    }
-                }
-                else {
-                    combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), heal);
-                    fight.printStats();
-                    fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
-                    inventory.add(heal);
-                    fightCounter++;
-                    if(levelTrigger == fightCounter) { //Level up checkpoint
-                        print_level_up();
-                        levelTrigger++;
-                        fightCounter = 0;
-                    }
-                    cout << endl;
-	            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                    item_checkpoint(decision);
-                    press_continue();
-                    chest();
-                    cout << endl;
-                    if(rand() % 10 + 1 < 9) { //90% chance of an enemy approaching from behind
-                        this_thread::sleep_for(chrono::seconds(2));
-                        cout << "As you continue exploring you hear something run up from behind you." << endl;
-		        combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), heal);
-                        fight.printStats();
-                        fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
-                        inventory.add(heal);
-                        fightCounter++;
-                        if(levelTrigger == fightCounter) { //Level up checkpoint
-                            print_level_up();
-                            levelTrigger++;
-                            fightCounter = 0;
-                        }
-                        cout << endl;
-                        cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                        item_checkpoint(decision);
-                        press_continue();
-                        chest();
-                    }
                 }
                 
-		press_continue();
+		        press_continue();
 		
                 cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
                 cout << prompt[promptCounter] << endl; //Prints new prompt
