@@ -27,7 +27,7 @@ class Story {
 	}
         void story() {
             string decision = "";
-            string anyKey;
+            string anyKey = "";
         
             srand(time(0));
         
@@ -47,7 +47,7 @@ class Story {
             for(unsigned int i = 0; i < size_choices;) {
                 while(decision != "l" && decision != "r") {
                     cout << "> ";
-                    cin >> decision;
+                    getline(cin, decision);
                     if(decision == "l") {
                         i = i * 2 + 1; //Visit left child
                     }
@@ -81,7 +81,7 @@ class Story {
                 }
                 cout << endl;
 	            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                item_checkpoint(decision);
+                item_checkpoint();
                 press_continue();
                 chest();
                 cout << endl;
@@ -109,7 +109,7 @@ class Story {
 
                     cout << endl;
                     cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
-                    item_checkpoint(decision);
+                    item_checkpoint();
                     press_continue();
                     chest();
                 }
@@ -133,7 +133,7 @@ class Story {
             this_thread::sleep_for(chrono::seconds(2));
   
             cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl; 
-            item_checkpoint(decision);
+            item_checkpoint();
 
 	        press_continue();
 
@@ -207,10 +207,13 @@ class Story {
         //"Upon exploring the right path, you yearn to kill the boss. You imagine of the clout you would obtain until you hear something flapping it wings." //Chicken
         }; 
         
-        void item_checkpoint(string decision) { //Allows user to use an item after each fight if the user doesn't level up or before the boss battle
+        void item_checkpoint() { //Allows user to use an item after each fight if the user doesn't level up or before the boss battle
+            string decision = "";
             while(decision != "y" && decision != "n") {
+                decision = "";
                 cout << "> ";
-                cin >> decision;
+                cin.ignore();
+                getline(cin, decision);
                 if(decision == "y") {
 	            inventory.print();
                 }
@@ -224,10 +227,10 @@ class Story {
 	}
 
         void press_continue() {
-            cin.ignore();
+            string anyKey = "";
             cout << "Press enter to continue . . ." << endl;
             cout << "> ";
-            cin.get();
+            getline(cin, anyKey);
             system("clear");
 	}
 
@@ -259,7 +262,7 @@ class Story {
         }
         
         void chest() {
-            string choice;
+            string choice = "";
             srand(time(0));
             int level = adventurer->getLevel();
             if(rand() % 5 + 1 < 5) {
@@ -280,7 +283,7 @@ class Story {
                 cout << "Would you like to equip this weapon? (y/n)" << endl;
                 while(choice != "y" && choice != "n") {
                     cout << "> ";
-                    cin >> choice;
+                    getline(cin, choice);
                     if(choice == "y") {
                         cout << "You have equipped the " << contents->getRarity() << " " << contents->getType() << "!" << endl;
                         adventurer->equip(contents);
