@@ -76,25 +76,25 @@ Story* archetype_choice() {
 	cin >> choice;
         cout << endl;
         if(choice == "1") {
-	    cout << "You have selected the Barbarian class!" << endl;
+	    cout << "You have selected the Barbarian class! This class can raise its attack by going into a rage." << endl;
             adventurer = new Barbarian();
         }
 	else if(choice == "2") {
-	    cout << "You have selected the Wizard class!" << endl;
+	    cout << "You have selected the Wizard class! This class can randomly raise a stat by two stages by channeling magic." << endl;
             adventurer = new Wizard();
         }
         else if(choice == "3") {
-	    cout << "You have selected the Archer class!" << endl;
+	    cout << "You have selected the Archer class! This class can increase its crit rate by honing its focus." << endl;
             adventurer = new Archer();
         }
 
         else if(choice == "4") {
-	    cout << "You have selected the Cleric class!" << endl;
+	    cout << "You have selected the Cleric class! This class can heal itself through prayer." << endl;
             adventurer = new Cleric();
         }
 
         else if(choice == "5") {
-	    cout << "You have selected the Paladin class!" << endl;
+	    cout << "You have selected the Paladin class! This class can raise its defense with divine shields." << endl;
             adventurer = new Paladin();
         }
         else {
