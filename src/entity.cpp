@@ -74,6 +74,13 @@ void Entity::resetTempStats() {
     removeTempCritRate();
 }
 
+bool Entity::isBoosted() {
+    if (attackBoost + defenseBoost + critBoost != 0 || tempHealth + tempAttack + tempDefense + tempCritRate != 0) {
+        return true;
+    }
+    return false;
+}
+
 void Entity::resetBoosts() {
     attackBoost = 0;
     defenseBoost = 0;

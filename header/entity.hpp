@@ -37,6 +37,7 @@ class Entity {
         void fullheal() { currHealth = maxHealth + tempHealth; } // the character is fully healed;
         void heal(double val); // the character is partially healed
         void levelUp(int lvl); // the character is levelled up
+        bool isBoosted(); // checks if the entity has any stat boosting effects
         
         // used to get current stats for combat purposes
         double const getMaxHealth() { return maxHealth; }
