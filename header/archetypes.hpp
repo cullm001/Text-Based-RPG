@@ -9,9 +9,24 @@
 
 using namespace std;
 
+class TestArchetype : public Player {
+    public:
+        TestArchetype() : Player() { equipFirstWeapon(); setArchetype("Testing"); }
+        TestArchetype(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Testing"); }
+        void class_ability() {}
+        string get_class_ability_line() {
+            return "Success";
+        }
+        void equipFirstWeapon() {
+            Weapon* testWeapon = new Weapon("Test Weapon", 5, "Test Noise", "Common");
+            equip(testWeapon);
+        }
+};
+
 class Paladin : public Player {
     public:
         Paladin() : Player() { equipFirstWeapon(); setArchetype("Paladin"); }
+        Paladin(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Paladin"); }
         void class_ability() {
             this->addDefenseBoost(1);
         }
@@ -27,6 +42,7 @@ class Paladin : public Player {
 class Wizard : public Player {
     public:
         Wizard() : Player() { equipFirstWeapon(); setArchetype("Wizard"); }
+        Wizard(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Wizard"); }
         void class_ability() {
             srand(time(0));
             int choice = rand() % 3;
@@ -46,6 +62,7 @@ class Wizard : public Player {
 class Archer : public Player {
     public:
         Archer() : Player() { equipFirstWeapon(); setArchetype("Archer"); }
+        Archer(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Archer"); }
         void class_ability() {
             this->addCritBoost(1);
         }
@@ -61,6 +78,7 @@ class Archer : public Player {
 class Cleric : public Player {
     public:
         Cleric() : Player() { equipFirstWeapon(); setArchetype("Cleric"); }
+        Cleric(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Cleric"); }
         void class_ability() {
             this->heal(this->getMaxHealth()*0.25);
         }
@@ -76,6 +94,7 @@ class Cleric : public Player {
 class Barbarian : public Player {
     public:
         Barbarian() : Player() { equipFirstWeapon(); setArchetype("Barbarian"); }
+        Barbarian(int lvl) : Player(lvl) { equipFirstWeapon(); setArchetype("Barbarian"); }
         void class_ability() {
             this->addAttackBoost(1);
         }
