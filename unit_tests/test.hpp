@@ -486,4 +486,54 @@ TEST(PlayerArchetypes, BarbarianFirstWeapon) {
     delete test;
 }
 
+// weapon class unit tests
+TEST(WeaponClass, AllStatConstructor) {
+    Weapon* test = new Weapon("Test Type", 5, 10, "searches", "Google");
+    EXPECT_EQ(test->getType(), "Test Type");
+    EXPECT_DOUBLE_EQ(test->getBoost(), 5);
+    EXPECT_DOUBLE_EQ(test->getLevel(), 10);
+    EXPECT_EQ(test->getAttackDescription(), "searches");
+    EXPECT_EQ(test->getRarity(), "Google");
+    delete test;
+}
+TEST(WeaponClass, LevelConstructor) {
+    Weapon* test = new Weapon("Test Type", 5, "searches");
+    EXPECT_EQ(test->getType(), "Test Type");
+    EXPECT_DOUBLE_EQ(test->getLevel(), 5);
+    EXPECT_EQ(test->getAttackDescription(), "searches");
+    delete test;
+}
+TEST(WeaponClass, LevelRarityConstructor) {
+    Weapon* test = new Weapon("Test Type", 5, "searches", "Common");
+    EXPECT_EQ(test->getType(), "Test Type");
+    EXPECT_DOUBLE_EQ(test->getBoost(), 0.5);
+    EXPECT_DOUBLE_EQ(test->getLevel(), 5);
+    EXPECT_EQ(test->getAttackDescription(), "searches");
+    EXPECT_EQ(test->getRarity(), "Common");
+    delete test;
+}
+TEST(WeaponClass, BasedOnConstructor) {
+    Weapon* test = new Weapon("Test Type", 12, "searches");
+    Weapon* test2 = new Weapon(test, 15);
+    EXPECT_EQ(test2->getType(), "Test Type");
+    EXPECT_EQ(test2->getAttackDescription(), "searches");
+    EXPECT_DOUBLE_EQ(test2->getLevel(), 15);
+    delete test;
+    delete test2;
+}
+TEST(WeaponClass, PrintStatsFunction) {
+    Weapon* test = new Weapon("Test Type", 10, 20, "searches", "Google");
+    EXPECT_EQ(test->printStats(), "--- Weapon Stats ---\nType: Test Type\nRarity: Google\nBuff: 10.000000");
+    delete test;
+}
+TEST(WeaponClass, PrintFoundFunction) {
+    Weapon* test = new Weapon("Test Type", 10, 20, "searches", "Google");
+    EXPECT_EQ(test->printFound(), "You discovered a Lvl. 20 Google Test Type (+10)!");
+    delete test;
+}
+TEST(WeaponClass, PrintAllStatsFunction) {
+    Weapon* test = new Weapon("Test Type", 10, 20, "searches", "Google");
+    EXPECT_EQ(test->printAllStats(), "--- Weapon Stats ---\nType: Test Type\nRarity: Google\nBuff: 10.000000\nAttack Description: searches");
+    delete test;
+}
 #endif
