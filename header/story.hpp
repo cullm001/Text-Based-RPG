@@ -19,9 +19,9 @@ class Story {
 	    this->inventory = inventory;
             this->adventurer = adventurer;
 	}
-        ~Story() {
-	    delete adventurer;
-	}
+        //~Story() {
+	//    delete adventurer;
+	//}
         Player* getPlayer() {
 	    return adventurer;
 	}
