@@ -41,8 +41,8 @@ class Entity {
         // used to get current stats for combat purposes
         double const getMaxHealth() { return maxHealth; }
         double const getCurrHealth() { return currHealth; }
-        double const getDefense() { return defense * (1 + (defenseBoost*0.25)); }
-        double const getAttack() { return attack * (1 + (attackBoost*0.25)); }
+        double const getDefense() { return defense * (1 + (defenseBoost*0.5)); }
+        double const getAttack() { return attack * (1 + (attackBoost*0.5)); }
         double const getCritRate() { return critRate + (critBoost*0.15); }
         int const getLevel() { return level; }
 
