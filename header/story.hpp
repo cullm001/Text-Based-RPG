@@ -145,17 +145,23 @@ class Story {
             this_thread::sleep_for(chrono::seconds(2));
   
             cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl; 
-            item_checkpoint();
+            //item_checkpoint();
 
 	        press_continue();
 
             cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
             this_thread::sleep_for(chrono::seconds(2));
-            HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
+            HobgoblinBoss* boss = new HobgoblinBoss(1); 
             combat fight(&inventory, boss, heal);
             fight.printStats();
             cout << endl;
             fight.start("The Hobgoblin charges straight at you.");
+	    delete boss;
+            delete adventurer;
+            delete str;
+            delete heal;
+            delete luck;
+	    
             return true;
         }
     
@@ -231,7 +237,6 @@ class Story {
         void item_checkpoint() { //Allows user to use an item after each fight if the user doesn't level up or before the boss battle
             string decision = "";
             while(decision != "y" && decision != "n") {
-                decision = "";
                 cout << "> ";
                 cin.ignore();
                 getline(cin, decision);
