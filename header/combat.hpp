@@ -63,7 +63,6 @@ class combat {
             // is this necessary?
             if(play->getplayer()->getCurrHealth() <= 0){
                 cout << "You have died.\n";
-                exit(0);
             }
             return;
         }

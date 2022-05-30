@@ -236,24 +236,24 @@ TEST(EntityClass, AttackBoost) {
     Entity* test = new Entity();
     EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
     test->addAttackBoost(1);
-    EXPECT_DOUBLE_EQ(test->getAttack(), 16.875);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 20.25);
     test->resetBoosts();
     EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
     test->addAttackBoost(3);
-    EXPECT_DOUBLE_EQ(test->getAttack(), 23.625);
-    EXPECT_DOUBLE_EQ(test->getAttackDamage(), 94.5);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 33.75);
+    EXPECT_DOUBLE_EQ(test->getAttackDamage(), 135);
     delete test;
 }
 TEST(EntityClass, DefenseBoost) {
     Entity* test = new Entity();
     EXPECT_DOUBLE_EQ(test->getDefense(), 10);
     test->addDefenseBoost(1);
-    EXPECT_DOUBLE_EQ(test->getDefense(), 12.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
     test->resetBoosts();
     EXPECT_DOUBLE_EQ(test->getDefense(), 10);
     test->addDefenseBoost(3);
-    EXPECT_DOUBLE_EQ(test->getDefense(), 17.5);
-    EXPECT_NEAR(test->takedmg(100), 5.71428, 0.0002);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 25);
+    EXPECT_NEAR(test->takedmg(100), 4, 0.0002);
     delete test;
 }
 TEST(EntityClass, CritBoost) {
@@ -314,7 +314,7 @@ TEST(PlayerArchetypes, PaladinClassAbility) {
     EXPECT_EQ(test->get_class_ability_line(), "You call upon the heavens to protect you. A divine shield bolsters your defense.");
     EXPECT_DOUBLE_EQ(test->getDefense(), 10);
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getDefense(), 12.5);
+    EXPECT_DOUBLE_EQ(test->getDefense(), 15);
     delete test;
 }
 TEST(PlayerArchetypes, PaladinFirstWeapon) {
@@ -473,7 +473,7 @@ TEST(PlayerArchetypes, BarbarianClassAbility) {
     EXPECT_EQ(test->get_class_ability_line(), "You shout towards the sky and enter a rage. You feel stronger.");
     EXPECT_DOUBLE_EQ(test->getAttack(), 14);
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getAttack(), 17.5);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 21);
     delete test;
 }
 TEST(PlayerArchetypes, BarbarianFirstWeapon) {
@@ -694,7 +694,7 @@ TEST(ChickenMinionClass, ClassAbility) {
     EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
     EXPECT_FALSE(test->isBoosted());
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getAttack(), 16.875);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 20.25);
     EXPECT_TRUE(test->isBoosted());
     delete test;
 }
@@ -761,7 +761,7 @@ TEST(HobgoblinBossClass, ClassAbility) {
     EXPECT_DOUBLE_EQ(test->getAttack(), 13.5);
     EXPECT_FALSE(test->isBoosted());
     test->class_ability();
-    EXPECT_DOUBLE_EQ(test->getAttack(), 20.25);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 27);
     EXPECT_TRUE(test->isBoosted());
     delete test;
 }

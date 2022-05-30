@@ -4,7 +4,7 @@ Story* archetype_choice();
 int main()
 {
     system("clear");
-    string anyKey;
+    string anyKey = "";
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|                                                 |" << endl;
     cout << "|               Gary Goomba Dungeon               |" << endl;
@@ -27,7 +27,7 @@ int main()
     cin.ignore();
     cout << "Press enter to continue . . ." << endl;
     cout << "> ";
-    cin.get();
+    getline(cin, anyKey);
     system("clear");
     
     string start[6] = {"You are striving to become one of the best " + game->getPlayer()->getArchetype() + "s of all time.", 
@@ -38,27 +38,31 @@ int main()
     "Wasting no time you spring into action and decide to clear this dungeon."
     };
     
-    for(unsigned int i = 0; i < 6; i++) {
-        cout << start[i] << endl;
-        cout << endl;
-        this_thread::sleep_for(chrono::seconds(2));
-    }
+    //for(unsigned int i = 0; i < 6; i++) {
+    //    cout << start[i] << endl;
+    //    cout << endl;
+    //    this_thread::sleep_for(chrono::seconds(2));
+    //}
 
-    cout << "Press enter to continue . . ." << endl;
-    cout << "> ";
-    cin.get();
-    system("clear");
+    //cout << endl;
+    //cout << "Press enter to continue . . ." << endl;
+    //cout << "> ";
+    //getline(cin, anyKey);
+    //system("clear");
 	
-    game->story();
+    bool win = game->story();
 
-    cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
-
+    if(win) {
+        cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
+    }
+   
+    delete game;
     return 0;
 
 }
 
 Story* archetype_choice() {
-    string choice;
+    string choice = "";
     Player* adventurer;
     cout << "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
     cout << "|               Archetypes                |" << endl;
@@ -75,25 +79,25 @@ Story* archetype_choice() {
 	cin >> choice;
         cout << endl;
         if(choice == "1") {
-	    cout << "You have selected the Barbarian class!" << endl;
+	    cout << "You have selected the Barbarian class! This class can raise its attack by going into a rage." << endl;
             adventurer = new Barbarian();
         }
 	else if(choice == "2") {
-	    cout << "You have selected the Wizard class!" << endl;
+	    cout << "You have selected the Wizard class! This class can randomly raise a stat by two stages by channeling magic." << endl;
             adventurer = new Wizard();
         }
         else if(choice == "3") {
-	    cout << "You have selected the Archer class!" << endl;
+	    cout << "You have selected the Archer class! This class can increase its crit rate by honing its focus." << endl;
             adventurer = new Archer();
         }
 
         else if(choice == "4") {
-	    cout << "You have selected the Cleric class!" << endl;
+	    cout << "You have selected the Cleric class! This class can heal itself through prayer." << endl;
             adventurer = new Cleric();
         }
 
         else if(choice == "5") {
-	    cout << "You have selected the Paladin class!" << endl;
+	    cout << "You have selected the Paladin class! This class can raise its defense with divine shields." << endl;
             adventurer = new Paladin();
         }
         else {
