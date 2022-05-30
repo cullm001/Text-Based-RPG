@@ -145,13 +145,13 @@ class Story {
             this_thread::sleep_for(chrono::seconds(2));
   
             cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl; 
-            //item_checkpoint();
-
+            item_checkpoint();
+		
 	        press_continue();
 
             cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
             this_thread::sleep_for(chrono::seconds(2));
-            HobgoblinBoss* boss = new HobgoblinBoss(1); 
+            HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
             combat fight(&inventory, boss, heal);
             fight.printStats();
             cout << endl;
@@ -207,7 +207,7 @@ class Story {
         "You chose to proceed to the right path. As you keep inspecting, you see a cluster of small slimes that merge.", //Slime
         //4th Level
         "Decidingly, you investigate the left path and you suddenly feel an strong aura. You must be getting closer to the boss but a chicken gets in your way.", //Chicken
-        "While exploring the right path you feel as if you are approaching the boss closer due to spiritual pressure. As you prepare yourself a human-shaped slime is approaching you." //Slime
+        "While exploring the right path you feel as if you are approaching the boss closer due to spiritual pressure. As you prepare yourself a human-shaped slime is approaching you.", //Slime
         "You decided to traverse the left path, hoping to kill the boss for some notoriety. However out of nowhere,, a speedy goblin charges at you.", //Goblin
         "Ideally, you chose to venture out into the right path. You get closer to a radiating prescence. Just as you experience that feeling, a phat goblin comes into your sight.", //Goblin
         "Confidently, you have chosen to dip your feet into the left path where you hear a bawking noise becoming more comprehendable by the second.", //Chicken
@@ -218,8 +218,8 @@ class Story {
         "Confidently, you charge into the right path and a group of slimes appears in your sight. They all merge with each other.", //Slime
         "While exploring the left path, you feel a strange prescence. As you get closer to that prescence, a goblin comes at you from the shadows.", //Goblin
         "You chose the right path hoping to clear the dungeon. You notice that you are getting deeper into the dungeon and at the same time your feet sticks to a slimy rock.", //Slime
-        "Confidently, you sprint past the left path yearning to kill the boss. From the ceiling, a goblin jumps on you." //Goblin
-        "You have chosen to go to the right path. As you keep inspecting, you see the most macho chicken you have seen in your life." //Chicken
+        "Confidently, you sprint past the left path yearning to kill the boss. From the ceiling, a goblin jumps on you.", //Goblin
+        "You have chosen to go to the right path. As you keep inspecting, you see the most macho chicken you have seen in your life.", //Chicken
         "So you chose to proceed to the left path, eager to clear this dungeon. While dreaming of the notoriety and fame from clearing the dungeon, a shhh sound becomes hearable.", //Goblin
         "Upon exploring the right path, you feel a discomforting prescence as if something minister is nearby. As you feel that prescence, there is a bawking sound that is deafening.", //Chicken
         //"Upon exploring the left path, you hear an annoying plop, slimy sound. Here we go again." //Slime
@@ -238,8 +238,7 @@ class Story {
             string decision = "";
             while(decision != "y" && decision != "n") {
                 cout << "> ";
-                cin.ignore();
-                getline(cin, decision);
+                cin >> decision;
                 if(decision == "y") {
 	            inventory.print();
                 }
@@ -248,6 +247,7 @@ class Story {
 	       }
                else {
 	            cout << "Sorry that is not a valid choice. Please type 'y' for yes or 'n' for no" << endl;
+                    cin.clear();
 	       }
             }
 	}
