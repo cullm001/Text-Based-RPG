@@ -816,4 +816,12 @@ TEST(WeaponClass, PrintAllStatsFunction) {
     EXPECT_EQ(test->printAllStats(), "--- Weapon Stats ---\nType: Test Type\nRarity: Google\nBuff: 10.000000\nAttack Description: searches");
     delete test;
 }
+TEST(Bag, Add_Remove){
+    Bag* test = new Bag();
+    testing::internal::CaptureStdout();
+    test->print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "There is nothing in your bag.\n");
+    delete test;
+}
 #endif
