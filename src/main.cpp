@@ -34,7 +34,7 @@ int main()
     "However, things have not been going your way as of lately.",
     "You try joining clans so that you could gain some experience and clear some dungeons with them.",
     "But each of the clans consisted of useless members, so you feel like you made zero progress.",
-    "However, hope arises when you hear rumors of a dungeon so-called \"Gary Goomba\" that had a tough boss and a powerful reward.",
+    "However, hope arises when you hear rumors of a dungeon so-called \"Gary Goomba\" that has a tough boss and amazing rewards.",
     "Wasting no time you spring into action and decide to clear this dungeon."
     };
     
