@@ -20,7 +20,9 @@ class Bag {
         Bag(Player* p) {
             play = p;
         }
-        ~Bag(){}
+        ~Bag(){
+	    for(unsigned int i = 0; i < baglist.size(); i++) { delete baglist.at(i); }
+	}
         
         string use(int i){
             string output;

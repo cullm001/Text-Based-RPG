@@ -25,7 +25,7 @@ class Story {
         Player* getPlayer() {
 	    return adventurer;
 	}
-        void story() {
+        bool story() {
             string decision = "";
             string anyKey = "";
         
@@ -34,12 +34,13 @@ class Story {
             int fightCounter = 0; //Level up after 1 fight, then level up after 2 fights, and so on
             int levelTrigger = 1;
             int promptCounter = 0;
-        
+            Enemy* monster;
+
             Item* str = new strengthpot(); // boosts their attack stat by 25%
             Item* heal = new healthpot(); // heals 25% of the player's health
             Item* luck = new luckpot(); // increases the player's critical strike chance
             inventory.add(heal);
-        
+   
             cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
             cout << choices[0] << endl;
             cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
@@ -68,10 +69,16 @@ class Story {
                 if(dropRoll == 0) { drop = heal; }
                 if(dropRoll == 1) { drop = str; }
                 if(dropRoll == 2) { drop = luck; }
-
-                combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), drop);
+		
+		monster = check_enemy(choices[i], adventurer->getLevel());
+                combat fight(&inventory, monster, drop);
                 fight.printStats();
-                fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
+                bool deadOrAlive = fight.start("You have encountered a " + fight.getMonster()->getName() + "!");
+                if(!deadOrAlive) {
+		    game_over(str, luck, heal, monster);
+                    return false;
+		}
+                delete monster;
                 inventory.add(drop);
                 fightCounter++;
                 if(levelTrigger == fightCounter) { //Level up checkpoint
@@ -95,12 +102,17 @@ class Story {
 
                     this_thread::sleep_for(chrono::seconds(2));
                     cout << "As you continue exploring you hear something run up from behind you." << endl;
-		            combat fight(&inventory, check_enemy(choices[i], adventurer->getLevel()), drop);
+                    monster = check_enemy(choices[i], adventurer->getLevel());
+		    combat fight(&inventory, monster, drop);
                     fight.printStats();
-                    fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
+                    bool deadOrAlive = fight.start("A " + fight.getMonster()->getName() + " jumps at you from behind!");
+                    if(!deadOrAlive) {
+                        game_over(str, luck, heal, monster);
+			return false;
+                    }
+                    delete monster;
                     inventory.add(drop);
                     fightCounter++;
-
                     if(levelTrigger == fightCounter) { //Level up checkpoint
                         print_level_up();
                         levelTrigger++;
@@ -113,7 +125,7 @@ class Story {
                     press_continue();
                     chest();
                 }
-                
+             
 		        press_continue();
 		
                 cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
@@ -144,6 +156,7 @@ class Story {
             fight.printStats();
             cout << endl;
             fight.start("The Hobgoblin charges straight at you.");
+            return true;
         }
     
         void print_base_stats() {
@@ -207,6 +220,14 @@ class Story {
         //"Upon exploring the right path, you yearn to kill the boss. You imagine of the clout you would obtain until you hear something flapping it wings." //Chicken
         }; 
         
+        void game_over(Item* damage, Item* luck, Item* heal, Enemy* monster) {
+	    delete damage;
+            delete heal;
+            delete luck; 
+            delete monster;
+            delete adventurer;
+            cout << "GAME OVER" << endl;
+	}
         void item_checkpoint() { //Allows user to use an item after each fight if the user doesn't level up or before the boss battle
             string decision = "";
             while(decision != "y" && decision != "n") {

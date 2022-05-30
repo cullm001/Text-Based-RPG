@@ -50,10 +50,12 @@ int main()
     getline(cin, anyKey);
     system("clear");
 	
-    game->story();
+    bool win = game->story();
 
-    cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
-
+    if(win) {
+        cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
+    }
+   
     return 0;
 
 }
