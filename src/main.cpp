@@ -38,22 +38,25 @@ int main()
     "Wasting no time you spring into action and decide to clear this dungeon."
     };
     
-    for(unsigned int i = 0; i < 6; i++) {
-        cout << start[i] << endl;
-        cout << endl;
-        this_thread::sleep_for(chrono::seconds(2));
-    }
+    //for(unsigned int i = 0; i < 6; i++) {
+    //    cout << start[i] << endl;
+    //    cout << endl;
+    //    this_thread::sleep_for(chrono::seconds(2));
+    //}
 
-    cout << endl;
-    cout << "Press enter to continue . . ." << endl;
-    cout << "> ";
-    getline(cin, anyKey);
-    system("clear");
+    //cout << endl;
+    //cout << "Press enter to continue . . ." << endl;
+    //cout << "> ";
+    //getline(cin, anyKey);
+    //system("clear");
 	
-    game->story();
+    bool win = game->story();
 
-    cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
-
+    if(win) {
+        cout << "Congratulations, you just cleared the Gary Goomba dungeon." << endl;
+    }
+   
+    delete game;
     return 0;
 
 }
