@@ -70,7 +70,7 @@ class Archer : public Player {
             return "You meditate for a moment and your focus sharpens greatly. Your crit rate has increased.";
         }
         void equipFirstWeapon() {
-            Weapon* brittleBow = new Weapon("Bow", 5000, "shoot", "Common");
+            Weapon* brittleBow = new Weapon("Bow", 5, "shoot", "Common");
             equip(brittleBow);
         }
 };
