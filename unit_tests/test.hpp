@@ -824,4 +824,59 @@ TEST(Bag, Add_Remove){
     EXPECT_EQ(output, "There is nothing in your bag.\n");
     delete test;
 }
+TEST(Bag, Add_Remove2){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    testBag->use(1);
+    EXPECT_EQ(testBag->use(1), "You used an strength potion. You temporarily boosted your attack.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+
+TEST(Bag, Add_Remove3){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+TEST(Bag, Add_Remove4){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(heal);
+    EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+TEST(Bag, Add_Remove5){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    EXPECT_EQ(testBag->use(2), "You used an strength potion. You temporarily boosted your attack.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+
 #endif
