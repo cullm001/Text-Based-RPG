@@ -822,4 +822,151 @@ TEST(WeaponClass, PrintAllStatsFunction) {
     EXPECT_EQ(test->printAllStats(), "--- Weapon Stats ---\nType: Test Type\nRarity: Google\nBuff: 10.000000\nAttack Description: searches");
     delete test;
 }
+TEST(Bag, Add_Remove){
+    Bag* test = new Bag();
+    testing::internal::CaptureStdout();
+    test->print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "There is nothing in your bag.\n");
+    delete test;
+}
+TEST(Bag, Add_Remove2){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    testBag->use(1);
+    EXPECT_EQ(testBag->use(1), "You used an strength potion. You temporarily boosted your attack.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+
+TEST(Bag, Add_Remove3){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+TEST(Bag, Add_Remove4){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(heal);
+    EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+TEST(Bag, Add_Remove5){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    Item* heal = new healthpot();
+    Item* str = new strengthpot();
+    testBag->add(heal);
+    testBag->add(str);
+    EXPECT_EQ(testBag->use(2), "You used an strength potion. You temporarily boosted your attack.");
+    delete heal;
+    delete testBag;
+    delete testPlayer;
+    delete str;
+}
+
+TEST(Combat, print){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(10);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "Health:  40/40 HP\nEnemy:   30/30 HP\n------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+}
+TEST(Combat, monster){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(5);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "Health:  30/30 HP\nEnemy:   30/30 HP\n------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+}
+TEST(Combat, player){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(1);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "Health:  22/22 HP\nEnemy:   30/30 HP\n------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+}
+TEST(Combat, playerhurt){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(1);
+    testBag->getplayer()->takedmg(2.3);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.printStats();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "--- Player's Stats ---\n Archetype: Wizard (Level 6)\n Health: 21.7909/22 HP\n Attack: 15.7\n Defense: 11\n Crit Rate: 0.15\n\n--- Monster's Stats ---\n Monster: Angry Chicken (Level 10)\n Health: 30/30 HP\n Attack: 22\n Defense: 15\n Crit Rate: 0.15\n\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+}
+TEST(Combat, monsterhurt){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(1);
+    //testBag->getplayer()->takedmg(2.3);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    testEnemy->takedmg(2);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.printStats();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "--- Player's Stats ---\n Archetype: Wizard (Level 6)\n Health: 22/22 HP\n Attack: 15.7\n Defense: 11\n Crit Rate: 0.15\n\n--- Monster's Stats ---\n Monster: Angry Chicken (Level 10)\n Health: 29.8667/30 HP\n Attack: 22\n Defense: 15\n Crit Rate: 0.15\n\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+}
+
 #endif
