@@ -879,4 +879,24 @@ TEST(Bag, Add_Remove5){
     delete str;
 }
 
+TEST(Combat, monster){
+    Player* testPlayer = new Wizard();
+    Bag* testBag = new Bag(testPlayer);
+    testPlayer->levelUp(10);
+    Item* heal = new healthpot();
+    Enemy* testEnemy = new ChickenMinion(10);
+    combat testFight(testBag, testEnemy, heal);
+    testing::internal::CaptureStdout();
+    testFight.print();
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "Health:  40/40 HP\nEnemy:   30/30 HP\n------------------------------------\n  1. Attack\t2. Bag\n  3. Ability\t4. Run\n-------------------------------------\n");
+    delete testPlayer;
+    delete testBag;
+    delete heal;
+    delete testEnemy;
+    
+
+
+}
+
 #endif
