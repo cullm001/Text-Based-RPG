@@ -88,6 +88,7 @@ class Story {
                 }
                 cout << endl;
 	            cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                cin.ignore();
                 item_checkpoint();
                 press_continue();
                 chest();
@@ -121,6 +122,7 @@ class Story {
 
                     cout << endl;
                     cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl;
+                    cin.ignore();
                     item_checkpoint();
                     press_continue();
                     chest();
@@ -146,7 +148,7 @@ class Story {
   
             cout << "Would you like to use an item in your bag? (Enter 'y' for yes or 'n' for no)" << endl; 
             item_checkpoint();
-		
+
 	        press_continue();
 
             cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
@@ -238,16 +240,18 @@ class Story {
             string decision = "";
             while(decision != "y" && decision != "n") {
                 cout << "> ";
-                cin >> decision;
+                getline(cin, decision);
                 if(decision == "y") {
 	            inventory.print();
+                    cin.ignore();
                 }
 	       else if(decision == "n") {
 	            break;
+                    cin.ignore();
 	       }
                else {
 	            cout << "Sorry that is not a valid choice. Please type 'y' for yes or 'n' for no" << endl;
-                    cin.clear();
+                    decision = "";
 	       }
             }
 	}
