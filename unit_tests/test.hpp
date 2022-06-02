@@ -885,6 +885,124 @@ TEST(Bag, Add_Remove5){
     delete str;
 }
 
+TEST(ItemClass, HealthPotionDefaultUse) {
+    Player* test = new TestArchetype();
+    Item* heal = new HealthPot();
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 10);
+    EXPECT_EQ(heal->use(test), "You used a healing potion. You restored 5 health.");
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 15);
+    delete test;
+    delete heal;
+}
+
+TEST(ItemClass, HealthPotionAltUse) {
+    Player* test = new TestArchetype();
+    Item* heal = new HealthPot("Test Potion", "Test Description", 8);
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 10);
+    EXPECT_EQ(heal->use(test), "You used a healing potion. You restored 8 health.");
+    EXPECT_DOUBLE_EQ(test->getCurrHealth(), 18);
+    delete test;
+    delete heal;
+}
+
+TEST(ItemClass, HealthPotionDefaultPrint) {
+    Item* heal = new HealthPot();
+    EXPECT_EQ(heal->print(), "Healing Potion - When taken, a small angel pops out and sings a song to heal the user.");
+    delete heal;
+}
+
+TEST(ItemClass, HealthPotionAltPrint) {
+    Item* heal = new HealthPot("Test Potion", "Test Description");
+    EXPECT_EQ(heal->print(), "Test Potion - Test Description");
+    delete heal;
+}
+
+TEST(ItemClass, StrengthPotionDefaultUse) {
+    Player* test = new TestArchetype();
+    Item* str = new StrengthPot();
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 14);
+    EXPECT_EQ(str->use(test), "You used an strength potion. You temporarily boosted your attack.");
+    EXPECT_DOUBLE_EQ(test->getAttack(), 21);
+    EXPECT_TRUE(test->isBoosted());
+    test->resetBoosts();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 14);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+    delete str;
+}
+
+TEST(ItemClass, StrengthPotionAltUse) {
+    Player* test = new TestArchetype();
+    Item* str = new StrengthPot("Test Potion", "Test Description", 3);
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getAttack(), 14);
+    EXPECT_EQ(str->use(test), "You used an strength potion. You temporarily boosted your attack.");
+    EXPECT_DOUBLE_EQ(test->getAttack(), 35);
+    EXPECT_TRUE(test->isBoosted());
+    test->resetBoosts();
+    EXPECT_DOUBLE_EQ(test->getAttack(), 14);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+    delete str;
+}
+
+TEST(ItemClass, StrengthPotionDefaultPrint) {
+    Item* str = new StrengthPot();
+    EXPECT_EQ(str->print(), "Strength Potion - When taken, the user feels a slight boost to their strength.");
+    delete str;
+}
+
+TEST(ItemClass, StrengthPotionAltPrint) {
+    Item* str = new StrengthPot("Test Potion", "Test Description");
+    EXPECT_EQ(str->print(), "Test Potion - Test Description");
+    delete str;
+}
+
+TEST(ItemFunction, LuckPotionDefaultUse) {
+    Player* test = new TestArchetype();
+    Item* luck = new LuckPot();
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(luck->use(test), "You used an luck potion. You temporarily boosted your crit rate.");
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.3);
+    EXPECT_TRUE(test->isBoosted());
+    test->resetBoosts();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+    delete luck;
+}
+
+TEST(ItemFunction, LuckPotionAltUse) {
+    Player* test = new TestArchetype();
+    Item* luck = new LuckPot("Test Potion", "Test Description", 4);
+    test->takedmg(100);
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_EQ(luck->use(test), "You used an luck potion. You temporarily boosted your crit rate.");
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.75);
+    EXPECT_TRUE(test->isBoosted());
+    test->resetBoosts();
+    EXPECT_DOUBLE_EQ(test->getCritRate(), 0.15);
+    EXPECT_FALSE(test->isBoosted());
+    delete test;
+    delete luck;
+}
+
+TEST(ItemClass, LuckPotionDefaultPrint) {
+    Item* luck = new LuckPot();
+    EXPECT_EQ(luck->print(), "Luck Potion - When taken, the user will critically strike more often.");
+    delete luck;
+}
+
+TEST(ItemClass, LuckPotionAltPrint) {
+    Item* luck = new LuckPot("Test Potion", "Test Description");
+    EXPECT_EQ(luck->print(), "Test Potion - Test Description");
+    delete luck;
+}
+
 TEST(Combat, print){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
