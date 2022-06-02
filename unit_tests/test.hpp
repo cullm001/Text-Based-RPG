@@ -833,8 +833,8 @@ TEST(Bag, Add_Remove){
 TEST(Bag, Add_Remove2){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
-    Item* heal = new healthpot();
-    Item* str = new strengthpot();
+    Item* heal = new HealthPot();
+    Item* str = new StrengthPot();
     testBag->add(heal);
     testBag->add(str);
     testBag->use(1);
@@ -848,8 +848,8 @@ TEST(Bag, Add_Remove2){
 TEST(Bag, Add_Remove3){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
-    Item* heal = new healthpot();
-    Item* str = new strengthpot();
+    Item* heal = new HealthPot();
+    Item* str = new StrengthPot();
     testBag->add(heal);
     testBag->add(str);
     EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
@@ -861,8 +861,8 @@ TEST(Bag, Add_Remove3){
 TEST(Bag, Add_Remove4){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
-    Item* heal = new healthpot();
-    Item* str = new strengthpot();
+    Item* heal = new HealthPot();
+    Item* str = new StrengthPot();
     testBag->add(heal);
     testBag->add(heal);
     EXPECT_EQ(testBag->use(1), "You used a healing potion. You restored 5 health.");
@@ -874,8 +874,8 @@ TEST(Bag, Add_Remove4){
 TEST(Bag, Add_Remove5){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
-    Item* heal = new healthpot();
-    Item* str = new strengthpot();
+    Item* heal = new HealthPot();
+    Item* str = new StrengthPot();
     testBag->add(heal);
     testBag->add(str);
     EXPECT_EQ(testBag->use(2), "You used an strength potion. You temporarily boosted your attack.");
@@ -889,7 +889,7 @@ TEST(Combat, print){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
     testPlayer->levelUp(10);
-    Item* heal = new healthpot();
+    Item* heal = new HealthPot();
     Enemy* testEnemy = new ChickenMinion(10);
     combat testFight(testBag, testEnemy, heal);
     testing::internal::CaptureStdout();
@@ -905,7 +905,7 @@ TEST(Combat, monster){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
     testPlayer->levelUp(5);
-    Item* heal = new healthpot();
+    Item* heal = new HealthPot();
     Enemy* testEnemy = new ChickenMinion(10);
     combat testFight(testBag, testEnemy, heal);
     testing::internal::CaptureStdout();
@@ -921,7 +921,7 @@ TEST(Combat, player){
     Player* testPlayer = new Wizard();
     Bag* testBag = new Bag(testPlayer);
     testPlayer->levelUp(1);
-    Item* heal = new healthpot();
+    Item* heal = new HealthPot();
     Enemy* testEnemy = new ChickenMinion(10);
     combat testFight(testBag, testEnemy, heal);
     testing::internal::CaptureStdout();
@@ -938,7 +938,7 @@ TEST(Combat, playerhurt){
     Bag* testBag = new Bag(testPlayer);
     testPlayer->levelUp(1);
     testBag->getplayer()->takedmg(2.3);
-    Item* heal = new healthpot();
+    Item* heal = new HealthPot();
     Enemy* testEnemy = new ChickenMinion(10);
     combat testFight(testBag, testEnemy, heal);
     testing::internal::CaptureStdout();
@@ -955,7 +955,7 @@ TEST(Combat, monsterhurt){
     Bag* testBag = new Bag(testPlayer);
     testPlayer->levelUp(1);
     //testBag->getplayer()->takedmg(2.3);
-    Item* heal = new healthpot();
+    Item* heal = new HealthPot();
     Enemy* testEnemy = new ChickenMinion(10);
     testEnemy->takedmg(2);
     combat testFight(testBag, testEnemy, heal);

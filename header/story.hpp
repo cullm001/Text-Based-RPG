@@ -36,9 +36,9 @@ class Story {
             int promptCounter = 0;
             Enemy* monster;
 
-            Item* str = new strengthpot(); // boosts their attack stat by 25%
-            Item* heal = new healthpot(); // heals 25% of the player's health
-            Item* luck = new luckpot(); // increases the player's critical strike chance
+            Item* str = new StrengthPot(); // boosts their attack stat by 25%
+            Item* heal = new HealthPot(); // heals 25% of the player's health
+            Item* luck = new LuckPot(); // increases the player's critical strike chance
             inventory.add(heal);
    
             cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;

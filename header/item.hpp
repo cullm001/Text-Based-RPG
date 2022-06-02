@@ -22,11 +22,11 @@ class Item {
         string getname() { return name; }
 };
 
-class healthpot: public Item
+class HealthPot: public Item
 {
     public:
-        healthpot() : Item("Healing Potion", "When taken, a small angel pops out and sings a song to heal the user.", 5) {}
-        healthpot(string n, string d, int v = 5) : Item (n, d, v) {}
+        HealthPot() : Item("Healing Potion", "When taken, a small angel pops out and sings a song to heal the user.", 5) {}
+        HealthPot(string n, string d, int v = 5) : Item (n, d, v) {}
         string use(Player *&p){
             int healAmount = value * 0.05 * p->getMaxHealth(); // 5% of max health per value of the potion
             p->heal(healAmount);
@@ -34,22 +34,22 @@ class healthpot: public Item
         }
 };
 
-class strengthpot: public Item
+class StrengthPot: public Item
 {
     public:
-        strengthpot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength", 1) {}
-        strengthpot(string n, string d, int v = 1) : Item (n, d, v) {}
+        StrengthPot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength", 1) {}
+        StrengthPot(string n, string d, int v = 1) : Item (n, d, v) {}
         string use(Player *&p){
            p->addAttackBoost(value);
            return "You used an strength potion. You temporarily boosted your attack.";
         }
 };
 
-class luckpot : public Item
+class LuckPot : public Item
 {
     public:
-        luckpot() : Item("Luck Potion", "When taken, the user will critically strike more often.", 1) {}
-        luckpot(string n, string d, int v = 1) : Item (n, d, v) {}
+        LuckPot() : Item("Luck Potion", "When taken, the user will critically strike more often.", 1) {}
+        LuckPot(string n, string d, int v = 1) : Item (n, d, v) {}
         string use(Player *&p){
            p->addCritBoost(value);
            return "You used an luck potion. You temporarily boosted your crit rate.";
