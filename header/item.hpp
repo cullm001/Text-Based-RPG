@@ -17,7 +17,7 @@ class Item {
         Item();
         Item(string nm, string des, int val);
         virtual string use(Player *&p) = 0;
-        string print() { return name + ", " + description; }
+        string print() { return name + " - " + description; }
         virtual ~Item() = default;
         string getname() { return name; }
 };
@@ -37,7 +37,7 @@ class HealthPot: public Item
 class StrengthPot: public Item
 {
     public:
-        StrengthPot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength", 1) {}
+        StrengthPot() : Item("Strength Potion", "When taken, the user feels a slight boost to their strength.", 1) {}
         StrengthPot(string n, string d, int v = 1) : Item (n, d, v) {}
         string use(Player *&p){
            p->addAttackBoost(value);
