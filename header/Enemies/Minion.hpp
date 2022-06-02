@@ -6,8 +6,6 @@
 using namespace std;
 
 class Minion : public Enemy {
-	private:
-		virtual void class_ability() = 0;
 	public:
 		// a = attack, d = defense, h = health, l = level, nm = name, an = attackNoise
 		Minion(string nm, string an) : Enemy(nm, an) {}
@@ -19,6 +17,7 @@ class Minion : public Enemy {
 		Minion(double a, double d, double h, int l, string nm) : Enemy(a, d, h, l, nm) {}
 
 		double move();
+		virtual void class_ability() = 0;
 		virtual string get_class_ability_line() = 0;
 };
 

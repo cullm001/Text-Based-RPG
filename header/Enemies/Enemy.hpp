@@ -13,6 +13,7 @@ class Enemy: public Entity {
 	public:
 		virtual double move() = 0;
 		virtual string get_class_ability_line() {return ""; }
+		virtual void class_ability() = 0;
 
 		// a = attack, d = defense, h = health, l = level, nm = name, an = attackNoise
 		Enemy(int l, string nm) : Entity(l) {}

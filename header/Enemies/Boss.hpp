@@ -5,8 +5,6 @@
 using namespace std;
 
 class Boss: public Enemy{
-	private:
-		virtual void class_ability() = 0;
 	public:
 		// a = attack, d = defense, h = health, l = level, nm = name, an = attackNoise
 		Boss(string nm) : Enemy(nm) {}
@@ -18,6 +16,7 @@ class Boss: public Enemy{
 		Boss(double a, double d, double h, int l, string nm, string an): Enemy(a, d, h, l, nm, an) {}
 
 		double move();
+		virtual void class_ability() = 0;
 		virtual string get_class_ability_line() = 0;
 };
 
