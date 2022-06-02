@@ -12,7 +12,7 @@
  >   * [Github Kanban Board](https://github.com/kanboard/kanboard) - Github’s version of an online framework to implement the Kanban work methodology
  >   * [GoogleTest Framework](https://github.com/google/googletest) - Google's C++ testing and mocking framework
  > * Project Features
- >   * Text-based input/output, including entertaining ASCII art.
+ >   * Text-based input/output
  >     * Using singular character inputs like "1, 2, 3, 4, y, and n" to navigate story and combat menus. Receiving output in the form of text descriptions of what is happening.
  >   * 5 Classes, each with a unique class ability in combat
  >     * Ex: Barbarians can go into rage to deal more damage, Clerics can heal themselves, Archers can raise their crit rate 
