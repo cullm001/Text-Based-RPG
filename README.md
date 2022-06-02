@@ -63,7 +63,24 @@
  ## Screenshots
  > Screenshots of the input/output after running your application
  ## Installation/Usage
- > Instructions on installing and running your application
+ 1. Clone this repository in Terminal (Mac) or Command Prompt (Windows) with the following command:
+ ```
+ $ git clone https://github.com/cs100/final-project-isaiah-keita-chris-justin.git
+ ```
+ 2. Change into the directory that was created:
+ ```
+ $ cd final-project-isaiah-keita-chris-justin/
+ ```
+ 3. Compile the code (`cmake3 .` if you are using `hammer`):
+ ```
+ $ cmake .
+ $ make
+ ```
+ 4. Run the executable:
+ ```
+ $ ./story
+ ```
+ 5. You should be greeted with the title and the main menu
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
