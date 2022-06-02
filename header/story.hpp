@@ -153,7 +153,7 @@ class Story {
 
             cout << "You then open the door and are greeted with the boss, a Hobgoblin" << endl;
             this_thread::sleep_for(chrono::seconds(2));
-            HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()); 
+            HobgoblinBoss* boss = new HobgoblinBoss(adventurer->getLevel()+2); 
             combat fight(&inventory, boss, heal);
             fight.printStats();
             cout << endl;
