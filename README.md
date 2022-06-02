@@ -10,35 +10,36 @@
  >   * [C++](https://www.cplusplus.com/) - a well-known object-based programming language
  >   * [Secure Shell](https://www.ssh.com/) - used to remotely access the UCR hammer server
  >   * [Github Kanban Board](https://github.com/kanboard/kanboard) - Github’s version of an online framework to implement the Kanban work methodology
+ >   * [GoogleTest Framework](https://github.com/google/googletest) - Google's C++ testing and mocking framework
  > * Project Features
  >   * Text-based input/output, including entertaining ASCII art.
- >     * Using singular character inputs like "A, B, C" to navigate story and combat menus. Receiving output in the form of text descriptions of what is happening.
+ >     * Using singular character inputs like "1, 2, 3, 4, y, and n" to navigate story and combat menus. Receiving output in the form of text descriptions of what is happening.
  >   * 5 Classes, each with a unique class ability in combat
- >     * Ex: Barbarians can go into rage to deal more damage.
- >   * 5 Weapons, each with unique attributes and modifiers
- >     * Ex: Rogue's knives deal damage twice instead of once.
- >   * Multiple potion types to use in combat
- >     * Ex: Choose to bring a strength potion instead of a healing potion.
+ >     * Ex: Barbarians can go into rage to deal more damage, Clerics can heal themselves, Archers can raise their crit rate 
+ >   * 5 Weapons Types with randomly generated levels and rarities
+ >     * Ex: Level 5 Common Weapon will have much less attack than a Level 5 Legendary Weapon
+ >   * Multiple potion types to use before and in combat
+ >     * Ex: Use a Strength Potion to raise your attack, use a Healing Potion to heal yourself. 
  >   * Unique enemies, each with their own combat style
- >     * Ex: Stone golems take less physical damage and more magic damage.
- >   * Linear storyline, but randomized loot system based on your weapon and class
+ >     * Ex: Slimes increase their health and heal with their class ability, defeating them quickly will prevent them from becoming too strong
+ >   * Linear storyline, but randomized loot system to receive items and weapons.
  >   
 ## UML Class Diagram
- > <img width="892" alt="image" src="https://user-images.githubusercontent.com/90822210/166167385-6482112a-9ffc-49d9-8116-b9f6c2a32c3c.png">
- > 
- > Our text-based RPG will run mainly through a Story Class that will describe the story, read user inputs, and conduct combat between two entities. The two Entity Classes stored within the Story Class represent the user's player character and whatever enemy they are in combat with. The Entity Class is a blank slate of stats to store a character on, it has basic RPG stats like health, attack, and defense. The first class that inherits from it, the Player Class, will store a Bag that stores multiple usable items and a weapon. The various player character archetypes with unique abilites will also inherit from this class. The Enemy class is the superclass of the two possible enemy types, a Boss Class and a Minion Class. The main difference between these two are the combat patterns and the ability that the Boss Class also has.  
- > 
  > ![CS 100 Project UML - 6_1_22 drawio](https://user-images.githubusercontent.com/100912526/171567997-45e9a817-c7de-4cc7-a9f5-8fd466c08272.png)
  >  
+ > Our text-based RPG will run primarily through the Story Class. After the user selects a Player Archetype (Paladin, Wizard, etc.), the main file instantiates the revevant Archetype and Bag, then instantiates a Story object with these components. The respective Archetype instantiates a Weapon, the one that is first equipped by the player at the start of the journey (Lvl. 5 Common Weapon), subsequent Weapon objects will be instantiated by the Story Class as potential dungeon clearing rewards.
+ >  
+ > The **Story Class** operates the choices the player makes in regards to the narrative plot (ie choosing left or right paths). When relevant, the Story Class instantiates Enemy objects (Boss or Minion objects), randomly selects a previously instantiated Item, and takes the Bag Object to create a Combat Object/Encounter.
+ >  
+ > The **Combat Class** operates the turnbased combat system of the game. This includes player choices, damage calculations, in-combat item usage, and outputting text descriptions. For damage, first the getAttackDamage() of the Entity Class is called and its output is used in the takedmg() function. For item usage, the Bag's print() and use(int i) functions are used to show the player's current items and then use an item in a certain slot. For class abilities, the Player or the Enemy's virtual function is overridden based on the subclass so that they accomplish different tasks based on the character. 
  > 
+ > The **Entity Class** that all Player and Enemy objects derive from has a number of member variables and functions. It stores relevant RPG stats like levels, health, attack, defense, and crit rate; and temporary buffing effects like tempStats and Boosts. tempStats are temporary flat increases in stat values while Boosts are percentage-based increases (50% increase for every boost). For functions, the Entity Class has getters, setters, and other important features like getAttackDamage(), takedmg(), heal(), and levelUp(). 
+ >  
+ > Between the **Boss Class** and the **Minion Class**, currently the only difference between the two is how the move() function, used to select the monster's random move is calculated. The Boss Class has a 1/3 chance of using their ability, while the Minion Class has a 1/5 chance. 
+ > 
+ > The **Weapon Class** controls how a random weapon is generated and the weapon's strength. The strength (attack buff) of the weapon is determined by the rarity level of the weapon and the level. The rarity scaling ranges from Common, Uncommon, Rare, Epic, and Legendary. 
 
-
-
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
- > * Before the meeting you should perform a sprint plan like you did in Phase II.
- > <img width="857" alt="Screen Shot 2022-05-15 at 5 08 53 PM" src="https://user-images.githubusercontent.com/90822210/168500464-5b94ec76-5623-4ffb-8827-c64d6febbcc0.png">
-
+ ## Strategy Design Pattern - Player, Enemy, Item
  > * You should also update this README file by adding the following:
  >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
  >     * Why did you pick this pattern? And what feature did you implement with it?
@@ -46,13 +47,6 @@
  >   * An updated class diagram that reflects the design pattern(s) you used. You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description).
  >   * Make sure your README file (and Project board) are up-to-date reflecting the current status of your project. Previous versions of the README file should still be visible through your commit history.
 > 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
-
- 
  > ## Final deliverable
  > All group members will give a demo to the TA/reader during lab time. The TA/reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
  > Before the demo, you should do the following:
