@@ -16,7 +16,7 @@ int main()
         cout << ">";
         cin >> anyKey;
         if(anyKey == "1") break;
-        else if(anyKey == "2") exit(0);
+        else if(anyKey == "2") return 0;
         else cout << "Sorry that is an invalid option, please type '1' to play and '2' to quit" << endl;
     }
 
