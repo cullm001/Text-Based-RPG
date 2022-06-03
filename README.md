@@ -53,7 +53,8 @@
  > * Write Explanation.
  > 
  > * You should also update this README file by adding the following:
- >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
+ >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences
+     * We implemented a strategy pattern because this project allows the player many options to better make the game fit the user's playstyle. 
  >     * Why did you pick this pattern? And what feature did you implement with it?
  >     * How did the design pattern help you write better code?
  >   * An updated class diagram that reflects the design pattern(s) you used. You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description).
