@@ -42,7 +42,7 @@
  ## Strategy Design Pattern - Player, Enemy, Item
  > ## Player Class and Archetype Subclasses
  > ![CS 100 Project - Strategy Player drawio](https://user-images.githubusercontent.com/100912526/171776564-9fbcf7e1-b768-4ead-b5a0-137c332909a9.png)
- > * A strategy pattern is best utilized here too allow the user to choose which class they want to play as during runtime. It helps prevent redundent code through inheritence. At the beginning of the story, the a choice of player classes is given, with only one being picked.
+ > * A strategy pattern is best utilized here too allow the user to choose which class they want to play as during runtime. It helps prevent redundent code through inheritence. At the beginning of the story, the a choice of 5 player classes is given, with only one being picked.
  > 
  > ## Enemy Class and Boss/Minion Subclasses
  > ![CS 100 Project - Strategy Enemy](https://user-images.githubusercontent.com/100912526/171776613-a7158582-8a5b-4a1c-838c-5248b06c4578.png)
