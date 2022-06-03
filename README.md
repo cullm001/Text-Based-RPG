@@ -77,4 +77,6 @@
  5. You should be greeted with the title and the main menu
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
+ For testing we deccided to use Unit testing using the google test framework to test.
+ We wrote 98 Unit tests in total testing everything from our combat class to the different player archetypes.
+ We also created a YML file to test all of the unit tests every time something is merged into our master/main branch.
