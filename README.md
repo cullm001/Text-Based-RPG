@@ -40,6 +40,18 @@
  > The **Weapon Class** controls how a random weapon is generated and the weapon's strength. The strength (attack buff) of the weapon is determined by the rarity level of the weapon and the level. The rarity scaling ranges from Common, Uncommon, Rare, Epic, and Legendary. 
 
  ## Strategy Design Pattern - Player, Enemy, Item
+ > ## Player Class and Archetype Subclasses
+ > ![CS 100 Project - Strategy Player drawio](https://user-images.githubusercontent.com/100912526/171776564-9fbcf7e1-b768-4ead-b5a0-137c332909a9.png)
+ > * Write Explanation.
+ > 
+ > ## Enemy Class and Boss/Minion Subclasses
+ > ![CS 100 Project - Strategy Enemy](https://user-images.githubusercontent.com/100912526/171776613-a7158582-8a5b-4a1c-838c-5248b06c4578.png)
+ > * Write Explanation.
+ > 
+ > ## Item Class and Potion Subclasses
+ > ![CS 100 Project - Strategy Item drawio](https://user-images.githubusercontent.com/100912526/171776715-46fafbb8-a0d3-44cb-bd89-8b47547061ea.png)
+ > * Write Explanation.
+ > 
  > * You should also update this README file by adding the following:
  >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
  >     * Why did you pick this pattern? And what feature did you implement with it?
