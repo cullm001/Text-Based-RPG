@@ -56,21 +56,6 @@
  
  ## Screenshots
  > Screenshots of the input/output after running your application
- > Installation
- > <img width="778" alt="Installation screenshot" src="https://user-images.githubusercontent.com/90822210/171776038-1b1e9f13-b79f-4cfa-a25a-1be26b447798.png">
- > Start screen
- > <img width="778" alt="Installation screenshot" src="https://user-images.githubusercontent.com/90822210/171776073-7e0d3466-3827-4ec9-8781-60db738bf1ed.png">
- > Program running with input being denoted by lines starting with > 
- > <img width="1239" alt="Screen Shot 2022-06-02 at 7 36 32 PM" src="https://user-images.githubusercontent.com/90822210/171776121-fdc36d53-3fad-4275-8bda-25fabe8c26b1.png">
- > <img width="1198" alt="Screen Shot 2022-06-02 at 7 38 27 PM" src="https://user-images.githubusercontent.com/90822210/171776138-e2251b0e-dd9f-403e-b9e6-0341e0b0f8e7.png">
- > Program finishing by killing the final boss
- > <img width="997" alt="Screen Shot 2022-06-02 at 7 39 20 PM" src="https://user-images.githubusercontent.com/90822210/171776180-65b1bf04-80da-459e-9fab-149b910b776f.png">
- > Program running memcheck clean
- > ![image](https://user-images.githubusercontent.com/90822210/171776260-d6e10a46-dbd7-4606-b1d9-9e782264e990.png)
-
-
-
-
  ## Installation/Usage
  1. Clone this repository in Terminal (Mac) or Command Prompt (Windows) with the following command:
  ```
