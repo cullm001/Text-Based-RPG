@@ -25,7 +25,7 @@
  >   * Linear storyline, but randomized loot system to receive items and weapons.
  >   
 ## UML Class Diagram
- > ![CS 100 Project UML - 6_1_22 drawio](https://user-images.githubusercontent.com/100912526/171567997-45e9a817-c7de-4cc7-a9f5-8fd466c08272.png)
+ > ![CS 100 Project UML - 6_1_22 drawio (2)](https://user-images.githubusercontent.com/100912526/171774057-a93efeb3-9262-4ee3-9c55-49c9855b4989.png)
  >  
  > Our text-based RPG will run primarily through the Story Class. After the user selects a Player Archetype (Paladin, Wizard, etc.), the main file instantiates the revevant Archetype and Bag, then instantiates a Story object with these components. The respective Archetype instantiates a Weapon, the one that is first equipped by the player at the start of the journey (Lvl. 5 Common Weapon), subsequent Weapon objects will be instantiated by the Story Class as potential dungeon clearing rewards.
  >  
