@@ -85,11 +85,11 @@
  ## Installation/Usage
  1. Clone this repository in Terminal (Mac) or Command Prompt (Windows) with the following command:
  ```
- $ git clone https://github.com/cs100/final-project-isaiah-keita-chris-justin.git
+ $ git clone https://github.com/cullm001/Text-Based-RPG
  ```
  2. Change into the directory that was created:
  ```
- $ cd final-project-isaiah-keita-chris-justin/
+ $ cd Text-Based-RPG/
  ```
  3. Compile the code (`cmake3 .` if you are using `hammer`):
  ```
